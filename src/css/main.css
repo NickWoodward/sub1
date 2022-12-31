@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+
+  --header-height: 5.5rem;
+  --hero-height: calc(100vh - var(--header-height));
+}
+
+/* @responsive {
+    @variants hover, focus {
+        .rotate-99 {
+            transform: rotate(99deg);
+        }
+    }
+}
+
+// Don't use apply over styling components in js/react, or just to make your html look clean,
+// otherwise you're just writing css again
+// At most use for small highly reuseable things
+
+@layer base {
+  h1 {
+    @apply text-2xl;
+  }
+  h2 {
+    @apply text-xl;
+  }
+}
+
+@layer components {
+  .btn-blue {
+    @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+  }
+}
+
+@layer utilities {
+  .filter-none {
+    filter: none;
+  }
+  .filter-grayscale {
+    filter: grayscale(100%);
+  }
+}
+*/
