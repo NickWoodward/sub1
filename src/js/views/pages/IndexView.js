@@ -6,7 +6,9 @@ import Header from '../components/Header';
 import Hero from '../components/Hero';
 import About from '../components/About';
 import Testimonial from '../components/Testimonial';
+import FAQs from '../components/FAQs';
 import Contact from '../components/Contact';
+import Footer from '../components/Footer';
 
 class IndexView extends View {
     _elementName;
@@ -19,6 +21,8 @@ class IndexView extends View {
     _Dashboard;
     _About;
     _Testimonial;
+    _FAQs;
+    _Footer;
 
     constructor(data) {
         super(data);
@@ -32,7 +36,9 @@ class IndexView extends View {
         this._Hero = new Hero({});
         this._About = new About({});
         this._Testimonial = new Testimonial({});
+        this._FAQs = new FAQs({});
         this._Contact = new Contact({});
+        this._Footer = new Footer({});
     }
 
     _generateMarkup() {
@@ -49,7 +55,9 @@ class IndexView extends View {
         this._Hero._render();
         this._About._render();
         this._Testimonial._render();
-        // this._Contact._render();
+        this._FAQs._render();
+        this._Contact._render();
+        this._Footer._render();
     }
 
 }

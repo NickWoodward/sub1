@@ -19,7 +19,7 @@ export default class Header extends View {
           <div class="flex space-x-4">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <a href="#" class=" border-b border-menuSelected px-3 py-2 text-sm font-medium text-white">About</a>
-            <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-menuSelected hover:text-white">Meet the Team</a>
+            <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-menuSelected hover:text-white">Our Vision</a>
             <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-menuSelected hover:text-white">Contact Us</a>
             <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-menuSelected hover:text-white">Log In</a>
           </div>

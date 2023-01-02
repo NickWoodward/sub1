@@ -94,11 +94,12 @@ class Hero extends View {
 
     _generateMarkup() {
       const markup = /*html*/`
-        <div class="${this._elementName} relative mt-[var(--header-height)] h-section overflow-hidden bg-white border-1 border-slate-800">
+        <div class="${this._elementName} relative mt-[var(--header-height)] h-section overflow-hidden border-b-2 border-slate-200">
           <!-- Hero Content Wrapper-->
           <div class="relative h-full w-full bg-white before:block before:absolute before:bg-white before:w-3/5 before:h-full before:border-primary before:border-r-8 before:-skew-x-12 before:z-10">
-            <!-- The Bg Image w/ pseudo element to create a mask-->
-            <img class="h-full w-4/5 ml-auto object-cover lg:h-full brightness-[38%] grayscale" src=${datacenter} alt="">
+            <!-- The Bg Image -->
+            <div class="absolute top-0 right-0 h-full w-4/5 ml-auto object-cover lg:h-full bg-slate-700" > </div>
+            <img class="h-full w-4/5 ml-auto object-cover lg:h-full opacity-60 brightness-[40%] grayscale" src=${datacenter} alt="">
 
             <!-- Image Navigation -->
             <div class="absolute right-0 bottom-0 flex">
@@ -115,7 +116,6 @@ class Hero extends View {
                       <a href="#" class="inline-flex space-x-4 mb-2">
                         <span class="inline-flex items-center space-x-1 text-lg font-semibold text-gray-500">
                           <span>Just shipped version 0.1.0</span>
-                          <!-- Heroicon name: mini/chevron-right -->
                           <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                             <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
                           </svg>
@@ -125,7 +125,7 @@ class Hero extends View {
 
                     <!-- <span class="block text-base font-semibold text-gray-500 sm:text-lg lg:text-base xl:text-lg">Coming soon</span> -->
                     <span class="mt-1 block text-4xl sm:text-5xl xl:text-6xl">
-                      <span class="block text-gray-700 xl:text-3xl font-medium">Create, Lease and Sell</span>
+                      <span class="block text-3xl font-semibold tracking-tight text-slate-700">Create, Lease and Sell</span>
                       <span class="block mt-2 text-primary font-semibold">Hyper Efficient Edge Data Centers</span>
                     </span>
                   </h1>
@@ -135,7 +135,7 @@ class Hero extends View {
                     <form action="#" method="POST" class="mt-3 sm:flex">
                       <label for="email" class="sr-only">Email</label>
                       <input type="email" name="email" id="email" class="block w-full rounded-md border-gray-300 py-3 text-base placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:flex-1" placeholder="Enter your email">
-                      <button type="submit" class="mt-3 w-full rounded-md border border-transparent bg-primary px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:inline-flex sm:w-auto sm:flex-shrink-0 sm:items-center">Notify me</button>
+                      <button type="submit" class="mt-3 w-full rounded-md border border-transparent bg-primary px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-primaryLight focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:inline-flex sm:w-auto sm:flex-shrink-0 sm:items-center">Notify me</button>
                     </form>
                     <p class="mt-3 text-sm text-gray-500">
                       We care about the protection of your data. Read our

@@ -1,5 +1,7 @@
 import View from '../View';
 
+import map from '../../../assets/map.png';
+
 class Contact extends View {
   _elementName = 'contact';
   _parentElement;
@@ -9,110 +11,105 @@ class Contact extends View {
     this._data.markup = this._generateMarkup();
   }
  
-  
   _generateMarkup() {
-    const markup = /*html*/ `
-     <div class="overflow-hidden bg-white py-16 px-4 sm:px-6 lg:px-8 lg:py-24">
-        <div class="relative mx-auto max-w-xl">
-          <svg class="absolute left-full translate-x-1/2 transform" width="404" height="404" fill="none" viewBox="0 0 404 404" aria-hidden="true">
-            <defs>
-              <pattern id="85737c0e-0916-41d7-917f-596dc7edfa27" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
-              </pattern>
-            </defs>
-            <rect width="404" height="404" fill="url(#85737c0e-0916-41d7-917f-596dc7edfa27)" />
-          </svg>
-          <svg class="absolute right-full bottom-0 -translate-x-1/2 transform" width="404" height="404" fill="none" viewBox="0 0 404 404" aria-hidden="true">
-            <defs>
-              <pattern id="85737c0e-0916-41d7-917f-596dc7edfa27" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
-              </pattern>
-            </defs>
-            <rect width="404" height="404" fill="url(#85737c0e-0916-41d7-917f-596dc7edfa27)" />
-          </svg>
-          <div class="text-center">
-            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Contact sales</h2>
-            <p class="mt-4 text-lg leading-6 text-gray-500">Nullam risus blandit ac aliquam justo ipsum. Quam mauris volutpat massa dictumst amet. Sapien tortor lacus arcu.</p>
-          </div>
-          <div class="mt-12">
-            <form action="#" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
-              <div>
-                <label for="first-name" class="block text-sm font-medium text-gray-700">First name</label>
-                <div class="mt-1">
-                  <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-gray-300 py-3 px-4 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+    const markup = /*html*/`
+      <div class="${this._elementName} relative h-section overflow-hidden bg-white">
+        <!-- Hero Content Wrapper-->
+        <!-- <div class="relative h-full w-full bg-slate-700"> -->
+        <div class="relative h-full w-full bg-white">
+
+          <!--<img class="h-full w-full mr-auto object-cover lg:h-full mix-blend-soft-light brightness-[55%] opacity-70 grayscale" src=${map} alt=""> -->
+          <!-- <img class="h-full w-full mr-auto object-cover lg:h-full mix-blend-multiply brightness-[75%] grayscale" src=${map} alt=""> -->
+
+
+
+          <!-- Skewed Right-Element -->
+          <div class="absolute top-0 left-[40%] w-full h-full bg-tertiary border-primary border-l-8 skew-x-12"></div>
+
+          <!-- Contact Content -->
+          <div class="absolute container mx-auto top-1/2 left-1/2 -translate-y-[48%] -translate-x-1/2 text-primary z-20">
+
+            <div class="relative  lg:grid lg:grid-cols-6">
+              <div class="py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-24 xl:pr-12">
+                <div class="mx-auto max-w-lg">
+                  <h2 class="text-3xl font-semibold tracking-tight text-slate-700">Get in touch</h2>
+                  <p class="mt-3 text-lg leading-6 text-gray-500">Nullam risus blandit ac aliquam justo ipsum. Quam mauris volutpat massa dictumst amet.</p>
+                  <dl class="mt-8 text-base text-gray-700">
+                    <div>
+                      <dt class="sr-only">Postal address</dt>
+                      <dd>
+                        <p>742 Evergreen Terrace</p>
+                        <p>Springfield, OR 12345</p>
+                      </dd>
+                    </div>
+                    <div class="mt-6">
+                      <dt class="sr-only">Phone number</dt>
+                      <dd class="flex">
+                        <!-- Heroicon name: outline/phone -->
+                        <svg class="h-6 w-6 flex-shrink-0 text-gray-700" xmlns="http:www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                        </svg>
+                        <span class="ml-3">+1 (555) 123-4567</span>
+                      </dd>
+                    </div>
+                    <div class="mt-3">
+                      <dt class="sr-only">Email</dt>
+                      <dd class="flex">
+                        <!-- Heroicon name: outline/envelope -->
+                        <svg class="h-6 w-6 flex-shrink-0 text-gray-700" xmlns="http:www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                        </svg>
+                        <span class="ml-3">support@example.com</span>
+                      </dd>
+                    </div>
+                  </dl>
+                  <p class="mt-6 text-base text-gray-700">
+                    Looking for careers?
+                    <a href="#" class="font-medium pl-2 text-primary underline">View all job openings</a>.
+                  </p>
                 </div>
               </div>
-              <div>
-                <label for="last-name" class="block text-sm font-medium text-gray-700">Last name</label>
-                <div class="mt-1">
-                  <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="block w-full rounded-md border-gray-300 py-3 px-4 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+              <!-- Contact Form -->
+              <div class="py-16 px-4 sm:px-6 lg:col-start-4 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12">
+                <div class="mx-auto max-w-lg lg:max-w-none">
+                  <form action="#" method="POST" class="grid grid-cols-1 gap-y-6">
+                    <div>
+                      <label for="full-name" class="sr-only">Full name</label>
+                      <input type="text" name="full-name" id="full-name" autocomplete="name" class="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-primary focus:ring-primary" placeholder="Full name">
+                    </div>
+                    <div>
+                      <label for="email" class="sr-only">Email</label>
+                      <input id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-primary focus:ring-primary" placeholder="Email">
+                    </div>
+                    <div>
+                      <label for="phone" class="sr-only">Phone</label>
+                      <input type="text" name="phone" id="phone" autocomplete="tel" class="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-primary focus:ring-primary" placeholder="Phone">
+                    </div>
+                    <div>
+                      <label for="message" class="sr-only">Message</label>
+                      <textarea id="message" name="message" rows="4" class="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-primary focus:ring-primary" placeholder="Message"></textarea>
+                    </div>
+                    <div>
+                      <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-primary py-3 px-6 text-base font-medium text-white shadow-sm hover:bg-primaryLight focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">Submit</button>
+                    </div>
+                  </form>
                 </div>
               </div>
-              <div class="sm:col-span-2">
-                <label for="company" class="block text-sm font-medium text-gray-700">Company</label>
-                <div class="mt-1">
-                  <input type="text" name="company" id="company" autocomplete="organization" class="block w-full rounded-md border-gray-300 py-3 px-4 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                </div>
-              </div>
-              <div class="sm:col-span-2">
-                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                <div class="mt-1">
-                  <input id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-gray-300 py-3 px-4 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                </div>
-              </div>
-              <div class="sm:col-span-2">
-                <label for="phone-number" class="block text-sm font-medium text-gray-700">Phone Number</label>
-                <div class="relative mt-1 rounded-md shadow-sm">
-                  <div class="absolute inset-y-0 left-0 flex items-center">
-                    <label for="country" class="sr-only">Country</label>
-                    <select id="country" name="country" class="h-full rounded-md border-transparent bg-transparent py-0 pl-4 pr-8 text-gray-500 focus:border-indigo-500 focus:ring-indigo-500">
-                      <option>US</option>
-                      <option>CA</option>
-                      <option>EU</option>
-                    </select>
-                  </div>
-                  <input type="text" name="phone-number" id="phone-number" autocomplete="tel" class="block w-full rounded-md border-gray-300 py-3 px-4 pl-20 focus:border-indigo-500 focus:ring-indigo-500" placeholder="+1 (555) 987-6543">
-                </div>
-              </div>
-              <div class="sm:col-span-2">
-                <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
-                <div class="mt-1">
-                  <textarea id="message" name="message" rows="4" class="block w-full rounded-md border-gray-300 py-3 px-4 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
-                </div>
-              </div>
-              <div class="sm:col-span-2">
-                <div class="flex items-start">
-                  <div class="flex-shrink-0">
-                    <!-- Enabled: "bg-indigo-600", Not Enabled: "bg-gray-200" -->
-                    <button type="button" class="bg-gray-200 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" role="switch" aria-checked="false">
-                      <span class="sr-only">Agree to policies</span>
-                      <!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
-                      <span aria-hidden="true" class="translate-x-0 inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
-                    </button>
-                  </div>
-                  <div class="ml-3">
-                    <p class="text-base text-gray-500">
-                      By selecting this, you agree to the
-                      <a href="#" class="font-medium text-gray-700 underline">Privacy Policy</a>
-                      and
-                      <a href="#" class="font-medium text-gray-700 underline">Cookie Policy</a>.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="sm:col-span-2">
-                <button type="submit" class="inline-flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Let's talk</button>
-              </div>
-            </form>
+            </div>
+          
+            
+          
           </div>
         </div>
       </div>
+  
     `;
+    return markup;
   }
   
   _render() {
     this._setParentElement();
-    super._render('begin');
+    super._render();
   }
 
   _setParentElement() {

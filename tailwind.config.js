@@ -21,8 +21,8 @@ module.exports = {
       },
       colors: {
         primary: 'hsl(178, 61%, 49%)',
-        primaryDark: 'hsl(178, 61%, 45%)',
-        primaryLight: 'hsl(178, 61%, 90%)',
+        primaryDark: 'hsl(178, 61%, 28%)',
+        primaryLight: 'hsl(178, 61%, 60%)',
         // secondary: 'hsl(212, 76%, 18%)',
         secondary: 'hsl(250, 96%, 13%)',
         // secondary: 'hsl(195, 100%, 31%)',
