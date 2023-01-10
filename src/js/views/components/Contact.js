@@ -13,10 +13,10 @@ class Contact extends View {
  
   _generateMarkup() {
     const markup = /*html*/`
-      <div class="${this._elementName} relative h-section overflow-hidden bg-white">
+      <div class="${this._elementName} relative overflow-hidden border-4 border-slate-100 bg-tertiary">
         <!-- Hero Content Wrapper-->
         <!-- <div class="relative h-full w-full bg-slate-700"> -->
-        <div class="relative h-full w-full bg-white">
+        <div class="relative h-full xl:h-[90vh] max-w-xl mx-auto md:max-w-2xl lg:max-w-none lg:w-full lg:bg-white">
 
           <!--<img class="h-full w-full mr-auto object-cover lg:h-full mix-blend-soft-light brightness-[55%] opacity-70 grayscale" src=${map} alt=""> -->
           <!-- <img class="h-full w-full mr-auto object-cover lg:h-full mix-blend-multiply brightness-[75%] grayscale" src=${map} alt=""> -->
@@ -24,14 +24,14 @@ class Contact extends View {
 
 
           <!-- Skewed Right-Element -->
-          <div class="absolute top-0 left-[40%] w-full h-full bg-tertiary border-primary border-l-8 skew-x-12"></div>
+          <div class="hidden lg:block absolute top-0 left-[40%] w-full h-full bg-tertiary border-slate-100 border-l-8 skew-x-12"></div>
 
           <!-- Contact Content -->
-          <div class="absolute container mx-auto top-1/2 left-1/2 -translate-y-[48%] -translate-x-1/2 text-primary z-20">
+          <div class="mx-auto lg:max-w-6xl xl:max-w-[1440px] text-primary z-20 px-4 xxs:px-8 lg:px-0 xl:flex xl:items-center xl:h-full">
 
             <div class="relative  lg:grid lg:grid-cols-6">
-              <div class="py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-24 xl:pr-12">
-                <div class="mx-auto max-w-lg">
+              <div class="pt-24 pb-16 lg:col-span-2 lg:px-8 lg:py-24 xl:pr-12">
+                <div class="mx-auto">
                   <h2 class="text-3xl font-semibold tracking-tight text-slate-700">Get in touch</h2>
                   <p class="mt-3 text-lg leading-6 text-gray-500">Nullam risus blandit ac aliquam justo ipsum. Quam mauris volutpat massa dictumst amet.</p>
                   <dl class="mt-8 text-base text-gray-700">
@@ -70,8 +70,8 @@ class Contact extends View {
                 </div>
               </div>
               <!-- Contact Form -->
-              <div class="py-16 px-4 sm:px-6 lg:col-start-4 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12">
-                <div class="mx-auto max-w-lg lg:max-w-none">
+              <div class="pb-24 pt-4 lg:col-start-4 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12">
+                <div class="mx-auto lg:max-w-none">
                   <form action="#" method="POST" class="grid grid-cols-1 gap-y-6">
                     <div>
                       <label for="full-name" class="sr-only">Full name</label>

@@ -8,11 +8,22 @@ module.exports = {
   // content: ['./*.html'],
   theme: {
     screens: {
-      sm: '480px',
-      md: '768px',
-      lg: '976px',
+      xxs: '400px',
+      xs: '480px',
+      sm: '768px',
+      md: '950px',
+      lg: '1150px',
       xl: '1440px'
 
+    },
+    container: {
+      padding: {
+        DEFAULT: "1rem",
+        xs: "2rem",
+        lg: "4rem",
+        xl: "5rem",
+        "2xl": "6rem",
+      },
     },
     extend: {
       fontFamily: {
@@ -40,6 +51,9 @@ module.exports = {
       },
       height: {
         header: 'var(--header-height)',
+        section: 'var(--hero-height)'
+      },
+      minHeight: {
         section: 'var(--hero-height)'
       },
       inset: {

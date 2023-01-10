@@ -20,6 +20,9 @@ class IndexController {
 
         // 3: Render the html elements
         this._IndexView._render();
+
+        // 4: Init Event Handlers
+        this._initHandlers();
     }
 
     init() {
@@ -28,6 +31,14 @@ class IndexController {
             headerData: IndexModel.getHeaderData(),
             dashboardData: IndexModel.getDashboardData()
         }
+    }
+
+    _initHandlers() {
+        this._IndexView._Header.addMenuHandler((e) => {
+            const burger = e.target.closest('.burger');
+            if(burger)
+                this._IndexView._Header.toggleMenu();
+        });
     }
 }
 

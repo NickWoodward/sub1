@@ -28,6 +28,8 @@
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.5.3",
-    "core-js": "^3.26.1"
+    "babel-plugin-preval": "^5.1.0",
+    "core-js": "^3.26.1",
+    "gsap": "^3.11.4"
   }
 }
