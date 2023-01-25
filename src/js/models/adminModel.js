@@ -8,8 +8,8 @@ const state = {
         ]
     },
     headerData: {
-        page: 'About',
-        navItems: ['About', 'Testimonial', 'Contact', 'Login']
+        page: 'Admin',
+        navItems: ['Home', 'Admin', 'Logout']
     }
 
 }
@@ -31,7 +31,3 @@ export const getHeaderData = () => {
 
 
 //// END examples ////
-
-export const indexModelFunction = () => {
-    console.log('indexModel');
-}

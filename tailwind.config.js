@@ -38,7 +38,6 @@ module.exports = {
         secondary: 'hsl(250, 96%, 13%)',
         // secondary: 'hsl(195, 100%, 31%)',
         tertiary: 'hsl(193, 26% 93%)',
-        menuSelected: 'hsl(178, 61%, 49%)',
 
         // tertiary: 'hsl(197, 20%, 86%)',
         cyan: 'hsl(180, 66%, 49%)',
@@ -55,6 +54,12 @@ module.exports = {
       },
       minHeight: {
         section: 'var(--hero-height)'
+      },
+      width: {
+        login: '28rem'
+      },
+      maxWidth: {
+        largest: '1700px'
       },
       inset: {
         header: 'var(--header-height)'

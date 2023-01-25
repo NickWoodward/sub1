@@ -21,7 +21,7 @@ export default class Header extends View {
   _generateMarkup() {
     const markup = /*html*/`
       <div class="${this._elementName} fixed flex items-center justify-center w-full h-header bg-slate-700 shadow-2xl z-30">
-        <div class=" px-4 xxs:px-8 flex justify-between items-center w-full">
+        <div class=" px-4 xxs:px-8 flex justify-between items-center w-full max-w-largest">
           <div class="logo relative border-l-2 border-primary pl-3 text-white text-3xl tracking-tighter uppercase">Sub<span class="text-primary ml-2">1</span></div>
         
           <!-- Mobile Burger -->
@@ -52,11 +52,7 @@ export default class Header extends View {
 
           <div class="hidden xs:ml-6 sm:block">
             <div class="flex space-x-4">
-              <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-              <a href="#" class=" border-b border-menuSelected px-3 py-2 text-sm font-medium text-white">About</a>
-              <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-menuSelected hover:text-white">Our Vision</a>
-              <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-menuSelected hover:text-white">Contact Us</a>
-              <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-menuSelected hover:text-white">Log In</a>
+              ${this._data.navItems.map(item => this._renderNavItem(item)).join('')}; 
             </div>
           </div>
           </div>
@@ -67,16 +63,27 @@ export default class Header extends View {
     return markup;
   }
 
-  _render() {
-    this._setParentElement();
+  _render(parentString) {
+    this._setParentElement(parentString);
     super._render();
-    this._initElement();
+    // this._animateIn();
+    this._initElements();
+  }
+    _renderNavItem(item) {
+    console.log(item, this._data.page);
+    const currentPage = this._data.page.toLowerCase();
+    const lowerCase = item.toLowerCase();
+    const capitalize = item.charAt(0) + item.slice(1);
+              // <a href="#" id="about-item" class=" border-b border-menuSelected px-3 py-2 text-sm font-medium text-white">About</a>
+              // <a href="#" id="testimonial-item" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-menuSelected hover:text-white">Our Vision</a>
+              // <a href="#" id="contact-item" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-menuSelected hover:text-white">Contact Us</a>
+    return `<a href="#" id="${lowerCase}-item" class="${currentPage === lowerCase? 'border-b border-primary':''}  px-3 py-2 text-sm font-medium text-gray-300 hover:bg-primary hover:rounded-md hover:text-white">${capitalize}</a>`;
   }
 
-  _setParentElement() {
-    this._parentElement = document.querySelector('.index-view');
+  _setParentElement(parentString) {
+    this._parentElement = document.querySelector(`.${parentString}`);
   }
-  _initElement() {
+  _initElements() {
     this._currentElement = this._parentElement.querySelector(`.${this._elementName}`);
     this._menu = this._parentElement.querySelector('.menu--mobile');
     this._lines = Array.from(document.querySelectorAll('.burger .line'));
@@ -108,6 +115,10 @@ export default class Header extends View {
   }
 
   //// Animations ////
+  _animateIn() {
+    const header = document.querySelector('.header');
+    return gsap.timeline().fromTo('.header', {autoAlpha:0}, {autoAlpha:1, onComplete: ()=> console.log(header)})
+  }
   _getBurgerTl() {
     return gsap.timeline({defaults: {duration:.4}})
       .to(this._lines[0], { scaleX: 0 })

@@ -1,3 +1,4 @@
+
 class View {
     _data;
     
@@ -6,8 +7,6 @@ class View {
     }
 
     _render(position) {
-        console.log('parent', this);
-
         this._parentElement.insertAdjacentHTML(position === 'begin'? 'afterbegin':'beforeend', this._data.markup);
     }
 

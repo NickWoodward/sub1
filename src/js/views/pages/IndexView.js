@@ -3,6 +3,7 @@ import '../../../css/main.css';
 import View from '../View';
 import Dashboard from '../components/Dashboard';
 import Header from '../components/Header';
+import Login from '../components/Login';
 import Hero from '../components/Hero';
 import About from '../components/About';
 import Testimonial from '../components/Testimonial';
@@ -13,10 +14,10 @@ import Footer from '../components/Footer';
 class IndexView extends View {
     _elementName;
     _parentElement = document.querySelector('.app');
-    _currentElement;
 
     // View Sections
     _Header;
+    Login;
     _Hero;
     _Dashboard;
     _About;
@@ -32,7 +33,8 @@ class IndexView extends View {
         const {dashboardData} = data;
         this._Dashboard = new Dashboard(dashboardData);
 
-        this._Header = new Header({page: 'home'});
+        this._Header = new Header(data.headerData);
+        this.Login = new Login({page: 'home'});
         this._Hero = new Hero({});
         this._About = new About({});
         this._Testimonial = new Testimonial({});
@@ -51,13 +53,18 @@ class IndexView extends View {
 
     _render() {
         super._render();
-        this._Header._render();
+        this._Header._render(this._elementName);
         this._Hero._render();
         this._About._render();
         this._Testimonial._render();
         this._FAQs._render();
         this._Contact._render();
         this._Footer._render();
+    }
+
+    addLoginHandler(handler) {
+        console.log('adding index handler');
+        this._parentElement.addEventListener('click', handler);
     }
 
 }

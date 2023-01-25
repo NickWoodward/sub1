@@ -1,13 +1,24 @@
+import {gsap} from 'gsap';
 import View from '../View';
 
-const datacenter = require('../../../assets/datacenter.jpg');
-
-const heroImages = [datacenter, null, null];
+// Images
+const datacenter = require('../../../assets/datacenterDark.jpg');
+const servers = require('../../../assets/servers.jpg');
+const solar = require('../../../assets/solar.jpg');
 
 
 class Hero extends View {
     _elementName = 'hero';
     _parentElement;
+    _heroImages = [datacenter, servers, solar];
+    _slides;
+    _numSlides;
+    _slideIndex = 0;
+    _currentSlide;
+    _autoSlideShow;
+    _autoPlay = true;
+    _imageNavigation;
+    _autoPlayBtn;
 
     constructor(data) {
         super(data);
@@ -16,23 +27,63 @@ class Hero extends View {
 
     _generateMarkup() {
       const markup = /*html*/`
-        <div class="${this._elementName} relative mt-[var(--header-height)] h-section overflow-hidden">
+        <div class="${this._elementName} relative mt-[var(--header-height)] h-section overflow-hidden"  id="#${this._elementName}">
           <!-- Hero Content Wrapper-->
-          <div class="relative h-full w-full bg-white before:hidden before:absolute before:bg-white before:w-4/6 before:lg:block xl:before:w-3/5 before:h-full before:border-primary before:border-r-8 before:-skew-x-12 before:z-10 ">
+          <div class="relative h-full w-full bg-white before:hidden before:absolute before:bg-white before:w-4/6 before:lg:block xl:before:w-3/5 before:h-full before:border-slate-100 before:border-r-8 before:-skew-x-12 before:z-10">
+            
             <!-- The Bg Image -->
-            <div class="absolute top-0 right-0 h-full w-full bg-slate-700  ml-auto object-cover lg:w-4/5 lg:h-full " > </div>
-            <img class="h-full  ml-auto object-cover lg:w-4/5 lg:h-full opacity-60 brightness-[40%] grayscale" src=${datacenter} alt="">
+            <div class="absolute top-0 right-0 h-full w-full bg-slate-400  ml-auto object-cover lg:w-4/5 lg:h-full " > </div>
+            <div class="image-wrapper relative mix-blend-multiply brightness-[40%] h-full ml-auto lg:w-4/5 lg:h-full lg:brightness-100  grayscale">
+              <img class="hero__image absolute right-0 top-0 opacity-0 h-full object-cover lg:w-4/5 lg:h-full grayscale" src=${servers} alt="">
+              <img class="hero__image absolute right-0 top-0 opacity-0 h-full object-cover lg:w-4/5 lg:h-full grayscale" src=${solar} alt="">
+              <img class="hero__image absolute  right-0 top-0 opacity-0 h-full object-cover lg:w-4/5 lg:h-full brightness-[85%] grayscale" src=${datacenter} alt="">
+            </div>
+
 
             <!-- Image Navigation -->
-            <div class="absolute right-0 bottom-0 flex">
-              ${heroImages.map((img, index) => this._createHeroNavigationIcon(index))}
+            <div class="image__navigation absolute right-0 bottom-0 flex items-center mb-6 mr-6">
+              <div class="prev__btn cursor-pointer">
+                <svg class="h-5 w-5 mr-3 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
+              </div>
+
+              <div class="flex items-center">
+                ${this._heroImages.map((img, index) => this._createHeroNavigationIcon(index)).join('')}
+              </div>
+
+              <div class="next__btn cursor-pointer">
+                <svg class="h-5 w-5 ml-3 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+              </div>
+
+              <button type="button" class="autoplay__btn bg-primary relative inline-flex h-5 w-9 ml-4 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out outline-none ring-2 ring-primary ring-offset-2">
+                <span class="sr-only">AutoPlay</span>
+
+                <span class="autoplay__toggle translate-x-4 pointer-events-none relative inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out">
+                  <span class="autoplay__icon--off opacity-0 ease-in duration-200 absolute inset-0 flex h-full w-full items-center justify-center transition-opacity">
+                    <svg class="h-3 w-3 text-gray-400" fill="none" viewBox="0 0 12 12">
+                      <path d="M4 8l2-2m0 0l2-2M6 6L4 4m2 2l2 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </span>
+
+                  <span class="autoplay__icon--on opacity-100 ease-out duration-100 absolute inset-0 flex h-full w-full items-center justify-center transition-opacity">
+                    <svg class="h-3 w-3 text-primary" fill="currentColor" viewBox="0 0 12 12">
+                      <path d="M3.707 5.293a1 1 0 00-1.414 1.414l1.414-1.414zM5 8l-.707.707a1 1 0 001.414 0L5 8zm4.707-3.293a1 1 0 00-1.414-1.414l1.414 1.414zm-7.414 2l2 2 1.414-1.414-2-2-1.414 1.414zm3.414 2l4-4-1.414-1.414-4 4 1.414 1.414z" />
+                    </svg>
+                  </span>
+
+                </span>
+              </button>
+
             </div>
 
             <!-- Hero Content -->
             <!--<div class="absolute container top-1/2 left-1/2 -translate-y-[58%] -translate-x-1/2 text-primary z-20">-->
             <div class="absolute w-full max-w-xl md:max-w-2xl lg:max-w-5xl xl:max-w-[1400px] top-1/2 left-1/2 -translate-y-[58%] -translate-x-1/2 px-4 xxs:px-8 lg:px-0 text-primary z-20">
-
-              <main class="lg:px-2 lg:w-1/2 xl:px-0 xl:pl-12">
+            
+              <main class="lg:px-2 lg:w-1/2 xl:px-0 xl:pl-0">
                 <div class=" md:text-left">
                   <h1>
                     <div>
@@ -47,7 +98,7 @@ class Hero extends View {
                     </div>
 
                     <!-- <span class="block text-base font-semibold text-gray-500 xs:text-lg lg:text-base xl:text-lg">Coming soon</span> -->
-                    <span class="mt-1 block text-3xl xxs:text-4xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl">
+                    <span class="mt-1 block text-3xl xxs:text-4xl sm:text-5xl md:text-5xl lg:text-5xl">
                       <span class="block text-2xl xxs:text-3xl font-semibold tracking-tight text-slate-300 lg:text-slate-700">Create, Lease and Sell</span>
                       <span class="block mt-2 text-primary font-semibold">Hyper Efficient Edge Data Centers</span>
                     </span>
@@ -73,179 +124,14 @@ class Hero extends View {
         </div>
       `;
 
-
-  //     const markup = /*html*/`
-  //   <div class="${this._elementName} relative top-[var(--header-height)] h-hero overflow-hidden bg-white">
-  //     <div class="relative flex w-full h-5/6 overflow-hidden bg-white border border-red">
-  //     <div class="max-w-7xl border border-primary">
-  //       <div class="relative z-10 bg-white pb-8 xs:pb-16 sm:pb-20 lg:w-full lg:max-w-2xl lg:pb-28 xl:pb-32">
-  //         <!--<svg class="absolute inset-y-0 right-0 hidden h-full w-48 translate-x-1/2 transform text-primary lg:block" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-  //           <polygon points="50,0 100,0 50,100 0,100" />
-  //         </svg>
-  //   -->
-          
-    
-  //           <!--
-  //             Mobile menu, show/hide based on menu open state.
-    
-  //             Entering: "duration-150 ease-out"
-  //               From: "opacity-0 scale-95"
-  //               To: "opacity-100 scale-100"
-  //             Leaving: "duration-100 ease-in"
-  //               From: "opacity-100 scale-100"
-  //               To: "opacity-0 scale-95"
-  //           -->
-  //           <div class="absolute inset-x-0 top-0 z-10 origin-top-right transform p-2 transition sm:hidden">
-  //             <div class="overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black ring-opacity-5">
-  //               <div class="flex items-center justify-between px-5 pt-4">
-  //                 <div>
-  //                   <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
-  //                 </div>
-  //                 <div class="-mr-2">
-  //                   <button type="button" class="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-  //                     <span class="sr-only">Close main menu</span>
-  //                     <!-- Heroicon name: outline/x-mark -->
-  //                     <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-  //                       <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-  //                     </svg>
-  //                   </button>
-  //                 </div>
-  //               </div>
-  //               <div class="space-y-1 px-2 pt-2 pb-3">
-  //                 <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900">Product</a>
-    
-  //                 <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900">Features</a>
-    
-  //                 <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900">Marketplace</a>
-    
-  //                 <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900">Company</a>
-  //               </div>
-  //               <a href="#" class="block w-full bg-gray-50 px-5 py-3 text-center font-medium text-indigo-600 hover:bg-gray-100">Log in</a>
-  //             </div>
-  //           </div>
-    
-  //         <main class="mx-auto mt-10 max-w-7xl px-4 xs:mt-12 xs:px-6 sm:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-  //           <div class="xs:text-center sm:mx-auto sm:max-w-2xl lg:col-span-6 lg:text-left">
-  //             <h1>
-  //               <span class="block text-base font-semibold text-gray-500 xs:text-lg lg:text-base xl:text-lg">Coming soon</span>
-  //               <span class="mt-1 block text-4xl xs:text-5xl xl:text-6xl">
-  //                 <span class="block text-gray-700 xl:text-3xl font-medium">Create, Lease and Sell</span>
-  //                 <span class="block mt-2 text-primary font-semibold">Hyper Efficient Edge Data Centers</span>
-  //               </span>
-  //             </h1>
-  //             <p class="mt-3 text-base text-gray-500 xs:mt-5 xs:text-xl lg:text-lg xl:text-2xl">Explore our sustainable and efficient </p>
-  //             <div class="mt-8 xs:mx-auto xs:max-w-lg xs:text-center lg:mx-0 lg:text-left">
-  //               <p class="text-base font-medium text-gray-900">Sign up to get notified when it’s ready.</p>
-  //               <form action="#" method="POST" class="mt-3 xs:flex">
-  //                 <label for="email" class="sr-only">Email</label>
-  //                 <input type="email" name="email" id="email" class="block w-full rounded-md border-gray-300 py-3 text-base placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 xs:flex-1" placeholder="Enter your email">
-  //                 <button type="submit" class="mt-3 w-full rounded-md border border-transparent bg-gray-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 xs:mt-0 xs:ml-3 xs:inline-flex xs:w-auto xs:flex-shrink-0 xs:items-center">Notify me</button>
-  //               </form>
-  //               <p class="mt-3 text-sm text-gray-500">
-  //                 We care about the protection of your data. Read our
-  //                 <a href="#" class="font-medium text-gray-900 underline">Privacy Policy</a>.
-  //               </p>
-  //             </div>
-  //           </div>
-  //         </main>
-  //       </div>
-  //     </div>
-  //     <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-  //       <img class="h-56 w-full object-cover xs:h-72 sm:h-96 lg:h-full lg:w-full" src=${datacenter} alt="">
-  //     </div>
-  //   </div>
-  // </div>
-    
-  //     `;
-
-
-
-
-        // const markup = /*html*/`
-        //   <div class="${this._elementName} relative top-[var(--header-height)] h-hero overflow-hidden bg-white">
-
-        //     <!-- The Pattern Wrapper -->
-        //     <div class="hidden lg:absolute lg:inset-0 lg:block" aria-hidden="true">
-        //       <!--<svg class="absolute top-0 left-1/2 translate-x-64 -translate-y-8 transform" width="640" height="784" fill="none" viewBox="0 0 640 784"> -->
-        //       <svg class="absolute top-0 left-1/2 translate-x-[27rem] -translate-y-12 transform" width="640" height="784" fill="none" viewBox="0 0 640 784">
-
-        //         <defs>
-        //           <pattern id="9ebea6f4-a1f5-4d96-8c4e-4c2abf658047" x="118" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-        //             <rect x="0" y="0" width="4" height="4" class="text-gray-300" fill="currentColor" />
-        //           </pattern>
-        //         </defs>
-        //         <rect y="72" width="640" height="640" class="text-gray-100" fill="currentColor" />
-        //         <rect x="118" width="404" height="784" fill="url(#9ebea6f4-a1f5-4d96-8c4e-4c2abf658047)" />
-        //       </svg>
-        //     </div>
-          
-        //     <!-- The Content Wrapper -->
-        //     <div class="relative h-full flex justify-center items-center border-2">
-              
-        //       <!-- Content Wrapper --> 
-        //       <main class="mx-auto max-w-full px-4 xs:px-6">
-        //       <!-- Content -->
-        //         <div class="lg:grid lg:grid-cols-12 lg:gap-8">
-        //           <!-- Hero Text -->
-        //           <div class="xs:text-center sm:mx-auto sm:max-w-2xl lg:col-span-6 lg:text-left">
-        //             <h1>
-        //               <span class="block text-base font-semibold text-gray-500 xs:text-lg lg:text-base xl:text-lg">Coming soon</span>
-        //               <span class="mt-1 block text-4xl xs:text-5xl xl:text-6xl">
-        //                 <span class="block text-gray-700 xl:text-3xl font-medium">Create, Lease and Sell</span>
-        //                 <span class="block mt-2 text-primary font-semibold">Hyper Efficient Edge Data Centers</span>
-        //               </span>
-        //             </h1>
-        //             <p class="mt-3 text-base text-gray-500 xs:mt-5 xs:text-xl lg:text-lg xl:text-2xl">Explore our sustainable and efficient </p>
-        //             <div class="mt-8 xs:mx-auto xs:max-w-lg xs:text-center lg:mx-0 lg:text-left">
-        //               <p class="text-base font-medium text-gray-900">Sign up to get notified when it’s ready.</p>
-        //               <form action="#" method="POST" class="mt-3 xs:flex">
-        //                 <label for="email" class="sr-only">Email</label>
-        //                 <input type="email" name="email" id="email" class="block w-full rounded-md border-gray-300 py-3 text-base placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 xs:flex-1" placeholder="Enter your email">
-        //                 <button type="submit" class="mt-3 w-full rounded-md border border-transparent bg-gray-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 xs:mt-0 xs:ml-3 xs:inline-flex xs:w-auto xs:flex-shrink-0 xs:items-center">Notify me</button>
-        //               </form>
-        //               <p class="mt-3 text-sm text-gray-500">
-        //                 We care about the protection of your data. Read our
-        //                 <a href="#" class="font-medium text-gray-900 underline">Privacy Policy</a>.
-        //               </p>
-        //             </div>
-        //           </div>
-        //           <!-- Hero Image -->
-        //           <div class="relative mt-12 xs:mx-auto xs:max-w-lg lg:col-span-6 lg:mx-0 lg:mt-0 lg:flex lg:max-w-none lg:items-center">
-        //             <svg class="absolute top-0 left-1/2 origin-top -translate-x-1/2 -translate-y-8 scale-75 transform xs:scale-100 lg:hidden" width="640" height="784" fill="none" viewBox="0 0 640 784" aria-hidden="true">
-        //               <defs>
-        //                 <pattern id="4f4f415c-a0e9-44c2-9601-6ded5a34a13e" x="118" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-        //                   <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
-        //                 </pattern>
-        //               </defs>
-        //               <rect y="72" width="640" height="640" class="text-gray-50" fill="currentColor" />
-        //               <rect x="118" width="404" height="784" fill="url(#4f4f415c-a0e9-44c2-9601-6ded5a34a13e)" />
-        //             </svg>
-        //             <div class="relative mx-auto w-full rounded-lg shadow-xl lg:max-w-xl">
-        //               <button type="button" class="relative block w-full overflow-hidden rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-        //                 <span class="sr-only">Watch our video to learn more</span>
-        //                 <!--<img class="w-full" src="https://images.unsplash.com/photo-1556740758-90de374c12ad?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="">-->
-        //                 <img src="${datacenter}" alt="" className="w-full" />
-        //                 <span class="absolute inset-0 flex h-full w-full items-center justify-center" aria-hidden="true">
-        //                   <svg class="h-20 w-20 text-indigo-500" fill="currentColor" viewBox="0 0 84 84">
-        //                     <circle opacity="0.9" cx="42" cy="42" r="42" fill="white" />
-        //                     <path d="M55.5039 40.3359L37.1094 28.0729C35.7803 27.1869 34 28.1396 34 29.737V54.263C34 55.8604 35.7803 56.8131 37.1094 55.9271L55.5038 43.6641C56.6913 42.8725 56.6913 41.1275 55.5039 40.3359Z" />
-        //                   </svg>
-        //                 </span>
-        //               </button>
-        //             </div>
-        //           </div>
-        //         </div>
-        //       </main>
-        //     </div>
-
-        // `;
-
         return markup;
     }
 
     _render() {
       this._setParentElement();
       super._render();
+      this._initElements();
+      this._initAnimations();
     }
 
     _setParentElement() {
@@ -254,8 +140,125 @@ class Hero extends View {
 
     _createHeroNavigationIcon(index) {
       return (`
-        <div class="image-icon-${index} w-5 h-5 mb-4 mr-3 bg-primary border-2 border-white rounded-full"></div>
+        <div class="image-icon w-4 h-4 mr-3 last:mr-0 bg-primary border-2 border-white rounded-full cursor-pointer" data-id="${index}"></div>
       `);
+    }
+
+    _initElements() {
+      this._slides = Array.from(document.querySelectorAll('.hero__image'));
+      this._numSlides = this._slides.length;
+      this._imageNavigation = document.querySelector('.image__navigation');
+
+      this._imageNavigation.addEventListener('click', e => {
+        const prevBtn = e.target.closest('.prev__btn');
+        const nextBtn = e.target.closest('.next__btn');
+        const navIcon = e.target.closest('.image-icon');
+        const autoplayBtn = e.target.closest('.autoplay__btn');
+
+        if(prevBtn) {
+          this._prevSlide();
+          this._autoPlay = false;
+          this._turnAutoplayBtnOff();
+        }
+        if(nextBtn) {
+          this._nextSlide();
+        
+          this._autoPlay = false;
+          this._turnAutoplayBtnOff();
+        }
+
+        if(navIcon) {
+          this._slideIndex = parseInt(e.target.dataset.id);
+          this._showSlide()
+          this._autoPlay = false;
+          this._turnAutoplayBtnOff();
+        }
+
+        if(autoplayBtn) {
+          this._autoPlay = !this._autoPlay;
+          this._toggleAutoplayBtn();
+
+          if(this._autoPlay) this._autoSlideShow.restart(true);
+        }
+      });
+    }
+
+    _nextSlide() {
+      this._slideIndex = this._slideIndex < this._numSlides -1 ? this._slideIndex +1 : 0;
+      this._showSlide();
+      if(this._autoPlay) this._autoSlideShow.restart(true);
+    }
+    _prevSlide() {
+      this._slideIndex = this._slideIndex > 0? this._slideIndex -1 : this._numSlides -1;
+      this._showSlide();
+    }
+    _hideSlide() {
+      if(this._currentSlide) 
+        gsap.to(this._currentSlide, { 
+          opacity: 0 
+        });
+    }
+  
+    _showSlide() {
+      this._setActiveIcon();
+
+      // If no crossfade wanted, always call _hideSlide directly with an onComplete to _showSlide
+      this._hideSlide();
+      this._currentSlide = this._slides[this._slideIndex];
+      gsap.to(this._currentSlide, { opacity: .6 })
+      console.log(this._slideIndex);
+    }
+
+    _setActiveIcon() {
+      const icons = Array.from(this._imageNavigation.querySelectorAll('.image-icon'));
+      icons.forEach(icon => {
+        if(parseInt(icon.dataset.id) === this._slideIndex) {
+          icon.classList.add('ring-1', 'ring-primary', 'ring-offset-1', 'ease-out', 'duration-300'); 
+        } else {
+          icon.classList.remove('ring-1', 'ring-primary', 'ring-offset-1', 'ease-out', 'duration-300');
+        }
+      })
+    }
+
+    _toggleAutoplayBtn() {
+      const autoplayBtn = document.querySelector('.autoplay__btn');
+      const toggle = autoplayBtn.querySelector('.autoplay__toggle');
+      const autoplayIconOff = autoplayBtn.querySelector('.autoplay__icon--off');
+      const autoplayIconOn = autoplayBtn.querySelector('.autoplay__icon--on');
+
+      // Remove 'off' classes
+      toggle.classList.toggle('translate-x-0');
+      autoplayBtn.classList.toggle('bg-gray-200');
+      autoplayIconOff.classList.toggle('opacity-100');
+      autoplayIconOn.classList.toggle('opacity-0');
+
+      // Add 'on' classes
+      toggle.classList.toggle('translate-x-4');
+      autoplayBtn.classList.toggle('bg-primary');
+      autoplayIconOn.classList.toggle('opacity-100');
+      autoplayIconOff.classList.toggle('opacity-0');
+    }
+
+    _turnAutoplayBtnOff() {
+      const autoplayBtn = document.querySelector('.autoplay__btn');
+      const toggle = autoplayBtn.querySelector('.autoplay__toggle');
+      const autoplayIconOff = autoplayBtn.querySelector('.autoplay__icon--off');
+      const autoplayIconOn = autoplayBtn.querySelector('.autoplay__icon--on');
+
+      toggle.classList.add('translate-x-0');
+      autoplayBtn.classList.add('bg-gray-200');
+      autoplayIconOff.classList.add('opacity-100');
+      autoplayIconOn.classList.add('opacity-0');
+
+      toggle.classList.remove('translate-x-4');
+      autoplayBtn.classList.remove('bg-primary');
+      autoplayIconOn.classList.remove('opacity-100');
+      autoplayIconOff.classList.remove('opacity-0');
+    }
+
+    _initAnimations() {
+      this._showSlide();
+      this._autoSlideShow = gsap.delayedCall(10, () => this._autoPlay? this._nextSlide():null);
     }
 }
 
