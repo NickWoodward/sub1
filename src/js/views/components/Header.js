@@ -20,7 +20,7 @@ export default class Header extends View {
 
   _generateMarkup() {
     const markup = /*html*/`
-      <div class="${this._elementName} fixed flex items-center justify-center w-full h-header bg-slate-700 shadow-2xl z-30">
+      <div class="${this._elementName} fixed flex items-center justify-center w-full h-header bg-slate-700 shadow-2xl z-40">
         <div class=" px-4 xxs:px-8 flex justify-between items-center w-full max-w-largest">
           <div class="logo relative border-l-2 border-primary pl-3 text-white text-3xl tracking-tighter uppercase">Sub<span class="text-primary ml-2">1</span></div>
         

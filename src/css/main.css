@@ -6,6 +6,9 @@
 
   --header-height: 5.5rem;
   --hero-height: calc(100vh - var(--header-height));
+  --progressbar-left: 0;
+  --progressbar-width: 0;
+
 }
 
 /* html { scroll-behavior: smooth; }

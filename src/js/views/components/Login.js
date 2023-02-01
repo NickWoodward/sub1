@@ -117,7 +117,7 @@ export default class Login extends View {
   }
 
   _redirect() {
-    window.location.replace('/admin.html')
+    window.location.replace('/admin.html');
   }
 
   getFormData() {

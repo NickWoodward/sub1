@@ -15,6 +15,11 @@ export const signup = (formData) => {
   return api.post('/auth/signup', formData);
 };
 
+export const getAdminContent = () => {
+  console.log('GETTING ADMIn');
+  return api.get('/auth/protected');
+}
+
 export const test = () => {
   return api.post('/admin/email');
 }

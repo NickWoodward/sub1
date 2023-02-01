@@ -2,6 +2,13 @@ import View from '../View';
 
 import map from '../../../assets/map.png';
 
+import {gsap} from 'gsap';
+import {ScrollTrigger} from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
+
+import config from /* preval */ '../../../../tailwind.config';
+const { theme: { screens } } = config;
+
 class Contact extends View {
   _elementName = 'contact';
   _parentElement;
@@ -24,13 +31,14 @@ class Contact extends View {
 
 
           <!-- Skewed Right-Element -->
-          <div class="hidden lg:block absolute top-0 left-[40%] w-full h-full bg-tertiary border-slate-100 border-l-8 skew-x-12"></div>
+          <div class="animated-bg-1 hidden lg:block absolute top-0 left-[40%] w-full h-full bg-slate-100 border-slate-100 border-l-8 skew-x-12"></div>
+          <div class="animated-bg-2 hidden lg:block absolute top-0 left-[40%] w-full h-full bg-slate-200 border-slate-100 border-l-8 skew-x-12"></div>
 
           <!-- Contact Content -->
           <div class="mx-auto lg:max-w-6xl xl:max-w-[1440px] text-primary z-20 px-4 xxs:px-8 lg:px-0 xl:flex xl:items-center xl:h-full">
 
             <div class="relative  lg:grid lg:grid-cols-6">
-              <div class="pt-24 pb-16 lg:col-span-2 lg:px-8 lg:py-24 xl:pr-12">
+              <div class="contact-details pt-24 pb-16 lg:col-span-2 lg:px-8 lg:py-24 xl:pr-12">
                 <div class="mx-auto">
                   <h2 class="text-3xl font-semibold tracking-tight text-slate-700">Get in touch</h2>
                   <p class="mt-3 text-lg leading-6 text-gray-500">Nullam risus blandit ac aliquam justo ipsum. Quam mauris volutpat massa dictumst amet.</p>
@@ -70,7 +78,7 @@ class Contact extends View {
                 </div>
               </div>
               <!-- Contact Form -->
-              <div class="pb-24 pt-4 lg:col-start-4 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12">
+              <div class="contact-form pb-24 pt-4 lg:col-start-4 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12">
                 <div class="mx-auto lg:max-w-none">
                   <form action="#" method="POST" class="grid grid-cols-1 gap-y-6">
                     <div>
@@ -110,10 +118,72 @@ class Contact extends View {
   _render() {
     this._setParentElement();
     super._render();
+    this._initAnimations();
   }
 
   _setParentElement() {
     this._parentElement = document.querySelector('.index-view');
+  }
+
+  _initAnimations() {
+    const mm = gsap.matchMedia();
+    const { lg } = screens;
+    mm.add({
+      mobile: `(max-width: ${parseInt(lg) - 1}px)`,
+      desktop: `(min-width: ${lg})`
+    }, (context) => {  
+      const { mobile, desktop } = context.conditions;
+      
+      console.log({mobile}, {desktop});
+
+      if(desktop) this._contactAnimation();
+      // if(mobile) this._mobileContactAnimation();
+    });
+  }
+
+  _contactAnimation() {
+    const tl = gsap.timeline({ paused: true });
+
+    tl.from('.animated-bg-1', {
+      autoAlpha:0,
+      xPercent: 10,
+      duration: .8,
+      ease: 'power4.out'
+    })
+    .from('.animated-bg-2', {
+      autoAlpha:0,
+      xPercent: 10,
+      duration: .8,
+      ease: 'power4.out'
+
+    }, '< .6')
+    .from('.contact-details', {
+      autoAlpha: 0,
+      x: -20,
+      duration: 2,
+      ease: 'power4.out'
+    }, '<')
+    .from('.contact-form', {
+      autoAlpha: 0,
+      x: 20,
+
+      duration: 2,
+      ease: 'power4.out'
+    }, '<')
+
+
+    ScrollTrigger.create({
+      trigger: ".animated-bg-1",
+      start: "top 80%",
+      // markers:true,
+      onEnter: () => tl.play()
+    });
+    ScrollTrigger.create({
+      trigger: ".animated-bg-1",
+      start: "top 110%",
+      // markers:true,
+      onLeaveBack: () => tl.pause(0)
+    });
   }
 }
 

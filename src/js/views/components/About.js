@@ -26,7 +26,7 @@ class About extends View {
     const markup = /*html*/`
       <div class="${this._elementName} scroll-mt-24" id="${this._elementName}">
         <div class="relative flex items-center lg:h-section bg-slate-200 pt-24 pb-32 xs:py-32 lg:py-24">
-          <div class="relative mx-auto max-w-xl px-4 xxs:px-8 text-center md:max-w-2xl lg:max-w-6xl xl:max-w-7xl lg:px-8 ">
+          <div class="relative mx-auto max-w-xl px-4 xxs:px-8 text-center md:max-w-2xl lg:max-w-6xl xl:max-w-[1400px] lg:px-8 xl:px-0">
             <div class="">
               <h2 class="strapline text-lg font-semibold text-primary">Deploy smarter</h2>
               <p class="headline mt-2 text-2xl xxs:text-3xl font-semibold tracking-tight text-slate-700">Lorem ipsum dolor sit, amet consectetur</p>

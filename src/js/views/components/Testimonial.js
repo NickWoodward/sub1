@@ -23,8 +23,8 @@ class Testimonial extends View {
 
         <div class="bg-slate-200  flex items-end  justify-center h-4/6 xl:h-[65vh] pt-24 lg:pt-16 xl:pt-0">
           <div class="relative w-full">
-          <div class="animated-bg-1 absolute top-0 left-0 w-full h-full animated-bg bg-white"></div>
-            <div class="animated-bg-2 absolute top-0 left-0 w-full h-full animated-bg bg-primary"></div>
+          <div class="testimonial-bg-1 absolute top-0 left-0 w-full h-full bg-white"></div>
+            <div class="testimonial-bg-2 absolute top-0 left-0 w-full h-full bg-primary"></div>
             <div class="max-w-xl mx-auto pb-24 px-4 xxs:pb-12 sm:pb-24 xxs:px-8 md:max-w-2xl m lg:relative lg:max-w-6xl xl:max-w-[1440px] xl:px-0 lg:z-10 lg:pb-0">
               <div class="relative w-full xxs:max-w-xl xs:mx-auto md:max-w-2xl lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-8 ">
                 <!--  Image Wrapper -->
@@ -95,7 +95,7 @@ class Testimonial extends View {
   _desktopAnimation() {
     const tl = gsap.timeline({ paused:true });
 
-    tl.from('.animated-bg-1', {
+    tl.from('.testimonial-bg-1', {
       autoAlpha:0,
       xPercent: 100,
       duration: .35
@@ -109,7 +109,7 @@ class Testimonial extends View {
       x: -80,
       duration: .8
     }, '<')
-    .from('.animated-bg-2', {
+    .from('.testimonial-bg-2', {
       autoAlpha:0,
       xPercent: 100,
       duration: .35
@@ -128,13 +128,13 @@ class Testimonial extends View {
 
     // Separate scrolltrigger objects allow leaveback and onenter trigger points to be different
     ScrollTrigger.create({
-      trigger: '.animated-bg',
+      trigger: '.testimonial-bg-1',
       start: "top 80%",
       // markers:true,
       onEnter: () => tl.play()
     });
     ScrollTrigger.create({
-      trigger: '.animated-bg',
+      trigger: '.testimonial-bg-1',
       start: "top 110%",
       // markers:true,
       onLeaveBack: () => tl.pause(0)

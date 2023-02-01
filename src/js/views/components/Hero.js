@@ -19,6 +19,7 @@ class Hero extends View {
     _autoPlay = true;
     _imageNavigation;
     _autoPlayBtn;
+    _timer;
 
     constructor(data) {
         super(data);
@@ -29,7 +30,7 @@ class Hero extends View {
       const markup = /*html*/`
         <div class="${this._elementName} relative mt-[var(--header-height)] h-section overflow-hidden"  id="#${this._elementName}">
           <!-- Hero Content Wrapper-->
-          <div class="relative h-full w-full bg-white before:hidden before:absolute before:bg-white before:w-4/6 before:lg:block xl:before:w-3/5 before:h-full before:border-slate-100 before:border-r-8 before:-skew-x-12 before:z-10">
+          <div class="relative h-full w-full bg-white before:hidden before:absolute before:bg-white before:w-4/6 before:lg:block xl:before:w-3/5 before:h-full before:border-slate-100 before:border-r-8 before:-skew-x-12 before:z-30">
             
             <!-- The Bg Image -->
             <div class="absolute top-0 right-0 h-full w-full bg-slate-400  ml-auto object-cover lg:w-4/5 lg:h-full " > </div>
@@ -41,7 +42,7 @@ class Hero extends View {
 
 
             <!-- Image Navigation -->
-            <div class="image__navigation absolute right-0 bottom-0 flex items-center mb-6 mr-6">
+            <div class="image__navigation absolute right-0 bottom-0 flex items-center mb-9 mr-6">
               <div class="prev__btn cursor-pointer">
                 <svg class="h-5 w-5 mr-3 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
@@ -81,7 +82,7 @@ class Hero extends View {
 
             <!-- Hero Content -->
             <!--<div class="absolute container top-1/2 left-1/2 -translate-y-[58%] -translate-x-1/2 text-primary z-20">-->
-            <div class="absolute w-full max-w-xl md:max-w-2xl lg:max-w-5xl xl:max-w-[1400px] top-1/2 left-1/2 -translate-y-[58%] -translate-x-1/2 px-4 xxs:px-8 lg:px-0 text-primary z-20">
+            <div class="absolute w-full max-w-xl md:max-w-2xl lg:max-w-5xl xl:max-w-[1400px] top-1/2 left-1/2 -translate-y-[58%] -translate-x-1/2 px-4 xxs:px-8 lg:px-0 text-primary z-30">
             
               <main class="lg:px-2 lg:w-1/2 xl:px-0 xl:pl-0">
                 <div class=" md:text-left">
@@ -120,6 +121,10 @@ class Hero extends View {
               </main>
             
             </div>
+
+            <!-- Progress Bar -->
+            <div class="progress absolute bottom-0 left-[var(--progressbar-left)] w-[var(--progressbar-width)] h-2 bg-primary z-20"></div>
+
           </div>
         </div>
       `;
@@ -145,10 +150,23 @@ class Hero extends View {
     }
 
     _initElements() {
+
+      // Set up slides
       this._slides = Array.from(document.querySelectorAll('.hero__image'));
       this._numSlides = this._slides.length;
       this._imageNavigation = document.querySelector('.image__navigation');
 
+      // this._timer = gsap.from('.progress', {
+      //   scaleX:0,
+      //   transformOrigin:"0% 50%",
+      //   duration: 3,
+      //   onComplete: () => this._nextSlide()
+      // }).pause();
+
+      // Set the positioning for the progress bar
+      this._setLeft();
+
+      // Navigation listener
       this._imageNavigation.addEventListener('click', e => {
         const prevBtn = e.target.closest('.prev__btn');
         const nextBtn = e.target.closest('.next__btn');
@@ -198,7 +216,7 @@ class Hero extends View {
           opacity: 0 
         });
     }
-  
+
     _showSlide() {
       this._setActiveIcon();
 
@@ -206,7 +224,6 @@ class Hero extends View {
       this._hideSlide();
       this._currentSlide = this._slides[this._slideIndex];
       gsap.to(this._currentSlide, { opacity: .6 })
-      console.log(this._slideIndex);
     }
 
     _setActiveIcon() {
@@ -254,6 +271,31 @@ class Hero extends View {
       autoplayBtn.classList.remove('bg-primary');
       autoplayIconOn.classList.remove('opacity-100');
       autoplayIconOff.classList.remove('opacity-0');
+    }
+
+    
+
+    _setLeft() {
+      // Hardcoded because JS isn't accurate enough
+      const TWELVE_DEGS_TO_RADIANS = 0.22;
+      const content = document.querySelector('.hero');
+      const bounds = content.getBoundingClientRect();
+
+      // The content tailwind width is set as w-3/5
+      let start = bounds.right / 5 * 3;
+      let width = bounds.width / 5 * 2;
+      const height = bounds.height;
+      const radians = TWELVE_DEGS_TO_RADIANS;
+      const tan = Math.tan(radians);
+
+      // Alter the start position by the angle of the skew
+      // skew offset = tan(degrees in radians) * h/2 (deg to radians: deg * (PI/180))
+      const horizontalOffset = tan * height;
+      start -= horizontalOffset / 2 + 5;
+      width += horizontalOffset / 2;
+
+      document.documentElement.style.setProperty('--progressbar-left', `${start}px`);
+      document.documentElement.style.setProperty('--progressbar-width', `${width}px`)
     }
 
     _initAnimations() {

@@ -22,10 +22,11 @@ export default class AdminController {
   }
 
   init() {
+    // await AdminModel.getAdminData()
+
     return {
         companyName: 'Sub1',
         headerData: AdminModel.getHeaderData(),
-        
     }
 }
 }

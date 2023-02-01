@@ -2,7 +2,7 @@ import {gsap} from 'gsap';
 
 import * as IndexModel from '../models/indexModel';
 import IndexView from '../views/pages/IndexView';
-import { login, test } from '../api';
+import { getAdminContent, login, test } from '../api';
 
 class IndexController {
     _IndexView;
@@ -87,13 +87,12 @@ class IndexController {
 
                     if(status === 200) {
                         this._IndexView.Login._redirect();
-                        // Set the model for the header to display logged in
                     }
                 } catch(err) {
                     // Req made, response outside of 2xx range
                     if(err.response) {
                         console.log('Error: Invalid request');
-                    } else if(error.request) {
+                    } else if(err.request) {
                         console.log('Error: No Response Received')
                     } else {
                         console.log('Error: Setting up Request');
