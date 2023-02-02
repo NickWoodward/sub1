@@ -1,9 +1,16 @@
+const path = require('path');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
         index: './src/js/controllers/indexController.js',
         admin: './src/js/controllers/adminController.js'
+    },
+    output: {
+        filename: '[name].bundle.[chunkhash].js',
+        path: path.resolve(__dirname, 'dist'),
+        clean: true,
     },
     module: {
         rules: [

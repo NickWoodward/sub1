@@ -28,7 +28,7 @@ class Hero extends View {
 
     _generateMarkup() {
       const markup = /*html*/`
-        <div class="${this._elementName} relative mt-[var(--header-height)] h-section overflow-hidden"  id="#${this._elementName}">
+        <div class="${this._elementName} relative mt-[var(--header-height)] min-h-min h-section overflow-hidden"  id="${this._elementName}">
           <!-- Hero Content Wrapper-->
           <div class="relative h-full w-full bg-white before:hidden before:absolute before:bg-white before:w-4/6 before:lg:block xl:before:w-3/5 before:h-full before:border-slate-100 before:border-r-8 before:-skew-x-12 before:z-30">
             
@@ -104,7 +104,7 @@ class Hero extends View {
                       <span class="block mt-2 text-primary font-semibold">Hyper Efficient Edge Data Centers</span>
                     </span>
                   </h1>
-                  <p class="mt-3 text-base text-slate-200 xs:mt-5 xs:text-xl lg:text-lg lg:text-gray-500 xl:text-2xl">Explore our sustainable and efficient cloud infrastructure</p>
+                  <p class="mt-3 text-base text-slate-200 xs:mt-5 xs:text-xl lg:text-lg lg:text-gray-500 xl:text-2xl">Lorem ipsum dolor sit amet consectetur adipisicing</p>
                   <div class="mt-8 xs:max-w-lg  md:text-left md:mx-0 lg:text-left lg:max-w-lg">
                     <p class="text-base font-medium lg:text-gray-900">Sign up to get notified when it’s ready.</p>
                     <form action="#" method="POST" class="mt-3 xs:flex xs:flex-row sm:w-full  sm:flex-row">

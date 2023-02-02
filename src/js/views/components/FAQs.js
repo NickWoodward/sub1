@@ -1,6 +1,12 @@
 import View from "../View";
 
 import bgImage from "../../../assets/kindpng_34049.png";
+import {gsap} from 'gsap';
+import {ScrollTrigger} from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
+
+import config from /* preval */ '../../../../tailwind.config';
+const { theme: { screens } } = config;
 
 export default class FAQs extends View {
     _elementName = "faqs";
@@ -19,28 +25,28 @@ export default class FAQs extends View {
           <img class="bg-image absolute top-60 left-0 w-full  hue-rotate-90 opacity-10 bg-cover" src=${bgImage} />
           <div class="max-w-xl md:max-w-2xl mx-auto py-24 px-4 xxs:px-8 xs:py-24 lg:max-w-6xl lg:px-8 xl:max-w-7xl xl:px-0">
             <div class="">
-              <h2 id="faq-heading" class="text-2xl xxs:text-3xl font-semibold tracking-tight text-slate-700">Frequently asked questions</h2>
-              <p class="mt-4 text-xl text-gray-500">If you can't find what you're looking for, you can always <a href="#" class="font-medium text-primary hover:text-primaryLight">send us an email</a> with your enquiry.</p>
+              <h2 id="faq-heading" class="faq__heading text-2xl xxs:text-3xl font-semibold tracking-tight text-slate-700">Frequently asked questions</h2>
+              <p class="faq__subheading mt-4 text-xl text-gray-500">If you can't find what you're looking for, you can always <a href="#" class="font-medium text-primary hover:text-primaryLight">send us an email</a> with your enquiry.</p>
             </div>
         
             <dl class="mt-12 grid grid-cols-1 gap-y-10 xs:mt-16 lg:grid-cols-2 md:gap-x-6 xl:grid-cols-3">
-              <div>
+              <div class="faq__item">
                 <dt class="text-base font-medium text-gray-900">What&#039;s the best thing about Switzerland?</dt>
                 <dd class="mt-3 text-base text-gray-500">I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.</dd>
               </div>
-              <div>
+              <div class="faq__item">
                 <dt class="text-base font-medium text-gray-900">What&#039;s the best thing about Switzerland?</dt>
                 <dd class="mt-3 text-base text-gray-500">I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.</dd>
               </div>
-              <div>
+              <div class="faq__item">
                 <dt class="text-base font-medium text-gray-900">What&#039;s the best thing about Switzerland?</dt>
                 <dd class="mt-3 text-base text-gray-500">I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.</dd>
               </div>
-              <div>
+              <div class="faq__item">
               <dt class="text-base font-medium text-gray-900">What&#039;s the best thing about Switzerland?</dt>
               <dd class="mt-3 text-base text-gray-500">I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.</dd>
             </div>
-            <div>
+            <div class="faq__item">
               <dt class="text-base font-medium text-gray-900">What&#039;s the best thing about Switzerland?</dt>
               <dd class="mt-3 text-base text-gray-500">I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.</dd>
             </div>
@@ -57,10 +63,64 @@ export default class FAQs extends View {
     _render() {
         this._setParentElement();
         super._render();
+        this._initAnimations();
     }
 
     _setParentElement() {
         this._parentElement = document.querySelector(".index-view");
+    }
+
+    _initAnimations() {
+      const mm = gsap.matchMedia();
+      const { lg } = screens;
+      mm.add({
+        mobile: `(max-width: ${parseInt(lg) - 1}px)`,
+        desktop: `(min-width: ${lg})`
+      }, (context) => {  
+        const { mobile, desktop } = context.conditions;
+        
+        console.log({mobile}, {desktop});
+  
+        if(desktop) this._faqAnimation();
+        // if(mobile) this._mobileContactAnimation();
+      });
+    }
+
+    _faqAnimation() {
+      const tl = gsap.timeline({ defaults: {duration: .4}, paused: true });
+      const faqs = gsap.utils.toArray('.faq__item');
+
+      tl
+      .from('.faq__heading', {
+        autoAlpha: 0,
+        x: -20,
+        duration: .8
+      })
+      .from('.faq__subheading', {
+        autoAlpha: 0,
+        duration: .8
+      }, '<.2')
+      .from(faqs, {
+        autoAlpha: 0,
+        y: 8,
+        scale:.98,
+        stagger: {
+          amount: .55
+        }
+      }, '<.2');
+
+      ScrollTrigger.create({
+        trigger: ".faqs",
+        start: "top 80%",
+        // markers:true,
+        onEnter: () => tl.play()
+      });
+      ScrollTrigger.create({
+        trigger: ".faqs",
+        start: "top 110%",
+        // markers:true,
+        onLeaveBack: () => tl.pause(0)
+      });
     }
 
     _getBgSVG() {

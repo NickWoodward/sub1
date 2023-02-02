@@ -24,8 +24,8 @@ class About extends View {
 
   _generateMarkup() {
     const markup = /*html*/`
-      <div class="${this._elementName} scroll-mt-24" id="${this._elementName}">
-        <div class="relative flex items-center lg:h-section bg-slate-200 pt-24 pb-32 xs:py-32 lg:py-24">
+      <div class="${this._elementName} scroll-pt-header" id="${this._elementName}">
+        <div class="relative flex items-center min-h-min lg:h-section bg-slate-200 pt-24 pb-32 xs:py-32 lg:py-24">
           <div class="relative mx-auto max-w-xl px-4 xxs:px-8 text-center md:max-w-2xl lg:max-w-6xl xl:max-w-[1400px] lg:px-8 xl:px-0">
             <div class="">
               <h2 class="strapline text-lg font-semibold text-primary">Deploy smarter</h2>
@@ -150,8 +150,8 @@ class About extends View {
         x: -20,
         // scale: 0.988,
         stagger: {
-          amount: .4,
-          ease: 'power.in'
+          amount: .8,
+          ease: "slow(0.7, 0.7, false)"    
         }
       }, '<-.2');
     

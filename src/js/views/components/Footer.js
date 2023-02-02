@@ -11,14 +11,14 @@ export default class Footer extends View {
   }
 
   _generateMarkup() {
-    const markup = `
+    const markup = /*html*/`
       <footer class="w-full bg-slate-700 pt-4" aria-labelledby="footer-heading">
           <h2 id="footer-heading" class="sr-only">Footer</h2>
           <div class="mx-auto max-w-7xl py-12 px-4 xxs:px-8 xs:px-8 lg:py-16 lg:px-8">
             <div class="xl:grid xl:grid-cols-3 xl:gap-8">
               <div class="space-y-8 xl:col-span-1">
               <div class="logo relative border-l-2 border-primary pl-3 text-white text-2xl tracking-tighter uppercase">Sub<span class="text-primary ml-2">1</span></div>
-              <p class="text-base text-gray-400">Making the world a better place through constructing elegant hierarchies.</p>
+              <p class="text-base text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, optio?</p>
                 <div class="flex space-x-6">
                   <a href="#" class="text-gray-400 hover:text-gray-500">
                     <span class="sr-only">Facebook</span>
@@ -71,10 +71,6 @@ export default class Footer extends View {
                     <ul role="list" class="mt-4 space-y-4">
                       <li>
                         <a href="#" class="text-base text-gray-400 hover:text-gray-200">Pricing</a>
-                      </li>
-        
-                      <li>
-                        <a href="#" class="text-base text-gray-400 hover:text-gray-200">Documentation</a>
                       </li>
         
                       <li>

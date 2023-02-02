@@ -66,7 +66,10 @@ module.exports = {
       },
       scale: {
         '-100': '-1',
-      }
+      },
+      scrollPadding: {
+        'header': '4rem',
+      },
     },
   },
   plugins: [

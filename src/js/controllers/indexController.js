@@ -41,27 +41,76 @@ class IndexController {
 
     _initHandlers() {
         this._IndexView._Header.addMenuHandler((e) => {
+            // Needed to allow scrollIntoView
+            e.preventDefault();
             const burger = e.target.closest('.burger');
-            const about = e.target.closest('#about-item');
-            const testimonial = e.target.closest('#testimonial-item');
-            const contact = e.target.closest('#contact-item');
-            const login = e.target.closest('#login-item');
+            const logoLink = e.target.closest('.logo');
+            const aboutLink = e.target.closest('#about-item');
+            const aboutMobileLink = e.target.closest('#about-mobile-item');
+            const testimonialLink = e.target.closest('#testimonial-item');
+            const testimonialMobileLink = e.target.closest('#testimonial-mobile-item');
+            const contactLink = e.target.closest('#contact-item');
+            const contactMobileLink = e.target.closest('#contact-mobile-item');
+            const loginLink = e.target.closest('#login-item');
+            const loginMobileLink = e.target.closest('#login-mobile-item');
 
-            const activeItem = about || testimonial || contact;
-
+            const activeItem = 
+                logoLink || aboutLink || testimonialLink || contactLink  ||
+                aboutMobileLink || testimonialMobileLink || contactMobileLink;
+                
             if(burger)
                 this._IndexView._Header.toggleMenu();
             if(activeItem){
                 let element;
+                
                 switch(activeItem) {
-                    case about: element = document.querySelector('.about'); console.log('about'); break;
-                    case testimonial: element = document.querySelector('.testimonial'); console.log('testimonial'); break;
-                    case contact: element = document.querySelector('.contact'); console.log('contact'); break;
+                    case logoLink: {
+                        element = document.getElementById('hero');
+                        element.scrollIntoView({block:'end'});       
+                        this._IndexView._Header.setActiveItem('hero-item');
+                        break;
+                    }
+                    case aboutLink: {
+                        element = document.getElementById('about'); 
+                        element.scrollIntoView({block:'end'});    
+                        this._IndexView._Header.setActiveItem('about-item');   
+                        break;
+                    }
+                    case aboutMobileLink: {
+                        element = document.getElementById('about');
+                        element.scrollIntoView(true);    
+                        this._IndexView._Header.setActiveItem('about-mobile'); 
+                        break;
+                    }
+                    case testimonialLink: {
+                        element = document.getElementById('testimonial'); 
+                        element.scrollIntoView();    
+                        this._IndexView._Header.setActiveItem('testimonial-item');   
+                        break;
+                    }
+                    case testimonialMobileLink: {
+                        element = document.getElementById('testimonial');
+                        element.scrollIntoView({block:'end'});    
+                        this._IndexView._Header.setActiveItem('testimonial-mobile'); 
+                         
+                        break;
+                    }
+                    case contactLink: {
+                        element = document.getElementById('contact'); 
+                        element.scrollIntoView({block:'end'});    
+                        this._IndexView._Header.setActiveItem('contact-item');   
+                        break;
+                    }
+                    case contactMobileLink: {
+                        element = document.getElementById('contact'); 
+                        element.scrollIntoView({block:'end'});    
+                        this._IndexView._Header.setActiveItem('contact-mobile');   
+                        break;
+                    }
                 }
-                element.scrollIntoView();       
-            }
+            } 
 
-            if(login) {
+            if(loginLink || loginMobileLink) {
                 this._IndexView.Login._render();
             }
           
@@ -100,6 +149,8 @@ class IndexController {
                 }
             }
         });
+
+        
     }
 }
 

@@ -60,11 +60,31 @@ class IndexView extends View {
         this._FAQs._render();
         this._Contact._render();
         this._Footer._render();
+
+        this._addHandlers();
     }
 
     addLoginHandler(handler) {
         console.log('adding index handler');
         this._parentElement.addEventListener('click', handler);
+    }
+
+    _addHandlers() {
+        this._addClickHandler();
+        this._addResizeHandler();
+    }
+    _addClickHandler() {
+        this._parentElement.addEventListener('click', (e) => {
+            // Not menu burger and open
+            console.log(!e.target.closest('.burger'), this._Header._isOpen())
+            if(!e.target.closest('.burger') && this._Header._isOpen())
+                this._Header.closeMenu(); 
+        });
+    }
+    _addResizeHandler() {
+        window.addEventListener('resize', (e) => {
+            this._Header.closeMenu();
+        })
     }
 
 }

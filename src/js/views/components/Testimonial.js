@@ -21,7 +21,7 @@ class Testimonial extends View {
     const markup = /*html*/`
       <div class="${this._elementName} scroll-mt-44" id="${this._elementName}">
 
-        <div class="bg-slate-200  flex items-end  justify-center h-4/6 xl:h-[65vh] pt-24 lg:pt-16 xl:pt-0">
+        <div class="bg-slate-200  flex items-end justify-center min-h-min h-4/6 xl:h-[65vh] pt-24 lg:pt-16 xl:pt-0">
           <div class="relative w-full">
           <div class="testimonial-bg-1 absolute top-0 left-0 w-full h-full bg-white"></div>
             <div class="testimonial-bg-2 absolute top-0 left-0 w-full h-full bg-primary"></div>
@@ -51,7 +51,7 @@ class Testimonial extends View {
                         <p class="testimonial-description mt-2 text-xl  text-white lg:pl-10">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non repudiandae, molestiae perspiciatis nam delectus odit! Id officiis accusantium vel error aut nobis dignissimos, magnam doloribus repellat consequatur minus possimus recusandae quis laborum odit commodi architecto, praesentium natus sunt, dolorem vero enim ipsa illum! Voluptas saepe officiis error assumenda asperiores labore.</p>
                       </div>
                       <footer class="testimonial-footer mt-6 lg:pl-10">
-                        <p class="text-base font-medium text-white">Dominic Rumsey, 40</p>
+                        <p class="text-base font-medium text-white">The Owner, 40</p>
                         <p class="text-base font-medium text-primaryDark xxs:text-primary lg:text-primaryDark">CEO at Sub1</p>
                       </footer>
                     </blockquote>
@@ -98,10 +98,11 @@ class Testimonial extends View {
     tl.from('.testimonial-bg-1', {
       autoAlpha:0,
       xPercent: 100,
-      duration: .35
+      duration: .8,
+      ease: 'power4.out'
     })
     .from(`.${this._elementName} .image-wrapper`, {
-      autoAlpha: 0.5,
+      autoAlpha: 0.8,
       yPercent: 10,
       duration: .8
     }, '<').from('.testimonial-headline', {
@@ -111,9 +112,11 @@ class Testimonial extends View {
     }, '<')
     .from('.testimonial-bg-2', {
       autoAlpha:0,
-      xPercent: 100,
-      duration: .35
-    }, '< .8').from('.testimonial-description', {
+      xPercent: 80,
+      duration: .8,
+      ease: 'power4.out'
+
+    }, '< .9').from('.testimonial-description', {
       autoAlpha:0,
       duration: .4
     }, '<')
@@ -125,6 +128,36 @@ class Testimonial extends View {
       autoAlpha:0,
       duration: .4
     }, '<.1')
+    // tl.from('.testimonial-bg-1', {
+    //   autoAlpha:0,
+    //   xPercent: 100,
+    //   duration: .35
+    // })
+    // .from(`.${this._elementName} .image-wrapper`, {
+    //   autoAlpha: 0.5,
+    //   yPercent: 10,
+    //   duration: .8
+    // }, '<').from('.testimonial-headline', {
+    //   autoAlpha:0,
+    //   x: -80,
+    //   duration: .8
+    // }, '<')
+    // .from('.testimonial-bg-2', {
+    //   autoAlpha:0,
+    //   xPercent: 100,
+    //   duration: .35
+    // }, '< .8').from('.testimonial-description', {
+    //   autoAlpha:0,
+    //   duration: .4
+    // }, '<')
+    // .from('.testimonial-quotes', {
+    //   autoAlpha:0,
+    //   duration: .4
+    // }, '<')
+    // .from('.testimonial-footer', {
+    //   autoAlpha:0,
+    //   duration: .4
+    // }, '<.1')
 
     // Separate scrolltrigger objects allow leaveback and onenter trigger points to be different
     ScrollTrigger.create({

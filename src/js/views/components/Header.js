@@ -11,6 +11,7 @@ export default class Header extends View {
   _menu;
   _menuTL;
   _lines;
+  _mobileItems;
   _items;
 
   constructor(data) {
@@ -20,7 +21,7 @@ export default class Header extends View {
 
   _generateMarkup() {
     const markup = /*html*/`
-      <div class="${this._elementName} fixed flex items-center justify-center w-full h-header bg-slate-700 shadow-2xl z-40">
+      <div class="${this._elementName} fixed flex items-center justify-center w-full h-header bg-slate-700 shadow-2xl cursor-pointer z-40">
         <div class=" px-4 xxs:px-8 flex justify-between items-center w-full max-w-largest">
           <div class="logo relative border-l-2 border-primary pl-3 text-white text-3xl tracking-tighter uppercase">Sub<span class="text-primary ml-2">1</span></div>
         
@@ -39,13 +40,13 @@ export default class Header extends View {
           <div class="menu--mobile absolute inset-x-0 top-header z-10 origin-top-right transform  transition">
             <div class="flex flex-col items-end overflow-hidden">
               
-                <a href="#" class="menu__item block w-[120%] bg-slate-600  border-t-2 last:border-b-0 border-slate-700 px-8 py-4 text-base text-right font-medium text-slate-300 hover:bg-slate-700 hover:text-primary">About</a>
+                <a href="#" id="about-mobile-item" class="mobile-menu__item block w-[120%] bg-slate-600  border-t-2 last:border-b-0 border-slate-700 px-8 py-4 text-base text-right font-medium text-slate-300 hover:bg-slate-700 hover:text-primary">About</a>
 
-                <a href="#" class="menu__item block w-[120%] bg-slate-600  border-t-2 last:border-b-0 border-slate-700 px-8 py-4 text-base text-right font-medium text-slate-300 hover:bg-slate-700 hover:text-primary">Our Vision</a>
+                <a href="#" id="testimonial-mobile-item" class="mobile-menu__item block w-[120%] bg-slate-600  border-t-2 last:border-b-0 border-slate-700 px-8 py-4 text-base text-right font-medium text-slate-300 hover:bg-slate-700 hover:text-primary">Our Vision</a>
 
-                <a href="#" class="menu__item block w-[120%] bg-slate-600  border-t-2 last:border-b-0 border-slate-700 px-8 py-4 text-base text-right font-medium text-slate-300 hover:bg-slate-700 hover:text-primary ">Contact Us</a>
+                <a href="#" id="contact-mobile-item" class="mobile-menu__item block w-[120%] bg-slate-600  border-t-2 last:border-b-0 border-slate-700 px-8 py-4 text-base text-right font-medium text-slate-300 hover:bg-slate-700 hover:text-primary ">Contact Us</a>
 
-                <a href="#" class="menu__item block w-[120%]  bg-slate-700 border-t-2 border-slate-500 px-8 py-3 text-right font-medium text-slate-300 hover:text-primary">Log in</a>
+                <a href="#" id="login-mobile-item" class="mobile-menu__item block w-[120%]  bg-slate-700 border-t-2 border-slate-500 px-8 py-3 text-right font-medium text-slate-300 hover:text-primary">Log in</a>
             </div>
           </div>
 
@@ -70,14 +71,12 @@ export default class Header extends View {
     this._initElements();
   }
     _renderNavItem(item) {
-    console.log(item, this._data.page);
-    const currentPage = this._data.page.toLowerCase();
-    const lowerCase = item.toLowerCase();
+    let lowerCase = item.toLowerCase().replaceAll(' ', '');
     const capitalize = item.charAt(0) + item.slice(1);
-              // <a href="#" id="about-item" class=" border-b border-menuSelected px-3 py-2 text-sm font-medium text-white">About</a>
-              // <a href="#" id="testimonial-item" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-menuSelected hover:text-white">Our Vision</a>
-              // <a href="#" id="contact-item" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-menuSelected hover:text-white">Contact Us</a>
-    return `<a href="#" id="${lowerCase}-item" class="${currentPage === lowerCase? 'border-b border-primary':''}  px-3 py-2 text-sm font-medium text-gray-300 hover:bg-primary hover:rounded-md hover:text-white">${capitalize}</a>`;
+    
+    lowerCase = lowerCase === 'ourvision'? 'testimonial': lowerCase;
+
+    return `<a href="#" id="${lowerCase}-item" class="menu__item  px-3 py-2 text-sm font-medium text-gray-300 hover:bg-primary hover:rounded-md hover:text-white">${capitalize}</a>`;
   }
 
   _setParentElement(parentString) {
@@ -87,6 +86,7 @@ export default class Header extends View {
     this._currentElement = this._parentElement.querySelector(`.${this._elementName}`);
     this._menu = this._parentElement.querySelector('.menu--mobile');
     this._lines = Array.from(document.querySelectorAll('.burger .line'));
+    this._mobileItems = Array.from(document.querySelectorAll('.mobile-menu__item'));
     this._items = Array.from(document.querySelectorAll('.menu__item'));
 
     this._menuTl = gsap.timeline({paused:true});
@@ -94,6 +94,16 @@ export default class Header extends View {
       .add(this._getBurgerTl())
       .add(this._getMenuContentTl(), '<');
 
+  }
+
+  setActiveItem(elementName) {
+    [...this._mobileItems, ...this._items].forEach(item => {
+      if(item.id.includes(elementName)){
+        item.classList.add('border-b', 'border-primary', 'text-primary');
+      } else {
+        item.classList.remove('border-b', 'border-primary', 'text-primary');
+      }
+    });
   }
 
   addMenuHandler(handler) {
@@ -108,6 +118,12 @@ export default class Header extends View {
     }
 
     this._menu.classList.toggle('open');
+  }
+  closeMenu() {
+    if(this._isOpen()) {
+      this._menuTl.reverse(0);
+      this._menu.classList.toggle('open');
+    }
   }
 
   _isOpen() {
@@ -129,6 +145,6 @@ export default class Header extends View {
   }
   _getMenuContentTl() {
       return gsap.timeline()
-        .fromTo(this._items, { autoAlpha:0, x:30 }, { autoAlpha:1, x:0, stagger: '.1' }, '<')
+        .fromTo(this._mobileItems, { autoAlpha:0, x:30 }, { autoAlpha:1, x:0, stagger: '.1' }, '<')
   }
 }
