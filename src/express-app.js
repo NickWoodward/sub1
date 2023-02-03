@@ -7,4 +7,4 @@ app.get('/', (req, res, next) => {
   res.sendFile(path.join(__dirname, './index.html'));
 });
 
-app.listen(port, () => console.log(`App listening on port ${port}`));
+app.listen(port, () => console.log(`Listening on port ${port}`));
