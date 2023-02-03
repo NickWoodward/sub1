@@ -8,7 +8,7 @@ module.exports = {
         admin: './src/js/controllers/adminController.js'
     },
     output: {
-        filename: '[name].bundle.[chunkhash].js',
+        filename: 'js/[name].bundle.[chunkhash].js',
         path: path.resolve(__dirname, 'dist'),
         clean: true,
     },
@@ -25,18 +25,21 @@ module.exports = {
              },
             {
                 test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
-                type: 'asset/resource'
+                type: 'asset/resource',
+                generator: {
+                    filename: 'images/[hash][ext][query]'
+                }
             },
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
-            filename: 'index.html',
+            filename: 'html/index.html',
             template: './src/index.html',
             chunks: ['index']
         }),
         new HtmlWebpackPlugin({
-            filename: 'admin.html',
+            filename: 'html/admin.html',
             template: './src/admin.html',
             chunks: ['admin']
         })
