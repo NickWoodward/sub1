@@ -21,6 +21,12 @@ body {
     opacity: 0;
 }
 
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
 /* @responsive {
     @variants hover, focus {
         .rotate-99 {
