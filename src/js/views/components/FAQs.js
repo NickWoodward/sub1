@@ -82,7 +82,7 @@ export default class FAQs extends View {
         console.log({mobile}, {desktop});
   
         if(desktop) this._faqAnimation();
-        // if(mobile) this._mobileContactAnimation();
+        if(mobile) this._mobileFaqAnimation();
       });
     }
 
@@ -121,6 +121,35 @@ export default class FAQs extends View {
         // markers:true,
         onLeaveBack: () => tl.pause(0)
       });
+    }
+
+    _mobileFaqAnimation() {
+      const faqs = gsap.utils.toArray('.faq__item');
+
+      faqs.forEach((faq, index) => {
+        const distance = index % 2 === 0 ? 5:-5;
+        const tl = gsap.timeline({paused:true}).from(faq, {
+          autoAlpha: 0,
+          xPercent: gsap.utils.wrap([-distance, distance, -distance]),
+          ease:'power4.inOut"',
+          duration: .7
+        });
+        
+        // Separate scrolltrigger objects allow leaveback and onenter trigger points to be different
+        ScrollTrigger.create({
+          trigger: faq,
+          start: "top 80%",
+          // markers:true,
+          onEnter: () => tl.play()
+        });
+        ScrollTrigger.create({
+          trigger: faq,
+          start: "top 110%",
+          // markers:true,
+          onLeaveBack: () => tl.pause(0)
+        });
+      });
+     
     }
 
     _getBgSVG() {

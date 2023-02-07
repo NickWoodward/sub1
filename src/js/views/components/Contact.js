@@ -18,7 +18,7 @@ class Contact extends View {
  
   _generateMarkup() {
     const markup = /*html*/`
-      <div class="${this._elementName} relative overflow-hidden border-4 border-slate-100 bg-tertiary scroll-pt-header" id="${this._elementName}">
+      <div class="${this._elementName} menu-section relative overflow-hidden border-4 border-slate-100 bg-tertiary scroll-pt-header" id="${this._elementName}">
         <!-- Hero Content Wrapper-->
         <!-- <div class="relative h-full w-full bg-slate-700"> -->
         <div class="relative h-full xl:h-[90vh] max-w-xl mx-auto md:max-w-2xl lg:max-w-none lg:w-full lg:bg-white">

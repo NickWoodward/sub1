@@ -1,3 +1,7 @@
+import {gsap} from 'gsap';
+import {ScrollTrigger} from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger)
+
 import '../../../css/main.css';
 
 import View from '../View';
@@ -10,6 +14,8 @@ import Testimonial from '../components/Testimonial';
 import FAQs from '../components/FAQs';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
+
+import { debounce } from '../../utils/helper';
 
 class IndexView extends View {
     _elementName;
@@ -62,6 +68,7 @@ class IndexView extends View {
         this._Footer._render();
 
         this._addHandlers();
+        this._handleScrollMenuChange();
     }
 
     addLoginHandler(handler) {
@@ -83,8 +90,29 @@ class IndexView extends View {
     }
     _addResizeHandler() {
         window.addEventListener('resize', (e) => {
-            this._Header.closeMenu();
+            debounce(this._Header.closeMenu());
         })
+    }
+
+    _handleScrollMenuChange() {
+        const sections = gsap.utils.toArray(".menu-section");
+        const menuItems = Array.from(document.querySelectorAll('.menu__item'));
+        const sectionsMap = new Map();
+
+        sections.forEach((section, index) => sectionsMap.set(section, menuItems[index]));
+
+
+        sections.forEach((section, i) => {
+            ScrollTrigger.create({
+                trigger: section,
+                start: "top center",
+                onEnter: () => this._Header.setActiveItem(sectionsMap.get(sections[i])),
+                onLeaveBack: () => this._Header.setActiveItem(sectionsMap.get(sections[i - 1])),
+            });
+        });
+    }
+    _sectionToMenuItem() {
+
     }
 
 }

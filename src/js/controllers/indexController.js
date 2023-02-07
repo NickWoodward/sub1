@@ -67,44 +67,44 @@ class IndexController {
                     case logoLink: {
                         element = document.getElementById('hero');
                         element.scrollIntoView({block:'end'});       
-                        this._IndexView._Header.setActiveItem('hero-item');
+                        // this._IndexView._Header.setActiveItem('hero-item');
                         break;
                     }
                     case aboutLink: {
                         element = document.getElementById('about'); 
                         element.scrollIntoView({block:'end'});    
-                        this._IndexView._Header.setActiveItem('about-item');   
+                        // this._IndexView._Header.setActiveItem('about-item');   
                         break;
                     }
                     case aboutMobileLink: {
                         element = document.getElementById('about');
                         element.scrollIntoView(true);    
-                        this._IndexView._Header.setActiveItem('about-mobile'); 
+                        // this._IndexView._Header.setActiveItem('about-mobile'); 
                         break;
                     }
                     case testimonialLink: {
                         element = document.getElementById('testimonial'); 
                         element.scrollIntoView();    
-                        this._IndexView._Header.setActiveItem('testimonial-item');   
+                        // this._IndexView._Header.setActiveItem('testimonial-item');   
                         break;
                     }
                     case testimonialMobileLink: {
                         element = document.getElementById('testimonial');
                         element.scrollIntoView({block:'end'});    
-                        this._IndexView._Header.setActiveItem('testimonial-mobile'); 
+                        // this._IndexView._Header.setActiveItem('testimonial-mobile'); 
                          
                         break;
                     }
                     case contactLink: {
                         element = document.getElementById('contact'); 
                         element.scrollIntoView({block:'end'});    
-                        this._IndexView._Header.setActiveItem('contact-item');   
+                        // this._IndexView._Header.setActiveItem('contact-item');   
                         break;
                     }
                     case contactMobileLink: {
                         element = document.getElementById('contact'); 
                         element.scrollIntoView({block:'end'});    
-                        this._IndexView._Header.setActiveItem('contact-mobile');   
+                        // this._IndexView._Header.setActiveItem('contact-mobile');   
                         break;
                     }
                 }

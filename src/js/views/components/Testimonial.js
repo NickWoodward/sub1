@@ -19,7 +19,7 @@ class Testimonial extends View {
 
   _generateMarkup() {
     const markup = /*html*/`
-      <div class="${this._elementName} scroll-mt-44" id="${this._elementName}">
+      <div class="${this._elementName} menu-section scroll-mt-44" id="${this._elementName}">
 
         <div class="bg-slate-200  flex items-end justify-center min-h-min h-4/6 xl:h-[65vh] pt-24 lg:pt-16 xl:pt-0">
           <div class="relative w-full">

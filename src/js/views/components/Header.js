@@ -37,7 +37,7 @@ export default class Header extends View {
           </div>
 
           <!-- Mobile Nav -->
-          <div class="menu--mobile absolute inset-x-0 top-header z-10 origin-top-right transform  transition">
+          <div class="menu--mobile hidden absolute inset-x-0 top-header z-10 origin-top-right transform  transition">
             <div class="flex flex-col items-end overflow-hidden">
               
                 <a href="#" id="about-mobile-item" class="mobile-menu__item block w-[120%] bg-slate-600  border-t-2 last:border-b-0 border-slate-700 px-8 py-4 text-base text-right font-medium text-slate-300 hover:bg-slate-700 hover:text-primary">About</a>
@@ -96,14 +96,25 @@ export default class Header extends View {
 
   }
 
-  setActiveItem(elementName) {
-    [...this._mobileItems, ...this._items].forEach(item => {
-      if(item.id.includes(elementName)){
-        item.classList.add('border-b', 'border-primary', 'text-primary');
-      } else {
-        item.classList.remove('border-b', 'border-primary', 'text-primary');
-      }
-    });
+  setActiveItem(element) {
+    console.log(element);
+    if(typeof element === 'string') {
+      [...this._mobileItems, ...this._items].forEach(item => {
+        if(item.id.includes(element)){
+          item.classList.add('border-b', 'border-primary', 'text-primary');
+        } else {
+          item.classList.remove('border-b', 'border-primary', 'text-primary');
+        }
+      });
+    } else {
+      [...this._mobileItems, ...this._items].forEach(item => {
+        if(item === element){
+          item.classList.add('border-b', 'border-primary', 'text-primary');
+        } else {
+          item.classList.remove('border-b', 'border-primary', 'text-primary');
+        }
+      });
+    }
   }
 
   addMenuHandler(handler) {
@@ -136,7 +147,12 @@ export default class Header extends View {
     return gsap.timeline().fromTo('.header', {autoAlpha:0}, {autoAlpha:1, onComplete: ()=> console.log(header)})
   }
   _getBurgerTl() {
-    return gsap.timeline({defaults: {duration:.4}})
+    return gsap
+    .timeline({ 
+      defaults: {duration:.4},
+      onStart: () => {this._menu.classList.remove('hidden')},
+      onReverseComplete: () => {this._menu.classList.add('hidden')}
+    })
       .to(this._lines[0], { scaleX: 0 })
       .to(this._lines[2], { scaleX: 0 }, '<.2')
       .to(this._lines[1], { rotate:135 }, '<.2')

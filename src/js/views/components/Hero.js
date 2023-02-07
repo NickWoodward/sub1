@@ -1,6 +1,11 @@
 import {gsap} from 'gsap';
 import View from '../View';
 
+import config from /* preval */ '../../../../tailwind.config';
+const { theme: { screens } } = config;
+
+import { getMediaQueryLists, getScreenSize, debounce } from '../../utils/helper';
+
 // Images
 const datacenter = require('../../../assets/datacenterDark.jpg');
 const servers = require('../../../assets/servers.jpg');
@@ -163,8 +168,16 @@ class Hero extends View {
       //   onComplete: () => this._nextSlide()
       // }).pause();
 
+      this._mqls = getMediaQueryLists(this._setLeft.bind(this));
+
       // Set the positioning for the progress bar
       this._setLeft();
+
+      // Set a resize listener
+      window.addEventListener('resize', () => {
+        console.log('resize');
+        debounce(this._setLeft());
+      })
 
       // Navigation listener
       this._imageNavigation.addEventListener('click', e => {
@@ -273,17 +286,37 @@ class Hero extends View {
       autoplayIconOff.classList.remove('opacity-0');
     }
 
-    
+
 
     _setLeft() {
-      // Hardcoded because JS isn't accurate enough
+      // Hardcoded because calculating it isn't accurate enough
       const TWELVE_DEGS_TO_RADIANS = 0.22;
       const content = document.querySelector('.hero');
       const bounds = content.getBoundingClientRect();
 
-      // The content tailwind width is set as w-3/5
-      let start = bounds.right / 5 * 3;
-      let width = bounds.width / 5 * 2;
+      const size = getScreenSize(this._mqls);
+
+      // The content tailwind width is set as w-3/5 (xl) or w-4/6 (<xl)
+      let start;
+      let width;
+
+      switch(size) {
+        case 'xlarge': {
+          start = bounds.right / 5 * 3;
+          width = bounds.width / 5 * 2;
+          break;
+        }
+        case 'large': {
+          start = bounds.right / 6 * 4;
+          width = bounds.width / 6 * 2;
+          break;
+        }
+        default: {
+          start = 0;
+          width = bounds.width
+        }
+      }
+
       const height = bounds.height;
       const radians = TWELVE_DEGS_TO_RADIANS;
       const tan = Math.tan(radians);
