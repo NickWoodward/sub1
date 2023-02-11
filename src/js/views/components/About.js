@@ -28,10 +28,13 @@ class About extends View {
         <div class="relative flex items-center min-h-min lg:h-section bg-slate-200 pt-24 pb-32 xs:py-32 lg:py-24">
           <div class="relative mx-auto max-w-xl px-4 xxs:px-8 text-center md:max-w-2xl lg:max-w-6xl xl:max-w-[1400px] lg:px-8 xl:px-0">
             <div class="">
-              <h2 class="strapline text-lg font-semibold text-primary">Deploy smarter</h2>
-              <p class="headline mt-2 text-2xl xxs:text-3xl font-semibold tracking-tight text-slate-700">Lorem ipsum dolor sit, amet consectetur</p>
+            <h2 class="strapline text-lg font-semibold text-primary">Modern power and cooling technologies</h2>
 
-              <p class="description mx-auto mt-5 max-w-prose px-2 text-xl text-gray-500">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis adipisci quo minus, dicta eveniet itaque unde vel eius? Eum, quae.</p>
+              <!--<h2 class="strapline text-lg font-semibold text-primary">Efficient Power and Cooling Solutions</h2>-->
+
+              <p class="headline mt-2 text-2xl xxs:text-3xl font-semibold tracking-tight text-slate-700">Sustainable and Efficient Data Centers</p>
+
+              <p class="description mx-auto mt-5 max-w-prose px-2 text-xl text-gray-500">Differentiating with a set of principles that meets the UK's growing need for digital infrastructure, in an innovative and accessible way</p>
             </div>
             <div class="mt-20">
               <div class="grid grid-cols-1 gap-8 xl:gap-12 lg:grid-cols-3">
@@ -40,10 +43,10 @@ class About extends View {
                   <div class="flow-root  min-h-[360px] shadow-sm rounded-lg bg-gray-50 px-6 pb-8">
                     <div class="-mt-6">
                       <div class="card__icon">
-                        <img src=${icon1} alt="" class="w-32 mx-auto" />
+                        <img src=${icon3} alt="" class="w-32 mx-auto" />
                       </div>
-                      <h3 class="card__header mt-8 text-xl font-semibold leading-8 tracking-tight text-gray-900">Adipisicing</h3>
-                      <p class="card__description mt-5 text-base leading-7 text-gray-600">Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.</p>
+                      <h3 class="card__header mt-8 text-xl font-semibold leading-8 tracking-tight text-gray-900">Onsite Generation</h3>
+                      <p class="card__description mt-5 text-lg leading-7 text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, ut magni? Veniam autem harum excepturi fuga tempore inventore.</p>
                     </div>
                   </div>
                 </div>
@@ -55,7 +58,7 @@ class About extends View {
                         <img src=${icon2} alt="" class="w-32 mx-auto" />
                       </div>
                       <h3 class="card__header mt-8 text-xl font-semibold leading-8 tracking-tight text-gray-900">Lorem ipsum</h3>
-                      <p class="card__description mt-5 text-base leading-7 text-gray-600">
+                      <p class="card__description mt-5 text-lg leading-7 text-gray-600">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate id esse odio adipisci sunt nisi dolor minima corporis recusandae! Aspernatur.
                       </p>
                     </div>
@@ -66,15 +69,14 @@ class About extends View {
                   <div class="flow-root  min-h-[360px] shadow-sm rounded-lg bg-gray-50 px-6 pb-8">
                     <div class="-mt-6">
                       <div class="card__icon">
-                        <img src=${icon3} alt="" class="w-32 mx-auto" />
+                        <img src=${icon1} alt="" class="w-32 mx-auto" />
                       </div>
-                      <h3 class="card__header mt-8 text-xl font-semibold leading-8 tracking-tight text-gray-900">Voluptate id</h3>
-                      <p class="card__description mt-5 text-base leading-7 text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, ut magni? Veniam autem harum excepturi fuga tempore inventore.</p>
+                      <h3 class="card__header mt-8 text-xl font-semibold leading-8 tracking-tight text-gray-900">Adipisicing</h3>
+                      <p class="card__description mt-5 text-lg leading-7 text-gray-600">Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.</p>
                     </div>
                   </div>
                 </div>
 
-                
               </div>
             </div>
           </div>

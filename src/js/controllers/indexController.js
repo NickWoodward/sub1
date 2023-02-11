@@ -3,6 +3,7 @@ import {gsap} from 'gsap';
 import * as IndexModel from '../models/indexModel';
 import IndexView from '../views/pages/IndexView';
 import { getAdminContent, login, test } from '../api';
+import { validateContact } from '../utils/validator';
 
 class IndexController {
     _IndexView;
@@ -61,8 +62,11 @@ class IndexController {
             if(burger)
                 this._IndexView._Header.toggleMenu();
             if(activeItem){
+                // Nav item clicked, turn off the scrollTriggers that control the active menu
+                this._IndexView.toggleMenuScrollTrigger()
                 let element;
                 
+               
                 switch(activeItem) {
                     case logoLink: {
                         element = document.getElementById('hero');
@@ -108,6 +112,9 @@ class IndexController {
                         break;
                     }
                 }
+
+                this._IndexView.toggleMenuScrollTrigger()
+
             } 
 
             if(loginLink || loginMobileLink) {
@@ -150,9 +157,36 @@ class IndexController {
             }
         });
 
-        
+        this._IndexView._Hero.addFormListeners((e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+
+            // iterate through entries...
+            for(let pair of formData.entries()) {
+              console.log(pair[0] + ": " + pair[1]);
+            }
+          
+            // ...or output as an object
+            const { email } = Object.fromEntries(formData);
+        });
+
+        this._IndexView._Contact.addFormListeners((e) => {
+            e.preventDefault();
+
+            const formData = new FormData(e.target);
+            const formObject = Object.fromEntries(formData);
+          
+            const errors = validateContact(formObject);
+
+            if(!errors) {
+                alert('success');
+            } else {
+                alert('failure:');
+                console.log(errors);
+            }
+        });
     }
 }
 
-const app = new IndexController();
+new IndexController();
 

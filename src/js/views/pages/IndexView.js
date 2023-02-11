@@ -47,6 +47,8 @@ class IndexView extends View {
         this._FAQs = new FAQs({});
         this._Contact = new Contact({});
         this._Footer = new Footer({});
+
+        this._menuScrollTrigger = true;
     }
 
     _generateMarkup() {
@@ -102,18 +104,37 @@ class IndexView extends View {
         sections.forEach((section, index) => sectionsMap.set(section, menuItems[index]));
 
 
-        sections.forEach((section, i) => {
-            ScrollTrigger.create({
+        this._sectionTriggers = sections.map((section, i) => {
+            const scrollTrigger = ScrollTrigger.create({
                 trigger: section,
                 start: "top center",
                 onEnter: () => this._Header.setActiveItem(sectionsMap.get(sections[i])),
                 onLeaveBack: () => this._Header.setActiveItem(sectionsMap.get(sections[i - 1])),
             });
+            return scrollTrigger;
         });
     }
-    _sectionToMenuItem() {
 
+    toggleMenuScrollTrigger() {
+        if(this._menuScrollTrigger) {
+            this._menuScrollTrigger = false; 
+
+            this._sectionTriggers.forEach(trigger => {
+                trigger.disable()
+            })
+            console.log('TURNING OFF SCROLL TRIGGERS');
+            console.log('ON? ', this._sectionTriggers[0].enabled);
+        } else {
+            this._menuScrollTrigger = true; 
+
+            this._sectionTriggers.forEach(trigger => {
+                trigger.enable()
+            })
+            console.log('TURNING ON SCROLL TRIGGERS');
+            console.log('ON? ', this._sectionTriggers[0].enabled);
+        }
     }
+
 
 }
 

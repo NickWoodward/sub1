@@ -40,7 +40,7 @@ class Testimonial extends View {
                 </div>
                 <!-- Content Wrapper -->
                 <div class="flex flex-col justify-center mt-8 xxs:mt-0 xxs:absolute xxs:left-0 xxs:top-0 xxs:h-full xxs:justify-between xxs:pt-8 xxs:pb-12 xxs:px-10 lg:relative lg:justify-start lg:mt-0 lg:left-auto lg:top-auto lg:col-span-2 lg:pl-12">
-                  <p class="testimonial-headline mt-2 text-2xl px-4 xxs:px-0 xxs:text-3xl font-semibold tracking-tight text-primaryDark xxs:text-primary sm:font-medium lg:text-primaryDark lg:mt-8 lg:pl-10 xl:mt-16">Our Vision</p>
+                  <p class="testimonial-headline mt-2 text-2xl px-4 xxs:px-0 xxs:text-3xl font-semibold tracking-tight text-primaryDark xxs:text-primary sm:font-medium lg:text-primaryDark lg:mt-8 lg:pl-10 xl:mt-16">Opportunity</p>
 
                   <div class="testimonial-content mx-auto max-w-md mt-6 px-4 xxs:px-0 xs:max-w-2xl lg:max-w-5xl lg:mt-0 lg:px-0 lg:pt-8 lg:pb-10">
                     <blockquote>

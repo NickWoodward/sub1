@@ -109,13 +109,13 @@ class Hero extends View {
                       <span class="block mt-2 text-primary font-semibold">Hyper Efficient Edge Data Centers</span>
                     </span>
                   </h1>
-                  <p class="mt-3 text-base text-slate-200 xs:mt-5 xs:text-xl lg:text-lg lg:text-gray-500 xl:text-2xl">Lorem ipsum dolor sit amet consectetur adipisicing</p>
+                  <p class="mt-3 text-base text-slate-200 xs:mt-5 xs:text-xl lg:text-lg lg:text-gray-500 xl:text-2xl">Register interest in the latest investment round</p>
                   <div class="mt-8 xs:max-w-lg  md:text-left md:mx-0 lg:text-left lg:max-w-lg">
-                    <p class="text-base font-medium lg:text-gray-900">Sign up to get notified when it’s ready.</p>
+                    <p class="text-base font-medium lg:text-gray-900">Sign up to receive futher information</p>
                     <form action="#" method="POST" class="mt-3 xs:flex xs:flex-row sm:w-full  sm:flex-row">
                       <label for="email" class="sr-only">Email</label>
                       <input type="email" name="email" id="email" class="block w-full rounded-md border-gray-300 py-3 text-base placeholder-gray-500 shadow-sm focus:border-primary focus:ring-primary xs:flex-1" placeholder="Enter your email">
-                      <button type="submit" class="mt-3 w-full rounded-md border border-transparent bg-primary px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-primaryLight focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 xs:inline-flex xs:w-auto xs:flex-shrink-0 xs:items-center xs:justify-center xs:mt-0 xs:ml-3">Notify me</button>
+                      <button type="submit" class="mt-3 w-full rounded-md border border-transparent bg-primary px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-primaryLight focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 xs:inline-flex xs:w-auto xs:flex-shrink-0 xs:items-center xs:justify-center xs:mt-0 xs:ml-3">Submit</button>
                     </form>
                     <p class="mt-3 text-sm text-slate-300  xs:mt-3 md:mx-0 lg:text-gray-500">
                       We care about the protection of your data. Read our
@@ -330,6 +330,10 @@ class Hero extends View {
       document.documentElement.style.setProperty('--progressbar-left', `${start}px`);
       document.documentElement.style.setProperty('--progressbar-width', `${width}px`)
     }
+
+    addFormListeners(handler) {
+      this._parentElement.addEventListener('submit', handler);
+    };
 
     _initAnimations() {
       this._showSlide();

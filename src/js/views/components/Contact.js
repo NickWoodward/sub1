@@ -76,9 +76,15 @@ class Contact extends View {
               <div class="contact-form pb-24 pt-4 lg:col-start-4 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12">
                 <div class="mx-auto lg:max-w-none">
                   <form action="#" method="POST" class="grid grid-cols-1 gap-y-6">
-                    <div>
-                      <label for="full-name" class="sr-only">Full name</label>
-                      <input type="text" name="full-name" id="full-name" autocomplete="name" class="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-primary focus:ring-primary" placeholder="Full name">
+                    <div class="name-wrapper relative flex justify-between">
+                      <div class="flex-1 mr-6">
+                        <label for="name" class="sr-only">Name</label>
+                        <input type="text" name="name" id="name" autocomplete="name" class="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm  focus:border-primary focus:ring-primary autofill:text-primary autofill:shadow-[inset_0_0_0px_1000px_rgb(255,255,255)]" placeholder="Name">
+                      </div>
+                      <div class="flex-1">
+                        <label for="surname" class="sr-only">Surname</label>
+                        <input type="text" name="surname" id="surname" autocomplete="surname" class="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-primary focus:ring-primary" placeholder="Surname">
+                      </div>
                     </div>
                     <div>
                       <label for="email" class="sr-only">Email</label>
@@ -99,9 +105,7 @@ class Contact extends View {
                 </div>
               </div>
             </div>
-          
-            
-          
+
           </div>
         </div>
       </div>
@@ -135,6 +139,10 @@ class Contact extends View {
       // if(mobile) this._mobileContactAnimation();
     });
   }
+
+  addFormListeners(handler) {
+    this._parentElement.addEventListener('submit', handler);
+  };
 
   _contactAnimation() {
     const tl = gsap.timeline({ paused: true });
