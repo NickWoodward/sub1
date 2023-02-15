@@ -8,6 +8,7 @@ import View from '../View';
 import Dashboard from '../components/Dashboard';
 import Header from '../components/Header';
 import Login from '../components/Login';
+import PrivacyPolicy from '../components/PrivacyPolicy';
 import Hero from '../components/Hero';
 import About from '../components/About';
 import Testimonial from '../components/Testimonial';
@@ -24,6 +25,7 @@ class IndexView extends View {
     // View Sections
     _Header;
     Login;
+    _PrivacyPolicy;
     _Hero;
     _Dashboard;
     _About;
@@ -41,6 +43,7 @@ class IndexView extends View {
 
         this._Header = new Header(data.headerData);
         this.Login = new Login({page: 'home'});
+        // this._PrivacyPolicy = new PrivacyPolicy();
         this._Hero = new Hero({});
         this._About = new About({});
         this._Testimonial = new Testimonial({});

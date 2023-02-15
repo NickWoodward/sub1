@@ -10,6 +10,7 @@ const { theme: { screens } } = config;
 class Contact extends View {
   _elementName = 'contact';
   _parentElement;
+  _element;
 
   constructor(data) {
     super(data);
@@ -115,13 +116,16 @@ class Contact extends View {
   }
   
   _render() {
-    this._setParentElement();
+    this._setElements();
     super._render();
     this._initAnimations();
   }
 
-  _setParentElement() {
+  _setElements() {
     this._parentElement = document.querySelector('.index-view');
+    this._element = document.querySelector(this._elementName);
+    console.log(this._element);
+    
   }
 
   _initAnimations() {

@@ -2,7 +2,7 @@ import {gsap} from 'gsap';
 
 import * as IndexModel from '../models/indexModel';
 import IndexView from '../views/pages/IndexView';
-import { getAdminContent, login, test } from '../api';
+import { sendEmail, getAdminContent, login, test } from '../api';
 import { validateContact } from '../utils/validator';
 
 class IndexController {
@@ -46,10 +46,10 @@ class IndexController {
             e.preventDefault();
             const burger = e.target.closest('.burger');
             const logoLink = e.target.closest('.logo');
-            const aboutLink = e.target.closest('#about-item');
-            const aboutMobileLink = e.target.closest('#about-mobile-item');
-            const testimonialLink = e.target.closest('#testimonial-item');
-            const testimonialMobileLink = e.target.closest('#testimonial-mobile-item');
+            const aboutLink = e.target.closest('#concept-item');
+            const aboutMobileLink = e.target.closest('#concept-mobile-item');
+            const testimonialLink = e.target.closest('#opportunity-item');
+            const testimonialMobileLink = e.target.closest('#opportunity-mobile-item');
             const contactLink = e.target.closest('#contact-item');
             const contactMobileLink = e.target.closest('#contact-mobile-item');
             const loginLink = e.target.closest('#login-item');
@@ -160,30 +160,38 @@ class IndexController {
         this._IndexView._Hero.addFormListeners((e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
-
-            // iterate through entries...
-            for(let pair of formData.entries()) {
-              console.log(pair[0] + ": " + pair[1]);
-            }
           
-            // ...or output as an object
-            const { email } = Object.fromEntries(formData);
+            if(e.target.closest(this._IndexView._Contact._element)) {
+                const formObject = Object.fromEntries(formData);
+                console.log('second contact form', formObject);
+
+            } else {
+                const { email } = Object.fromEntries(formData);
+                console.log('first contact form', email);
+
+            }
         });
 
-        this._IndexView._Contact.addFormListeners((e) => {
+        this._IndexView._Contact.addFormListeners(async(e) => {
             e.preventDefault();
 
             const formData = new FormData(e.target);
             const formObject = Object.fromEntries(formData);
           
             const errors = validateContact(formObject);
+            
 
             if(!errors) {
-                alert('success');
+                // Set validation feedback on inputs
+                console.log('no errors');
             } else {
-                alert('failure:');
-                console.log(errors);
+                // Set validation feedback on inputs
+                console.log('errors');
+                return;
             }
+console.log('Should not be called');
+            await sendEmail(formObject);
+
         });
     }
 }

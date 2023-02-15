@@ -92,7 +92,7 @@ class Hero extends View {
               <main class="lg:px-2 lg:w-1/2 xl:px-0 xl:pl-0">
                 <div class=" md:text-left">
                   <h1>
-                    <div>
+                    <!--<div>
                       <a href="#" class="inline-flex space-x-4 mb-2">
                         <span class="inline-flex items-center space-x-1 text-lg font-semibold text-slate-400 lg:text-gray-500">
                           <span>Just shipped version 0.1.0</span>
@@ -101,7 +101,7 @@ class Hero extends View {
                           </svg>
                         </span>
                       </a>
-                    </div>
+                    </div>-->
 
                     <!-- <span class="block text-base font-semibold text-gray-500 xs:text-lg lg:text-base xl:text-lg">Coming soon</span> -->
                     <span class="mt-1 block text-3xl xxs:text-4xl sm:text-5xl md:text-5xl lg:text-5xl">

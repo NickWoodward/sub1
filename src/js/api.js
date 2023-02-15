@@ -7,6 +7,10 @@ const api = axios.create({
     withCredentials: true
 });
 
+export const sendEmail = (formData) => {
+  return api.post('/email/', formData);
+};
+
 export const login = (formData) => {
   return api.post('/auth/login', formData);
 };
@@ -16,7 +20,6 @@ export const signup = (formData) => {
 };
 
 export const getAdminContent = () => {
-  console.log('GETTING ADMIn');
   return api.get('/auth/protected');
 }
 

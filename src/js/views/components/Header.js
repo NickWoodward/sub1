@@ -40,9 +40,9 @@ export default class Header extends View {
           <div class="menu--mobile hidden absolute inset-x-0 top-header z-10 origin-top-right transform  transition">
             <div class="flex flex-col items-end overflow-hidden">
               
-                <a href="#" id="about-mobile-item" class="mobile-menu__item block w-[120%] bg-slate-600  border-t-2 last:border-b-0 border-slate-700 px-8 py-4 text-base text-right font-medium text-slate-300 hover:bg-slate-700 hover:text-primary">About</a>
+                <a href="#" id="concept-mobile-item" class="mobile-menu__item block w-[120%] bg-slate-600  border-t-2 last:border-b-0 border-slate-700 px-8 py-4 text-base text-right font-medium text-slate-300 hover:bg-slate-700 hover:text-primary">Concept</a>
 
-                <a href="#" id="testimonial-mobile-item" class="mobile-menu__item block w-[120%] bg-slate-600  border-t-2 last:border-b-0 border-slate-700 px-8 py-4 text-base text-right font-medium text-slate-300 hover:bg-slate-700 hover:text-primary">Our Vision</a>
+                <a href="#" id="opportunity-mobile-item" class="mobile-menu__item block w-[120%] bg-slate-600  border-t-2 last:border-b-0 border-slate-700 px-8 py-4 text-base text-right font-medium text-slate-300 hover:bg-slate-700 hover:text-primary">Opportunity</a>
 
                 <a href="#" id="contact-mobile-item" class="mobile-menu__item block w-[120%] bg-slate-600  border-t-2 last:border-b-0 border-slate-700 px-8 py-4 text-base text-right font-medium text-slate-300 hover:bg-slate-700 hover:text-primary ">Contact Us</a>
 
@@ -74,7 +74,9 @@ export default class Header extends View {
     let lowerCase = item.toLowerCase().replaceAll(' ', '');
     const capitalize = item.charAt(0) + item.slice(1);
     
-    lowerCase = lowerCase === 'ourvision'? 'testimonial': lowerCase;
+    lowerCase = lowerCase === 'ourvision'? 'opportunity': lowerCase;
+    lowerCase = lowerCase === 'about'? 'concept': lowerCase;
+
 
     return `<a href="#" id="${lowerCase}-item" class="menu__item  px-3 py-2 text-sm font-medium text-gray-300 hover:bg-primary hover:rounded-md hover:text-white">${capitalize}</a>`;
   }

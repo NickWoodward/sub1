@@ -9,7 +9,7 @@ const state = {
     },
     headerData: {
         page: 'About',
-        navItems: ['About', 'Our Vision', 'Contact', 'Login']
+        navItems: ['Concept', 'Opportunity', 'Contact', 'Login']
     }
 
 }

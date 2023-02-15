@@ -40,39 +40,41 @@ class About extends View {
               <div class="grid grid-cols-1 gap-8 xl:gap-12 lg:grid-cols-3">
 
                 <div class="card pt-6">
-                  <div class="flow-root  min-h-[360px] shadow-sm rounded-lg bg-gray-50 px-6 pb-8">
+                  <div class="flow-root  min-h-[340px] shadow-sm rounded-lg bg-gray-50 px-6 pb-8">
                     <div class="-mt-6">
                       <div class="card__icon">
                         <img src=${icon3} alt="" class="w-32 mx-auto" />
                       </div>
                       <h3 class="card__header mt-8 text-xl font-semibold leading-8 tracking-tight text-gray-900">Onsite Generation</h3>
-                      <p class="card__description mt-5 text-lg leading-7 text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, ut magni? Veniam autem harum excepturi fuga tempore inventore.</p>
+                      <p class="card__description mt-5 text-lg leading-7 text-gray-600">The reduced mechanical load will be fully powered by renewable energy generated onsite.</p>
                     </div>
                   </div>
                 </div>
 
                 <div class="card pt-6">
-                  <div class="flow-root  min-h-[360px] shadow-sm rounded-lg bg-gray-50 px-6 pb-8">
+                  <div class="flow-root  min-h-[340px] shadow-sm rounded-lg bg-gray-50 px-6 pb-8">
                     <div class="-mt-6">
                       <div class="card__icon">
                         <img src=${icon2} alt="" class="w-32 mx-auto" />
                       </div>
-                      <h3 class="card__header mt-8 text-xl font-semibold leading-8 tracking-tight text-gray-900">Lorem ipsum</h3>
+                      <h3 class="card__header mt-8 text-xl font-semibold leading-8 tracking-tight text-gray-900">No Compressors</h3>
                       <p class="card__description mt-5 text-lg leading-7 text-gray-600">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate id esse odio adipisci sunt nisi dolor minima corporis recusandae! Aspernatur.
+                        Cooling 100% via free-air, misting dry-coolers (from rainwater), ground-source and active hot-aisle containment.
                       </p>
                     </div>
                   </div>
                 </div>
 
                 <div class="card pt-6">
-                  <div class="flow-root  min-h-[360px] shadow-sm rounded-lg bg-gray-50 px-6 pb-8">
+                  <div class="flow-root  min-h-[340px] shadow-sm rounded-lg bg-gray-50 px-6 pb-8">
                     <div class="-mt-6">
                       <div class="card__icon">
                         <img src=${icon1} alt="" class="w-32 mx-auto" />
                       </div>
-                      <h3 class="card__header mt-8 text-xl font-semibold leading-8 tracking-tight text-gray-900">Adipisicing</h3>
-                      <p class="card__description mt-5 text-lg leading-7 text-gray-600">Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.</p>
+                      <h3 class="card__header mt-8 text-xl font-semibold leading-8 tracking-tight text-gray-900">No Fossil Fuels</h3>
+                      <p class="card__description mt-5 text-lg leading-7 text-gray-600">
+                        Zero carbon emissions from 100% hydrogen powered onsite back-up generators 
+                      </p>
                     </div>
                   </div>
                 </div>
