@@ -18,7 +18,7 @@ export default class Footer extends View {
             <div class="xl:grid xl:grid-cols-3 xl:gap-8">
               <div class="space-y-8 xl:col-span-1">
               <div class="logo relative border-l-2 border-primary pl-3 text-white text-2xl tracking-tighter uppercase">Sub<span class="text-primary ml-2">1</span></div>
-              <p class="text-base text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, optio?</p>
+              <p class="text-base text-gray-400">Hyper Efficient Edge Data Centres</p>
                 <div class="flex space-x-4">
                   <a href="#" class="text-gray-400 hover:text-gray-500">
                     <span class="sr-only">Facebook</span>
@@ -115,7 +115,7 @@ export default class Footer extends View {
               </div>
             </div>
             <div class="mt-12 border-t border-gray-400 pt-8">
-              <p class="text-base text-gray-400 xl:text-center">&copy; 2022 Sub1. All rights reserved.</p>
+              <p class="text-base text-gray-400 xl:text-center">&copy; 2023 SUB1. All rights reserved.</p>
             </div>
           </div>
       </footer>

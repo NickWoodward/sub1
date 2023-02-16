@@ -35,9 +35,9 @@ class Contact extends View {
               <div class="contact-details pt-24 pb-16 lg:col-span-2 lg:px-8 lg:py-24 xl:pr-12">
                 <div class="mx-auto">
                   <h2 class="text-3xl font-semibold tracking-tight text-slate-700">Get in touch</h2>
-                  <p class="mt-3 text-lg leading-6 text-gray-500">Nullam risus blandit ac aliquam justo ipsum. Quam mauris volutpat massa dictumst amet.</p>
+                  <p class="mt-3 text-lg leading-6 text-gray-500">If you are interested in leasing or buying one of SUB1’s data centres, please submit your information and we will contact you</p>
                   <dl class="mt-8 text-base text-gray-700">
-                    <div>
+                    <!-- <div>
                       <dt class="sr-only">Postal address</dt>
                       <dd>
                         <p>44 Meadow Road</p>
@@ -45,17 +45,16 @@ class Contact extends View {
                         <p>Berkshire</p>
                         <p>RG7 5RT</p>
                       </dd>
-                    </div>
+                    </div> 
                     <div class="mt-6">
                       <dt class="sr-only">Phone number</dt>
                       <dd class="flex">
-                        <!-- Heroicon name: outline/phone -->
                         <svg class="h-6 w-6 flex-shrink-0 text-primary" xmlns="http:www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
                         </svg>
                         <span class="ml-3">0207 3748293</span>
                       </dd>
-                    </div>
+                    </div> -->
                     <div class="mt-3">
                       <dt class="sr-only">Email</dt>
                       <dd class="flex">
@@ -67,10 +66,10 @@ class Contact extends View {
                       </dd>
                     </div>
                   </dl>
-                  <p class="mt-6 text-base text-gray-700">
+                  <!-- <p class="mt-6 text-base text-gray-700">
                     Looking for careers?
                     <a href="#" class="font-medium pl-2 text-primary underline">View all job openings</a>.
-                  </p>
+                  </p> -->
                 </div>
               </div>
               <!-- Contact Form -->
@@ -116,16 +115,17 @@ class Contact extends View {
   }
   
   _render() {
-    this._setElements();
+    this._setParentElement();
     super._render();
+    this._initElements();
     this._initAnimations();
   }
 
-  _setElements() {
+  _setParentElement() {
     this._parentElement = document.querySelector('.index-view');
-    this._element = document.querySelector(this._elementName);
-    console.log(this._element);
-    
+  }
+  _initElements() {
+    this._element = document.querySelector(`.${this._elementName}`);
   }
 
   _initAnimations() {
@@ -147,6 +147,13 @@ class Contact extends View {
   addFormListeners(handler) {
     this._parentElement.addEventListener('submit', handler);
   };
+
+  submitAnimation() {
+    const tl = gsap.timeline({});
+    const submit = this._element.querySelector('input[type="submit"]');
+    console.log(submit);
+    
+  }
 
   _contactAnimation() {
     const tl = gsap.timeline({ paused: true });

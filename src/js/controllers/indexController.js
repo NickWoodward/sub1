@@ -157,18 +157,24 @@ class IndexController {
             }
         });
 
+        // Change this to a submit listener on the index view
         this._IndexView._Hero.addFormListeners((e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
           
-            if(e.target.closest(this._IndexView._Contact._element)) {
-                const formObject = Object.fromEntries(formData);
-                console.log('second contact form', formObject);
+            const heroForm = e.target.closest(`.${this._IndexView._Hero._elementName}`);
+            const contactForm = e.target.closest(`.${this._IndexView._Contact._elementName}`);
 
-            } else {
+            
+            if(contactForm) {
+                const formObject = Object.fromEntries(formData);
+                const errors = validateContact(formObject);
+
+                console.log('second contact form, errors:', errors);
+
+            } else if(heroForm) {
                 const { email } = Object.fromEntries(formData);
                 console.log('first contact form', email);
-
             }
         });
 

@@ -31,24 +31,24 @@ export default class FAQs extends View {
         
             <dl class="mt-12 grid grid-cols-1 gap-y-10 xs:mt-16 lg:grid-cols-2 md:gap-x-6 xl:grid-cols-3">
               <div class="faq__item">
-                <dt class="text-base font-medium text-gray-900">What&#039;s the best thing about Switzerland?</dt>
-                <dd class="mt-3 text-base text-gray-500">I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.</dd>
+                <dt class="text-base font-medium text-gray-900">How does SUB1 achieve cooling efficiency?</dt>
+                <dd class="mt-3 text-base text-gray-500">Free-air and evaporative cooling (from rain water), consumes less power than AC cooling. High density racks have additional direct cooling. Power required for these systems is generated onsite by solar PV.  </dd>
               </div>
               <div class="faq__item">
-                <dt class="text-base font-medium text-gray-900">What&#039;s the best thing about Switzerland?</dt>
-                <dd class="mt-3 text-base text-gray-500">I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.</dd>
+                <dt class="text-base font-medium text-gray-900">How does cooling efficiency benefit SUB1 customers?</dt>
+                <dd class="mt-3 text-base text-gray-500">Reducing the amount of electricity used leads to a lower overall cost. In fact, the total cost of ownership for a 2MW deployment is approximately half the cost of retail colocation with metered power.</dd>
               </div>
               <div class="faq__item">
-                <dt class="text-base font-medium text-gray-900">What&#039;s the best thing about Switzerland?</dt>
-                <dd class="mt-3 text-base text-gray-500">I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.</dd>
+                <dt class="text-base font-medium text-gray-900">What are the benefits of using brownfield sites?</dt>
+                <dd class="mt-3 text-base text-gray-500">Without planning and initial build phases, data centre capacity will be available quicker. Leveraging existing power capacity also means quicker completion times and less impact to other developments, such as housing.</dd>
               </div>
               <div class="faq__item">
-              <dt class="text-base font-medium text-gray-900">What&#039;s the best thing about Switzerland?</dt>
-              <dd class="mt-3 text-base text-gray-500">I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.</dd>
+              <dt class="text-base font-medium text-gray-900">Are these sites available to lease or buy?</dt>
+              <dd class="mt-3 text-base text-gray-500">Both options are available. Customers can take either a long term lease or purchase a sites, subject to what best meets requirements. </dd>
             </div>
             <div class="faq__item">
-              <dt class="text-base font-medium text-gray-900">What&#039;s the best thing about Switzerland?</dt>
-              <dd class="mt-3 text-base text-gray-500">I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.</dd>
+              <dt class="text-base font-medium text-gray-900">What&#039;s being done to reduce the environmental impact?</dt>
+              <dd class="mt-3 text-base text-gray-500">In addition to less electricity consumed and less greenfield used, hydrogen, as opposed to diesel, is used for the back up generators, in an effort to emit zero carbon under normal operation.</dd>
             </div>
             
             </dl>

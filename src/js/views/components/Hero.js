@@ -14,6 +14,7 @@ const solar = require('../../../assets/solar.jpg');
 
 class Hero extends View {
     _elementName = 'hero';
+    _element;
     _parentElement;
     _heroImages = [datacenter, servers, solar];
     _slides;
