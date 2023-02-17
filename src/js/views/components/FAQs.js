@@ -21,34 +21,34 @@ export default class FAQs extends View {
         const markup = /*html*/ `
       <div class="${this._elementName} relative  overflow-hidden" id="${this._elementName}">
 
-        <section aria-labelledby="faq-heading" class="bg-white py-0 lg:py-24 xl:h-[90vh]">
+        <section aria-labelledby="faq-heading" class="bg-white py-0 lg:py-24 xl:min-h-[100vh]">
           <img class="bg-image absolute top-60 left-0 w-full  hue-rotate-90 opacity-10 bg-cover" src=${bgImage} />
-          <div class="max-w-xl md:max-w-2xl mx-auto py-24 px-4 xxs:px-8 xs:py-24 lg:max-w-6xl lg:px-8 xl:max-w-7xl xl:px-0">
+          <div class="max-w-xl md:max-w-2xl mx-auto py-24 px-4 xxs:px-8 xs:py-24 lg:max-w-6xl lg:px-8 xl:max-w-[1400px] xl:px-0">
             <div class="">
               <h2 id="faq-heading" class="faq__heading text-2xl xxs:text-3xl font-semibold tracking-tight text-slate-700">Frequently asked questions</h2>
               <p class="faq__subheading mt-4 text-xl text-gray-500">If you can't find what you're looking for, you can always <a href="#" class="font-medium text-primary hover:text-primaryLight">send us an email</a> with your enquiry.</p>
             </div>
         
-            <dl class="mt-12 grid grid-cols-1 gap-y-10 xs:mt-16 lg:grid-cols-2 md:gap-x-6 xl:grid-cols-3">
+            <dl class="mt-12 grid grid-cols-1 gap-y-10 xs:mt-16 lg:grid-cols-2 md:gap-x-6 xl:gap-x-10">
               <div class="faq__item">
-                <dt class="text-base font-medium text-gray-900">How does SUB1 achieve cooling efficiency?</dt>
-                <dd class="mt-3 text-base text-gray-500">Free-air and evaporative cooling (from rain water), consumes less power than AC cooling. High density racks have additional direct cooling. Power required for these systems is generated onsite by solar PV.  </dd>
+                <dt class="text-xl font-semibold text-gray-900">How does SUB1 achieve cooling efficiency?</dt>
+                <dd class="mt-3 text-lg text-gray-500">Free-air and evaporative cooling (from rain water), consumes less power than AC cooling. High density racks have additional direct cooling. Power required for these systems is generated onsite by solar PV.  </dd>
               </div>
               <div class="faq__item">
-                <dt class="text-base font-medium text-gray-900">How does cooling efficiency benefit SUB1 customers?</dt>
-                <dd class="mt-3 text-base text-gray-500">Reducing the amount of electricity used leads to a lower overall cost. In fact, the total cost of ownership for a 2MW deployment is approximately half the cost of retail colocation with metered power.</dd>
+                <dt class="text-xl font-semibold text-gray-900">How does this efficiency aid SUB1 customers?</dt>
+                <dd class="mt-3 text-lg text-gray-500">Reducing the amount of electricity used leads to a lower overall cost. In fact, the total cost of ownership for a 2MW deployment is approximately half the cost of retail colocation with metered power.</dd>
               </div>
               <div class="faq__item">
-                <dt class="text-base font-medium text-gray-900">What are the benefits of using brownfield sites?</dt>
-                <dd class="mt-3 text-base text-gray-500">Without planning and initial build phases, data centre capacity will be available quicker. Leveraging existing power capacity also means quicker completion times and less impact to other developments, such as housing.</dd>
+                <dt class="text-xl font-semibold text-gray-900">What are the benefits of using brownfield sites?</dt>
+                <dd class="mt-3 text-lg text-gray-500">Without planning and initial build phases, data centre capacity will be available quicker. Leveraging existing power capacity also means quicker completion times and less impact to other developments, such as housing.</dd>
               </div>
               <div class="faq__item">
-              <dt class="text-base font-medium text-gray-900">Are these sites available to lease or buy?</dt>
-              <dd class="mt-3 text-base text-gray-500">Both options are available. Customers can take either a long term lease or purchase a sites, subject to what best meets requirements. </dd>
+              <dt class="text-xl font-semibold text-gray-900">Are these sites available to lease or buy?</dt>
+              <dd class="mt-3 text-lg text-gray-500">Both options are available. Customers can take either a long term lease or purchase a sites, subject to what best meets requirements. </dd>
             </div>
             <div class="faq__item">
-              <dt class="text-base font-medium text-gray-900">What&#039;s being done to reduce the environmental impact?</dt>
-              <dd class="mt-3 text-base text-gray-500">In addition to less electricity consumed and less greenfield used, hydrogen, as opposed to diesel, is used for the back up generators, in an effort to emit zero carbon under normal operation.</dd>
+              <dt class="text-xl font-semibold text-gray-900">What&#039;s being done to reduce the environmental impact?</dt>
+              <dd class="mt-3 text-lg text-gray-500">In addition to less electricity consumed and less greenfield used, hydrogen, as opposed to diesel, is used for the back up generators, in an effort to emit zero carbon under normal operation.</dd>
             </div>
             
             </dl>

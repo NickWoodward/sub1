@@ -19,23 +19,23 @@ class Contact extends View {
  
   _generateMarkup() {
     const markup = /*html*/`
-      <div class="${this._elementName} menu-section relative overflow-hidden border-4 border-slate-100 bg-tertiary scroll-pt-header" id="${this._elementName}">
+      <div class="${this._elementName} menu-section relative overflow-hidden  border-4 border-slate-100 bg-tertiary scroll-pt-header" id="${this._elementName}">
         <!-- Hero Content Wrapper-->
         <!-- <div class="relative h-full w-full bg-slate-700"> -->
-        <div class="relative h-full xl:h-[90vh] max-w-xl mx-auto md:max-w-2xl lg:max-w-none lg:w-full lg:bg-white">
+        <div class="relative flex items-center h-full min-h-section max-w-xl mx-auto md:max-w-2xl lg:max-w-none lg:w-full lg:bg-white xl:px-12">
 
           <!-- Skewed Right-Element -->
           <div class="animated-bg-1 hidden lg:block absolute top-0 left-[40%] w-full h-full bg-slate-100 border-slate-100 border-l-8 skew-x-12"></div>
           <div class="animated-bg-2 hidden lg:block absolute top-0 left-[40%] w-full h-full bg-slate-200 border-slate-100 border-l-8 skew-x-12"></div>
 
           <!-- Contact Content -->
-          <div class="mx-auto lg:max-w-6xl xl:max-w-[1440px] text-primary z-20 px-4 xxs:px-8 lg:px-0 xl:flex xl:items-center xl:h-full">
+          <div class="mx-auto lg:max-w-6xl xl:max-w-[1440px] text-primary z-20 px-4 xxs:px-8 lg:px-0 xl:flex xl:items-center">
 
             <div class="relative  lg:grid lg:grid-cols-6">
-              <div class="contact-details pt-24 pb-16 lg:col-span-2 lg:px-8 lg:py-24 xl:pr-12">
-                <div class="mx-auto">
+              <div class="contact-details pt-24 pb-16 lg:col-span-2 lg:mt-8 lg:px-8 lg:py-12 xl:pl-0 xl:pr-16">
+                <div class="mx-auto ">
                   <h2 class="text-3xl font-semibold tracking-tight text-slate-700">Get in touch</h2>
-                  <p class="mt-3 text-lg leading-6 text-gray-500">If you are interested in leasing or buying one of SUB1’s data centres, please submit your information and we will contact you</p>
+                  <p class="mt-10 text-lg leading-6 text-gray-500">If you are interested in leasing or buying one of SUB1’s data centres, please submit your information and we will contact you</p>
                   <dl class="mt-8 text-base text-gray-700">
                     <!-- <div>
                       <dt class="sr-only">Postal address</dt>
@@ -73,7 +73,7 @@ class Contact extends View {
                 </div>
               </div>
               <!-- Contact Form -->
-              <div class="contact-form pb-24 pt-4 lg:col-start-4 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12">
+              <div class="contact-form pb-24 pt-4 lg:col-start-4 lg:col-span-3 lg:py-12 lg:px-8 xl:pl-12">
                 <div class="mx-auto lg:max-w-none">
                   <form action="#" method="POST" class="grid grid-cols-1 gap-y-6">
                     <div class="name-wrapper relative flex justify-between">

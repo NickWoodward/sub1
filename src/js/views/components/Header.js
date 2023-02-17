@@ -46,7 +46,7 @@ export default class Header extends View {
 
                 <a href="#" id="contact-mobile-item" class="mobile-menu__item block w-[120%] bg-slate-600  border-t-2 last:border-b-0 border-slate-700 px-8 py-4 text-base text-right font-medium text-slate-300 hover:bg-slate-700 hover:text-primary ">Contact Us</a>
 
-                <a href="#" id="login-mobile-item" class="mobile-menu__item block w-[120%]  bg-slate-700 border-t-2 border-slate-500 px-8 py-3 text-right font-medium text-slate-300 hover:text-primary">Log in</a>
+                <!--<a href="#" id="login-mobile-item" class="mobile-menu__item block w-[120%]  bg-slate-700 border-t-2 border-slate-500 px-8 py-3 text-right font-medium text-slate-300 hover:text-primary">Log in</a>-->
             </div>
           </div>
 
