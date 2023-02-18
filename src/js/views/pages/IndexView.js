@@ -43,7 +43,7 @@ class IndexView extends View {
 
         this._Header = new Header(data.headerData);
         this.Login = new Login({page: 'home'});
-        // this._PrivacyPolicy = new PrivacyPolicy();
+        this._PrivacyPolicy = new PrivacyPolicy({});
         this._Hero = new Hero({});
         this._About = new About({});
         this._Testimonial = new Testimonial({});
@@ -85,13 +85,8 @@ class IndexView extends View {
         this._addClickHandler();
         this._addResizeHandler();
     }
-    _addClickHandler() {
-        this._parentElement.addEventListener('click', (e) => {
-            // Not menu burger and open
-            console.log(!e.target.closest('.burger'), this._Header._isOpen())
-            if(!e.target.closest('.burger') && this._Header._isOpen())
-                this._Header.closeMenu(); 
-        });
+    _addClickHandler(handler) {
+        this._parentElement.addEventListener('click', handler);
     }
     _addResizeHandler() {
         window.addEventListener('resize', (e) => {

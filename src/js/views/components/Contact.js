@@ -31,7 +31,7 @@ class Contact extends View {
           <!-- Contact Content -->
           <div class="mx-auto lg:max-w-6xl xl:max-w-[1440px] text-primary z-20 px-4 xxs:px-8 lg:px-0 xl:flex xl:items-center">
 
-            <div class="relative  lg:grid lg:grid-cols-6">
+            <div class="relative lg:grid lg:grid-cols-6">
               <div class="contact-details pt-24 pb-16 lg:col-span-2 lg:mt-8 lg:px-8 lg:py-12 xl:pl-0 xl:pr-16">
                 <div class="mx-auto ">
                   <h2 class="text-3xl font-semibold tracking-tight text-slate-700">Get in touch</h2>
@@ -62,7 +62,7 @@ class Contact extends View {
                         <svg class="h-6 w-6 flex-shrink-0 text-primary" xmlns="http:www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                         </svg>
-                        <span class="ml-3">support@sub1.io</span>
+                        <span class="ml-3">IR@SUB1.io</span>
                       </dd>
                     </div>
                   </dl>
@@ -76,12 +76,12 @@ class Contact extends View {
               <div class="contact-form pb-24 pt-4 lg:col-start-4 lg:col-span-3 lg:py-12 lg:px-8 xl:pl-12">
                 <div class="mx-auto lg:max-w-none">
                   <form action="#" method="POST" class="grid grid-cols-1 gap-y-6">
-                    <div class="name-wrapper relative flex justify-between">
-                      <div class="flex-1 mr-6">
+                    <div class="name-wrapper relative flex flex-col xs:flex-row xs:justify-between">
+                      <div class="flex-1 xs:mr-6">
                         <label for="name" class="sr-only">Name</label>
                         <input type="text" name="name" id="name" autocomplete="name" class="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm  focus:border-primary focus:ring-primary autofill:text-primary autofill:shadow-[inset_0_0_0px_1000px_rgb(255,255,255)]" placeholder="Name">
                       </div>
-                      <div class="flex-1">
+                      <div class="flex-1 mt-6 xs:mt-0">
                         <label for="surname" class="sr-only">Surname</label>
                         <input type="text" name="surname" id="surname" autocomplete="surname" class="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-primary focus:ring-primary" placeholder="Surname">
                       </div>

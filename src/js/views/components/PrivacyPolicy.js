@@ -29,7 +29,7 @@ export default class PrivacyPolicy extends View {
               
               1. In this privacy policy, the following definitions are used:
               
-              Data collectively all information that you submit to SUB1 DCS Ltd via the Website. This definition incorporates, where applicable, the definitions provided in the Data Protection Act 1998;
+             <!-- Data collectively all information that you submit to SUB1 DCS Ltd via the Website. This definition incorporates, where applicable, the definitions provided in the Data Protection Act 1998;
               
               SUB1 DCS Ltd, or us SUB1 DCS Ltd, a company incorporated in England and Wales, whose registered office is at The Acorns, Nounsley Road, CM3 2NF;
               
@@ -135,7 +135,7 @@ export default class PrivacyPolicy extends View {
               
               25. SUB1 DCS Ltd reserves the right to change this privacy policy as we may deem necessary from time to time or as may be required by law. Any changes will be immediately posted on the Website and you are deemed to have accepted the terms of the privacy policy on your first use of the Website following the alterations. You may contact SUB1 DCS Ltd to request a copy of data, amend collected data or ask questions regarding this Privacy Policy by email at IR@sub1.io
 
-                
+                -->
             </div>
           </div>
         </div>
@@ -153,20 +153,12 @@ export default class PrivacyPolicy extends View {
   }
 
   _setParentElement() {
-    switch(this._data.page) {
-      case 'home': {
-        this._parentElement = document.querySelector('.index-view');
-        break;
-      }
-    }
+    this._parentElement = document.querySelector('.index-view');
+       
   };
 
   _initElements() {
     this._currentElement = document.querySelector('.privacy-policy__bg');
-  }
-
-  _redirect() {
-    window.location.replace('/admin.html');
   }
 
   getFormData() {

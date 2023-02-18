@@ -157,6 +157,20 @@ class IndexController {
             }
         });
 
+        this._IndexView._addClickHandler((e) => {
+            e.preventDefault();
+
+            console.log('clicked', this);
+            const privacyLink = e.target.closest('.privacy-link') || e.target.closest('.privacy-link--footer');
+            if(privacyLink) this._IndexView._PrivacyPolicy._render();
+
+            console.log(privacyLink);
+
+            // Always close burger unless burger is clicked
+            if(!e.target.closest('.burger') && this._IndexView._Header._isOpen()) this._IndexView._Header.closeMenu(); 
+
+        });
+
         // Change this to a submit listener on the index view
         this._IndexView._Hero.addFormListeners((e) => {
             e.preventDefault();

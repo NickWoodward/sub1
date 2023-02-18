@@ -50,10 +50,10 @@ class Testimonial extends View {
                         </svg>
                         <p class="testimonial-description mt-2 text-xl  text-white lg:pl-10">Demand for data centre space in the UK is outpacing supply. Many new facilities are being built on greenfield sites, and are often presold to large cloud operators. This can lead to environmental impacts and challenges around power availability, for developments such as housing. SUB1 will convert industrial brownfield sites, with or close to existing power capacity. These sites will be converted using the latest power and cooling technologies for optimal efficiency</p>
                       </div>
-                      <footer class="testimonial-footer mt-6 lg:pl-10">
+                      <!--<footer class="testimonial-footer mt-6 lg:pl-10">
                         <p class="text-base font-medium text-white">The Owner, 40</p>
                         <p class="text-base font-medium text-primaryDark xxs:text-primary lg:text-primaryDark">CEO at Sub1</p>
-                      </footer>
+                      </footer>-->
                     </blockquote>
                   </div>
                 </div>

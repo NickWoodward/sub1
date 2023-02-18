@@ -26,7 +26,7 @@ export default class Footer extends View {
                 <div class="flex flex-col mt-6 sm:mt-0 text-left sm:text-right md:flex-row md:space-x-6">
                   <div class="text-base text-gray-400 hover:text-gray-200 cursor-pointer">Concept</div>
                   <div class="text-base text-gray-400 hover:text-gray-200 cursor-pointer">Opportunity</div>
-                  <div class="text-base text-gray-400 hover:text-gray-200 cursor-pointer">Privacy Policy</div>
+                  <div class="privacy-link--footer text-base text-gray-400 hover:text-gray-200 cursor-pointer">Privacy Policy</div>
                 </div>
 
                 <div class="flex space-x-3 mt-8 sm:space-x-6 sm:ml-auto sm:mt-4">

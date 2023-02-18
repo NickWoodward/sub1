@@ -118,7 +118,7 @@ class Hero extends View {
                       <input type="email" name="email" id="email" class="block w-full rounded-md border-gray-300 py-3 text-base placeholder-gray-500 shadow-sm focus:border-primary focus:ring-primary xs:flex-1" placeholder="Enter your email">
                       <button type="submit" class="mt-3 w-full rounded-md border border-transparent bg-primary px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-primaryLight focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 xs:inline-flex xs:w-auto xs:flex-shrink-0 xs:items-center xs:justify-center xs:mt-0 xs:ml-3">Submit</button>
                     </form>
-                    <p class="mt-3 text-sm text-slate-300  xs:mt-3 md:mx-0 lg:text-gray-500">
+                    <p class="privacy-link mt-3 text-sm text-slate-300  xs:mt-3 md:mx-0 lg:text-gray-500">
                       We care about the protection of your data. Read our
                       <a href="#" class="font-medium lg:text-gray-900 underline">Privacy Policy</a>.
                     </p>
@@ -335,6 +335,8 @@ class Hero extends View {
     addFormListeners(handler) {
       this._parentElement.addEventListener('submit', handler);
     };
+
+    add
 
     _initAnimations() {
       this._showSlide();
