@@ -318,7 +318,7 @@ export default class PrivacyPolicy extends View {
 
                   <div class="numbered-item flex mb-4">
                     <span class="font-semibold mr-2">25.</span> 
-                    SUB1 DCS Ltd reserves the right to change this privacy policy as we may deem necessary from time to time or as may be required by law. Any changes will be immediately posted on the Website and you are deemed to have accepted the terms of the privacy policy on your first use of the Website following the alterations. You may contact SUB1 DCS Ltd to request a copy of data, amend collected data or ask questions regarding this Privacy Policy by email at IR@sub1.io
+                    SUB1 DCS Ltd reserves the right to change this privacy policy as we may deem necessary from time to time or as may be required by law. Any changes will be immediately posted on the Website and you are deemed to have accepted the terms of the privacy policy on your first use of the Website following the alterations. You may contact SUB1 DCS Ltd to request a copy of data, amend collected data or ask questions regarding this Privacy Policy by email here
                   </div>
 
                 </li> 
