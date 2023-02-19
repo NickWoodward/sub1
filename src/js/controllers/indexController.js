@@ -128,9 +128,7 @@ class IndexController {
             const content = e.target.closest('.login__content');
             const submit = e.target.closest('.login__submit');
 
-
             if(background && !content) {
-                console.log('closing login');
                 background.parentElement.removeChild(background);
             }
         
@@ -160,11 +158,11 @@ class IndexController {
         this._IndexView._addClickHandler((e) => {
             e.preventDefault();
 
-            console.log('clicked', this);
             const privacyLink = e.target.closest('.privacy-link') || e.target.closest('.privacy-link--footer');
-            if(privacyLink) this._IndexView._PrivacyPolicy._render();
-
-            console.log(privacyLink);
+            if(privacyLink) {
+                this._IndexView._PrivacyPolicy._render();
+                this._IndexView._PrivacyPolicy.addCloseHander(() => this._closePrivacyPolicy(e));
+            }
 
             // Always close burger unless burger is clicked
             if(!e.target.closest('.burger') && this._IndexView._Header._isOpen()) this._IndexView._Header.closeMenu(); 
@@ -214,6 +212,16 @@ console.log('Should not be called');
 
         });
     }
+
+    _closePrivacyPolicy(e) {
+        const privacyPolicy = e.target.closest('.privacy-policy__content');
+
+        if(!privacyPolicy) {
+            console.log('close privacy policy')
+            this._IndexView._PrivacyPolicy.removeSelf();
+        }
+    }
+
 }
 
 new IndexController();

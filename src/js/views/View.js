@@ -14,6 +14,11 @@ class View {
         console.log(this);
     }
 
+    removeSelf() {
+        console.log(this)
+        this._parentElement.removeChild(this._element);
+    }
+
     // update(data) {
     //     // Data spread with current instance data (Former overwrites)
     //     this._data = {...this._data, ...data};

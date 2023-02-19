@@ -45,7 +45,7 @@ class About extends View {
                       <div class="card__icon">
                         <img src=${icon3} alt="" class="w-32 mx-auto" />
                       </div>
-                      <h3 class="card__header mt-8 text-xl font-semibold leading-8 tracking-tight text-gray-900">Onsite Generation</h3>
+                      <h3 class="card__header mt-8 text-xl font-semibold leading-8 tracking-tight text-slate-700">Onsite Generation</h3>
                       <p class="card__description mt-5 text-lg leading-7 text-gray-600">The reduced mechanical load will be fully powered by renewable energy generated onsite.</p>
                     </div>
                   </div>
@@ -57,7 +57,7 @@ class About extends View {
                       <div class="card__icon">
                         <img src=${icon2} alt="" class="w-32 mx-auto" />
                       </div>
-                      <h3 class="card__header mt-8 text-xl font-semibold leading-8 tracking-tight text-gray-900">No Compressors</h3>
+                      <h3 class="card__header mt-8 text-xl font-semibold leading-8 tracking-tight text-slate-700">No Compressors</h3>
                       <p class="card__description mt-5 text-lg leading-7 text-gray-600">
                         Cooling 100% via free-air, misting dry-coolers (from rainwater), ground-source and active hot-aisle containment.
                       </p>
@@ -71,7 +71,7 @@ class About extends View {
                       <div class="card__icon">
                         <img src=${icon1} alt="" class="w-32 mx-auto" />
                       </div>
-                      <h3 class="card__header mt-8 text-xl font-semibold leading-8 tracking-tight text-gray-900">No Fossil Fuels</h3>
+                      <h3 class="card__header mt-8 text-xl font-semibold leading-8 tracking-tight text-slate-700">No Fossil Fuels</h3>
                       <p class="card__description mt-5 text-lg leading-7 text-gray-600">
                         Zero carbon emissions from 100% hydrogen powered onsite back-up generators 
                       </p>
