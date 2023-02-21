@@ -99,7 +99,6 @@ export default class Header extends View {
   }
 
   setActiveItem(element) {
-    console.log(element);
     if(typeof element === 'string') {
       [...this._mobileItems, ...this._items].forEach(item => {
         if(item.id.includes(element)){

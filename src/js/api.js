@@ -8,6 +8,10 @@ const api = axios.create({
 });
 
 export const sendEmail = (formData) => {
+  console.log('api call');
+  for(let item in formData) {
+    console.log(item);
+  }
   return api.post('/email/', formData);
 };
 

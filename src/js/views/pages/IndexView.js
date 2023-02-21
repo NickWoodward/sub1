@@ -77,7 +77,6 @@ class IndexView extends View {
     }
 
     addLoginHandler(handler) {
-        console.log('adding index handler');
         this._parentElement.addEventListener('click', handler);
     }
 
@@ -85,14 +84,40 @@ class IndexView extends View {
         this._addClickHandler();
         this._addResizeHandler();
     }
-    _addClickHandler(handler) {
-        this._parentElement.addEventListener('click', handler);
+    _addClickHandler() {
+        this._parentElement.addEventListener('click', (e) => {
+            // e.preventDefault();
+
+            const privacyLink = e.target.closest('.privacy-link') || e.target.closest('.privacy-link--footer');
+            if(privacyLink) {
+                this._PrivacyPolicy._render();
+                this._PrivacyPolicy.addCloseHander(() => this._closePrivacyPolicy(e));
+            }
+
+            // Always close burger unless burger is clicked
+            if(!e.target.closest('.burger') && this._Header._isOpen()) this._Header.closeMenu(); 
+        });
     }
     _addResizeHandler() {
         window.addEventListener('resize', (e) => {
             debounce(this._Header.closeMenu());
         })
     }
+    addSubmissionHandler(handler) {
+        this._parentElement.addEventListener('submit', handler)
+
+    }
+
+    _closePrivacyPolicy(e) {
+        const privacyPolicy = e.target.closest('.privacy-policy__content');
+
+        if(!privacyPolicy) {
+            console.log('close privacy policy')
+            this._PrivacyPolicy.removeSelf();
+        }
+    }
+
+
 
     _handleScrollMenuChange() {
         const sections = gsap.utils.toArray(".menu-section");

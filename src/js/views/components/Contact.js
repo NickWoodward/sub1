@@ -77,26 +77,31 @@ class Contact extends View {
                 <div class="mx-auto lg:max-w-none">
                   <form action="#" method="POST" class="grid grid-cols-1 gap-y-6">
                     <div class="name-wrapper relative flex flex-col xs:flex-row xs:justify-between">
-                      <div class="flex-1 xs:mr-6">
+                      <div class="form-item--default relative flex-1 xs:mr-6">
                         <label for="name" class="sr-only">Name</label>
-                        <input type="text" name="name" id="name" autocomplete="name" class="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm  focus:border-primary focus:ring-primary autofill:text-primary autofill:shadow-[inset_0_0_0px_1000px_rgb(255,255,255)]" placeholder="Name">
+                        <input type="text" name="name" id="name" autocomplete="name" class="block w-full rounded-md py-3 px-4 placeholder-gray-500 shadow-sm  focus:border-primary focus:ring-primary autofill:text-primary autofill:shadow-[inset_0_0_0px_1000px_rgb(255,255,255)]" placeholder="Name">
+                        <small class="absolute bottom-0 right-0 translate-y-full"></small>
                       </div>
-                      <div class="flex-1 mt-6 xs:mt-0">
+                      <div class="form-item--default relative flex-1 mt-6 xs:mt-0">
                         <label for="surname" class="sr-only">Surname</label>
-                        <input type="text" name="surname" id="surname" autocomplete="surname" class="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-primary focus:ring-primary" placeholder="Surname">
+                        <input type="text" name="surname" id="surname" autocomplete="surname" class="block w-full rounded-md py-3 px-4 placeholder-gray-500 shadow-sm focus:border-primary focus:ring-primary" placeholder="Surname">
+                        <small class="absolute bottom-0 right-0 translate-y-full"></small>
                       </div>
                     </div>
-                    <div>
+                    <div class="form-item--default relative">
                       <label for="email" class="sr-only">Email</label>
-                      <input id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-primary focus:ring-primary" placeholder="Email">
+                      <input id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md py-3 px-4 placeholder-gray-500 shadow-sm focus:border-primary focus:ring-primary" placeholder="Email">
+                      <small class="absolute bottom-0 right-0 translate-y-full"></small>
                     </div>
-                    <div>
+                    <div class="form-item--default relative">
                       <label for="phone" class="sr-only">Phone</label>
-                      <input type="text" name="phone" id="phone" autocomplete="tel" class="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-primary focus:ring-primary" placeholder="Phone">
+                      <input type="text" name="phone" id="phone" autocomplete="tel" class="block w-full rounded-md py-3 px-4 placeholder-gray-500 shadow-sm focus:border-primary focus:ring-primary" placeholder="Phone">
+                      <small class="absolute bottom-0 right-0 translate-y-full"></small>
                     </div>
-                    <div>
+                    <div class="form-item--default relative">
                       <label for="message" class="sr-only">Message</label>
-                      <textarea id="message" name="message" rows="4" class="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-primary focus:ring-primary" placeholder="Message"></textarea>
+                      <textarea id="message" name="message" rows="4" class="block w-full rounded-md py-3 px-4 placeholder-gray-500 shadow-sm focus:border-primary focus:ring-primary" placeholder="Message"></textarea>
+                      <small class="absolute bottom-0 right-0 translate-y-full"></small>  
                     </div>
                     <div>
                       <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-primary py-3 px-6 text-base font-medium text-white shadow-sm hover:bg-primaryLight focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">Submit</button>

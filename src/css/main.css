@@ -45,6 +45,29 @@ box-shadow: 0 0 0px 1000px #FFF inset;
 background-color: #FFF;
 }
 
+@layer components {
+  .form-item--success > input,
+  .form-item--success > textarea {
+    @apply border-primary;
+  }
+  .form-item--error > input,
+  .form-item--error > textarea {
+    @apply border-error;
+  }
+  .form-item--default > input,
+  .form-item--default > textarea {
+    @apply border-gray-300;
+  }
+
+  .form-item--success > input {
+    @apply text-primary;
+  }
+  .form-item--error > small {
+    @apply text-error;
+  }
+
+}
+
 /* @responsive {
     @variants hover, focus {
         .rotate-99 {
@@ -56,6 +79,7 @@ background-color: #FFF;
 // Don't use apply over styling components in js/react, or just to make your html look clean,
 // otherwise you're just writing css again
 // At most use for small highly reuseable things
+
 
 @layer base {
   h1 {

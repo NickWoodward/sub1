@@ -3,7 +3,8 @@ import {gsap} from 'gsap';
 import * as IndexModel from '../models/indexModel';
 import IndexView from '../views/pages/IndexView';
 import { sendEmail, getAdminContent, login, test } from '../api';
-import { validateContact } from '../utils/validator';
+import { validateContact, setErrorFor, setSuccessFor } from '../utils/validator';
+
 
 class IndexController {
     _IndexView;
@@ -41,6 +42,9 @@ class IndexController {
     }
 
     _initHandlers() {
+        // Handlers here rely on (or are likely to rely on) model data
+        // Otherwise they're in the relevant view
+
         this._IndexView._Header.addMenuHandler((e) => {
             // Needed to allow scrollIntoView
             e.preventDefault();
@@ -123,105 +127,83 @@ class IndexController {
           
         });
 
-        this._IndexView.addLoginHandler(async e => {
-            const background = e.target.closest('.login__bg');
-            const content = e.target.closest('.login__content');
-            const submit = e.target.closest('.login__submit');
-
-            if(background && !content) {
-                background.parentElement.removeChild(background);
-            }
-        
-            if(submit) {
-                e.preventDefault();
-                const credentials = this._IndexView.Login.getFormData();
-
-                try {
-                    const {status} = await login(credentials);
-
-                    if(status === 200) {
-                        this._IndexView.Login._redirect();
-                    }
-                } catch(err) {
-                    // Req made, response outside of 2xx range
-                    if(err.response) {
-                        console.log('Error: Invalid request');
-                    } else if(err.request) {
-                        console.log('Error: No Response Received')
-                    } else {
-                        console.log('Error: Setting up Request');
-                    }
-                }
-            }
-        });
-
-        this._IndexView._addClickHandler((e) => {
+        this._IndexView.addSubmissionHandler(async(e) => {
             e.preventDefault();
-
-            const privacyLink = e.target.closest('.privacy-link') || e.target.closest('.privacy-link--footer');
-            if(privacyLink) {
-                this._IndexView._PrivacyPolicy._render();
-                this._IndexView._PrivacyPolicy.addCloseHander(() => this._closePrivacyPolicy(e));
-            }
-
-            // Always close burger unless burger is clicked
-            if(!e.target.closest('.burger') && this._IndexView._Header._isOpen()) this._IndexView._Header.closeMenu(); 
-
-        });
-
-        // Change this to a submit listener on the index view
-        this._IndexView._Hero.addFormListeners((e) => {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-          
+            
+            // 2 Forms on the index page
             const heroForm = e.target.closest(`.${this._IndexView._Hero._elementName}`);
             const contactForm = e.target.closest(`.${this._IndexView._Contact._elementName}`);
 
-            
-            if(contactForm) {
-                const formObject = Object.fromEntries(formData);
-                const errors = validateContact(formObject);
-
-                console.log('second contact form, errors:', errors);
-
-            } else if(heroForm) {
-                const { email } = Object.fromEntries(formData);
-                console.log('first contact form', email);
-            }
-        });
-
-        this._IndexView._Contact.addFormListeners(async(e) => {
-            e.preventDefault();
-
             const formData = new FormData(e.target);
             const formObject = Object.fromEntries(formData);
-          
-            const errors = validateContact(formObject);
-            
 
-            if(!errors) {
-                // Set validation feedback on inputs
-                console.log('no errors');
-            } else {
-                // Set validation feedback on inputs
-                console.log('errors');
-                return;
+            try {
+                if(contactForm) {
+                    const errors = validateContact(formObject);
+                    if(!errors) {
+                        for(let [key, value] of Object.entries(formObject)) {
+                            setSuccessFor(document.getElementById(key))
+                        }
+                        
+                        const res = await sendEmail(formObject);
+                        console.log(res);
+                        if(res.status === 200) {
+                            console.log('Do Success Animation');
+                            for(let [key, value] of Object.entries(formObject)) {
+                                document.getElementById(key).value = '';
+                            }
+                        }
+                    } else {
+                        for(let [key, value] of Object.entries(errors)){
+                            setErrorFor(document.getElementById(key), value);
+                        }
+                    }
+
+                } else if(heroForm) {
+                    const { email } = Object.fromEntries(formData);
+                    console.log('first contact form', email);
+                }
+            } catch(err) {
+                console.log(err);
             }
-console.log('Should not be called');
-            await sendEmail(formObject);
-
         });
+
+        // this._IndexView.addLoginHandler(async e => {
+        //     const background = e.target.closest('.login__bg');
+        //     const content = e.target.closest('.login__content');
+        //     const submit = e.target.closest('.login__submit');
+
+        //     if(background && !content) {
+        //         background.parentElement.removeChild(background);
+        //     }
+        
+        //     if(submit) {
+        //         e.preventDefault();
+        //         const credentials = this._IndexView.Login.getFormData();
+
+        //         try {
+        //             const {status} = await login(credentials);
+
+        //             if(status === 200) {
+        //                 this._IndexView.Login._redirect();
+        //             }
+        //         } catch(err) {
+        //             // Req made, response outside of 2xx range
+        //             if(err.response) {
+        //                 console.log('Error: Invalid request');
+        //             } else if(err.request) {
+        //                 console.log('Error: No Response Received')
+        //             } else {
+        //                 console.log('Error: Setting up Request');
+        //             }
+        //         }
+        //     }
+        // });
+
+ 
+
+        // Change this to a submit listener on the index view
     }
-
-    _closePrivacyPolicy(e) {
-        const privacyPolicy = e.target.closest('.privacy-policy__content');
-
-        if(!privacyPolicy) {
-            console.log('close privacy policy')
-            this._IndexView._PrivacyPolicy.removeSelf();
-        }
-    }
-
 }
 
 new IndexController();
