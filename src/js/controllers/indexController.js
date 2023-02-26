@@ -3,11 +3,12 @@ import {gsap} from 'gsap';
 import * as IndexModel from '../models/indexModel';
 import IndexView from '../views/pages/IndexView';
 import { sendEmail, getAdminContent, login, test } from '../api';
-import { validateContact, setErrorFor, setSuccessFor } from '../utils/validator';
-
+import { validateContact, validateContactProperty, setErrorFor, setSuccessFor, setDefaultFor } from '../utils/validator';
+import { sleep } from '../utils/helper';
 
 class IndexController {
     _IndexView;
+    _challengeToken;
 
     _data = {
         // companyName: null,
@@ -127,6 +128,20 @@ class IndexController {
           
         });
 
+        window.onloadTurnstileCallback = () => {
+            turnstile.render('#cloudflare', {
+                sitekey: '0x4AAAAAAACrjWirppgZ6gk1',
+                'timeout-callback': ()=>{turnstile.reset()},
+                'error-callback': ()=>{console.log('error'); turnstile.reset()},
+
+                callback: (token) => { 
+                    this._challengeToken = token;
+                }
+            });        
+        }
+
+        turnstile.ready(onloadTurnstileCallback);
+
         this._IndexView.addSubmissionHandler(async(e) => {
             e.preventDefault();
             
@@ -139,19 +154,35 @@ class IndexController {
 
             try {
                 if(contactForm) {
-                    const errors = validateContact(formObject);
+                    const tlIn = this._IndexView._Contact.getSubmitInAnimation();
+                    const tlOut = this._IndexView._Contact.getSubmitOutAnimation(formObject);
+
+                    let errors = validateContact(formObject);
+                    if(!this._challengeToken) {
+                        console.log('ERROR: Challenge Failed');
+                        const message = 'Please verify you are human';
+                        // If no other errors, create a new object
+                        if(errors) errors.cloudflare = message;
+                        else errors = { cloudflare: message }
+                    }
+
                     if(!errors) {
+                        tlIn.play(0);
+
+                        // SET THE FIELDS' SUCCESS STATE
                         for(let [key, value] of Object.entries(formObject)) {
-                            setSuccessFor(document.getElementById(key))
-                        }
-                        
-                        const res = await sendEmail(formObject);
-                        console.log(res);
-                        if(res.status === 200) {
-                            console.log('Do Success Animation');
-                            for(let [key, value] of Object.entries(formObject)) {
-                                document.getElementById(key).value = '';
+                            if(key !== 'cf-turnstile-response') {
+                                setSuccessFor(document.getElementById(key))
                             }
+                        }
+
+                        const res = await sendEmail(formObject);
+
+                        // RESET THE FORM
+                        if(res.status === 200) {
+                            // Set short timeout to allow the animation to not look janky
+                            await sleep(500);
+                            tlOut.play(0);
                         }
                     } else {
                         for(let [key, value] of Object.entries(errors)){
@@ -160,11 +191,45 @@ class IndexController {
                     }
 
                 } else if(heroForm) {
+                    const contactEmailField = this._IndexView._Contact._element.querySelector('.email--contact');
+                    const heroEmailField = this._IndexView._Hero._element.querySelector('.email--hero');
                     const { email } = Object.fromEntries(formData);
-                    console.log('first contact form', email);
+                    // If there's a value, set the contact form field and scroll to it
+                    if(email) { 
+                        heroEmailField.value = '';
+                        contactEmailField.value = email;
+                       
+                        this._IndexView._Hero._emailLink.click();
+                    }
                 }
             } catch(err) {
                 console.log(err);
+            }
+        });
+
+        this._IndexView._Contact.addFocusOutHandler((e) => {
+            e.preventDefault();
+
+            const fieldToValidate = e.target.closest('input') || e.target.closest('textarea');
+
+            if(fieldToValidate) {
+                const error = validateContactProperty({ 
+                    name: fieldToValidate.name,
+                    value: fieldToValidate.value
+                });
+                if(error) {
+                    setErrorFor(fieldToValidate, error);
+                } else {
+                    setSuccessFor(fieldToValidate);
+                }
+            };         
+        });
+
+        this._IndexView._Contact.addFocusHandler((e) => {
+            e.preventDefault();
+            const field = e.target.closest('input') || e.target.closest('textarea');
+            if(field) {
+                setDefaultFor(field);
             }
         });
 

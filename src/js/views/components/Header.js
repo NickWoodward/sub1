@@ -70,13 +70,13 @@ export default class Header extends View {
     // this._animateIn();
     this._initElements();
   }
-    _renderNavItem(item) {
+
+  _renderNavItem(item) {
     let lowerCase = item.toLowerCase().replaceAll(' ', '');
     const capitalize = item.charAt(0) + item.slice(1);
     
     lowerCase = lowerCase === 'ourvision'? 'opportunity': lowerCase;
     lowerCase = lowerCase === 'about'? 'concept': lowerCase;
-
 
     return `<a href="#" id="${lowerCase}-item" class="menu__item  px-3 py-2 text-sm font-medium text-gray-300 hover:bg-primary hover:rounded-md hover:text-white">${capitalize}</a>`;
   }

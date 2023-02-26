@@ -4,8 +4,10 @@ import {gsap} from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
+import { setDefaultFor } from '../../utils/validator';
 import config from /* preval */ '../../../../tailwind.config';
 const { theme: { screens } } = config;
+
 
 class Contact extends View {
   _elementName = 'contact';
@@ -73,9 +75,9 @@ class Contact extends View {
                 </div>
               </div>
               <!-- Contact Form -->
-              <div class="contact-form pb-24 pt-4 lg:col-start-4 lg:col-span-3 lg:py-12 lg:px-8 xl:pl-12">
+              <div id="contact-form" class="contact-form pb-24 pt-4 lg:col-start-4 lg:col-span-3 lg:py-12 lg:px-8 xl:pl-12">
                 <div class="mx-auto lg:max-w-none">
-                  <form action="#" method="POST" class="grid grid-cols-1 gap-y-6">
+                  <form action="http://localhost:3550/email/" method="POST" spellcheck="false" class="grid grid-cols-1 gap-y-6">
                     <div class="name-wrapper relative flex flex-col xs:flex-row xs:justify-between">
                       <div class="form-item--default relative flex-1 xs:mr-6">
                         <label for="name" class="sr-only">Name</label>
@@ -90,7 +92,7 @@ class Contact extends View {
                     </div>
                     <div class="form-item--default relative">
                       <label for="email" class="sr-only">Email</label>
-                      <input id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md py-3 px-4 placeholder-gray-500 shadow-sm focus:border-primary focus:ring-primary" placeholder="Email">
+                      <input id="email" name="email" type="email" autocomplete="email" class="email--contact block w-full rounded-md py-3 px-4 placeholder-gray-500 shadow-sm focus:border-primary focus:ring-primary" placeholder="Email">
                       <small class="absolute bottom-0 right-0 translate-y-full"></small>
                     </div>
                     <div class="form-item--default relative">
@@ -103,8 +105,50 @@ class Contact extends View {
                       <textarea id="message" name="message" rows="4" class="block w-full rounded-md py-3 px-4 placeholder-gray-500 shadow-sm focus:border-primary focus:ring-primary" placeholder="Message"></textarea>
                       <small class="absolute bottom-0 right-0 translate-y-full"></small>  
                     </div>
-                    <div>
-                      <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-primary py-3 px-6 text-base font-medium text-white shadow-sm hover:bg-primaryLight focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">Submit</button>
+                    <div class="form-item--default relative">
+                      <label for="password" class="sr-only">Password</label>
+                      <input id="password" type="text" name="password" autocomplete="off" class="block w-full rounded-md py-3 px-4 placeholder-gray-500 shadow-sm focus:border-primary focus:ring-primary" placeholder="Password">                      
+                      <small class="absolute bottom-0 right-0 translate-y-full"></small>  
+                    </div>
+
+                    <div class="relative flex justify-between">
+                      <div class="">
+                        <button type="submit" class="relative inline-flex justify-center w-28 h-12 rounded-md border border-transparent bg-primary py-3 px-6 text-base font-medium text-white shadow-sm hover:bg-primaryLight focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                          <p class="button__text">Submit</p>
+                          <div class="loader loader--contact invisible absolute top-0 left-0 h-full w-full flex items-center justify-center rounded-md">
+                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                              width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                              <rect class="fill-white" x="0" y="10" width="2" height="10" opacity="0.2">
+                                <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0s" dur="0.6s" repeatCount="indefinite" />
+                                <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+                                <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+                              </rect>
+                              <rect class="fill-white" x="8" y="10" width="2" height="10" fill="#333"  opacity="0.2">
+                                <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                                <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                                <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                              </rect>
+                              <rect class="fill-white" x="16" y="10" width="2" height="10" fill="#333"  opacity="0.2">
+                                <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                                <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                                <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                              </rect>
+                            </svg>
+                          </div>
+                          <div class="success-svg success-svg--contact invisible absolute top-0 left-0 h-full w-full flex items-center justify-center rounded-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" class="h-3/4">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                          </div>
+                        </button>
+                      </div>
+
+                      <!-- CLOUDFLARE -->
+                      <div class="form-item--default relative rounded-md">
+                        <label for="cloudflare" class="sr-only">Cloudflare Challenge</label>
+                        <div id="cloudflare"></div>
+                        <small class="absolute bottom-0 right-0 translate-y-full"></small>  
+                      </div>                   
                     </div>
                   </form>
                 </div>
@@ -131,6 +175,12 @@ class Contact extends View {
   }
   _initElements() {
     this._element = document.querySelector(`.${this._elementName}`);
+
+    const field = document.getElementById('password');
+    const parent = field.parentElement;
+    parent.style.display = 'none';
+    parent.tabindex = -1;
+
   }
 
   _initAnimations() {
@@ -149,15 +199,95 @@ class Contact extends View {
     });
   }
 
-  addFormListeners(handler) {
-    this._parentElement.addEventListener('submit', handler);
+  // addFormListeners(handler) {
+  //   console.log('**********************************')
+  //   this._parentElement.addEventListener('submit', handler);
+  // };
+
+  addFocusOutHandler(handler) {
+    this._element.addEventListener('focusout', handler);
   };
 
-  submitAnimation() {
-    const tl = gsap.timeline({});
-    const submit = this._element.querySelector('input[type="submit"]');
-    console.log(submit);
-    
+  addFocusHandler(handler) {
+    this._element.addEventListener('focusin', handler);
+  };
+
+  getSubmitInAnimation() {
+    return gsap.timeline({defaults: {duration:.2}, paused: true })
+      .to('.button__text', {
+        autoAlpha: 0
+      })
+      .to('.loader', {
+        autoAlpha: 1
+      });
+  };
+  getSubmitOutAnimation(formObject) {
+    return gsap.timeline({
+      defaults: {duration:.2}, 
+      paused: true,
+      onComplete: () => {
+        for(let [key, value] of Object.entries(formObject)) {
+          if(key !== 'cf-turnstile-response') {
+              const element = document.getElementById(key);
+              element.value = '';
+              setDefaultFor(element);
+          } else {
+            setDefaultFor(document.getElementById('cloudflare'));
+          }
+      }
+      turnstile.reset();
+      }
+    })
+      .to('.loader', {
+        autoAlpha: 0
+      })
+      .to('.success-svg', {
+        autoAlpha: 1
+      })
+      .fromTo('.success-svg', { autoAlpha:1 }, {
+        immediateRender: false,
+        autoAlpha: 0
+      }, '>3')
+      .to('.button__text', {
+        autoAlpha: 1
+      });
+  };
+
+  addLoader() {
+    const button = this._element.querySelector('button[type="submit"]');
+    // Clear the button text
+    button.innerText = '';
+
+    const markup = `
+      <div class="loader loader--contact">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+          <rect x="0" y="10" width="4" height="10" fill="#333" opacity="0.2">
+            <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0s" dur="0.6s" repeatCount="indefinite" />
+            <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+            <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+          </rect>
+          <rect x="8" y="10" width="4" height="10" fill="#333"  opacity="0.2">
+            <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+            <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+            <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+          </rect>
+          <rect x="16" y="10" width="4" height="10" fill="#333"  opacity="0.2">
+            <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+            <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+            <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+          </rect>
+        </svg>
+      </div>
+    `;
+
+    button.insertAdjacentHTML('afterbegin', markup);
+  }
+  removeLoader() {
+    const button = this._element.querySelector('button[type="submit"]');
+    button.innerHTML = '';
+    button.innerText = 'Submit';
+
   }
 
   _contactAnimation() {
