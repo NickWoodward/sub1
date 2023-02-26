@@ -130,7 +130,7 @@ class IndexController {
 
         window.onloadTurnstileCallback = () => {
             turnstile.render('#cloudflare', {
-                sitekey: '0x4AAAAAAACrjWirppgZ6gk1',
+                sitekey: '3x00000000000000000000FF',
                 'timeout-callback': ()=>{turnstile.reset()},
                 'error-callback': ()=>{console.log('error'); turnstile.reset()},
 
