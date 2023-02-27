@@ -145,7 +145,7 @@ export default class Header extends View {
   //// Animations ////
   _animateIn() {
     const header = document.querySelector('.header');
-    return gsap.timeline().fromTo('.header', {autoAlpha:0}, {autoAlpha:1, onComplete: ()=> console.log(header)})
+    return gsap.timeline().fromTo('.header', {autoAlpha:0}, {autoAlpha:1})
   }
   _getBurgerTl() {
     return gsap

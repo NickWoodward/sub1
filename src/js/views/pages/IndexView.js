@@ -112,7 +112,6 @@ class IndexView extends View {
         const privacyPolicy = e.target.closest('.privacy-policy__content');
 
         if(!privacyPolicy) {
-            console.log('close privacy policy')
             this._PrivacyPolicy.removeSelf();
         }
     }

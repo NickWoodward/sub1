@@ -5,6 +5,7 @@ import IndexView from '../views/pages/IndexView';
 import { sendEmail, getAdminContent, login, test } from '../api';
 import { validateContact, validateContactProperty, setErrorFor, setSuccessFor, setDefaultFor } from '../utils/validator';
 import { sleep } from '../utils/helper';
+import { SITE_KEY } from '../config';
 
 class IndexController {
     _IndexView;
@@ -130,7 +131,7 @@ class IndexController {
 
         window.onloadTurnstileCallback = () => {
             turnstile.render('#cloudflare', {
-                sitekey: '3x00000000000000000000FF',
+                sitekey: SITE_KEY,
                 'timeout-callback': ()=>{turnstile.reset()},
                 'error-callback': ()=>{console.log('error'); turnstile.reset()},
 

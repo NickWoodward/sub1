@@ -19,7 +19,6 @@ export default class AdminView extends View {
   }
 
   _generateMarkup() {
-    console.log('generating');
     const markup = /*html*/`
         <div class="${this._elementName} relative bg-tertiary h-screen overflow-hidden">
         <div class="min-h-full">
@@ -566,7 +565,6 @@ export default class AdminView extends View {
 
   _render() {
     super._render();
-    console.log('rendering');
     this._Header._render(this._elementName);
     
   }

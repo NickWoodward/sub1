@@ -354,11 +354,6 @@ export default class PrivacyPolicy extends View {
     return data;
   }
 
-  // addPrivacyHandler(handler) {
-  //   console.log('adding privacy-policy handler');
-  //   this._parentElement.addEventListener('click', handler);
-  // }
-
   addCloseHander(handler) {
     this._element.addEventListener('click', handler);
   }

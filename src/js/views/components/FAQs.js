@@ -78,9 +78,7 @@ export default class FAQs extends View {
         desktop: `(min-width: ${lg})`
       }, (context) => {  
         const { mobile, desktop } = context.conditions;
-        
-        console.log({mobile}, {desktop});
-  
+          
         if(desktop) this._faqAnimation();
         if(mobile) this._mobileFaqAnimation();
       });

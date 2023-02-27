@@ -114,8 +114,6 @@ class About extends View {
     }, (context) => {  
       const { mobile, desktop } = context.conditions;
       
-      console.log({mobile}, {desktop});
-
       this._sectionHeaderAnimation();
       if(desktop) this._cardAnimation();
       if(mobile) this._mobileCardAnimation();

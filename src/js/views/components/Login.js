@@ -126,7 +126,6 @@ export default class Login extends View {
   }
 
   addLoginHandler(handler) {
-    console.log('adding login handler');
     this._parentElement.addEventListener('click', handler);
   }
 

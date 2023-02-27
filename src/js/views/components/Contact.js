@@ -192,17 +192,10 @@ class Contact extends View {
     }, (context) => {  
       const { mobile, desktop } = context.conditions;
       
-      console.log({mobile}, {desktop});
-
       if(desktop) this._contactAnimation();
       // if(mobile) this._mobileContactAnimation();
     });
   }
-
-  // addFormListeners(handler) {
-  //   console.log('**********************************')
-  //   this._parentElement.addEventListener('submit', handler);
-  // };
 
   addFocusOutHandler(handler) {
     this._element.addEventListener('focusout', handler);

@@ -182,7 +182,6 @@ class Hero extends View {
 
       // Set a resize listener
       window.addEventListener('resize', () => {
-        console.log('resize');
         debounce(this._setLeft());
       })
 

@@ -15,7 +15,6 @@ class View {
     }
 
     removeSelf() {
-        console.log(this)
         this._parentElement.removeChild(this._element);
     }
 

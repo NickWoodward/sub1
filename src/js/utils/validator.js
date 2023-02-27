@@ -91,7 +91,6 @@ export const setErrorFor = (input, message) => {
 }
 
 export const setSuccessFor = (input) => {
-  console.log(input);
   const formControl = input.parentElement;
   const small = formControl.querySelector('small');
 
