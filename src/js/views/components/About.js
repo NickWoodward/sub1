@@ -13,7 +13,7 @@ const icon3 = require('../../../assets/solar-cropped.png');
 
 
 class About extends View {
-  _elementName = 'about';
+  _elementName = 'concept';
   _parentElement;
   _cards;
 
@@ -24,7 +24,7 @@ class About extends View {
 
   _generateMarkup() {
     const markup = /*html*/`
-      <div class="${this._elementName} menu-section scroll-pt-header" id="${this._elementName}">
+      <div class="${this._elementName} menu-section scroll-mt-header" id="${this._elementName}">
         <div class="relative flex items-center min-h-min lg:h-section bg-slate-200 pt-24 pb-32 xs:py-32 lg:py-24">
           <div class="relative mx-auto max-w-xl px-4 xxs:px-8 text-center md:max-w-2xl lg:max-w-6xl xl:max-w-[1400px] lg:px-8 xl:px-0">
             <div class="">
@@ -43,7 +43,7 @@ class About extends View {
                   <div class="flow-root  min-h-[340px] shadow-sm rounded-lg bg-gray-50 px-6 pb-8">
                     <div class="-mt-6">
                       <div class="card__icon">
-                        <img src=${icon3} alt="" class="w-32 mx-auto" />
+                        <img src=${icon3} alt="A sun and solar panel" class="w-32 mx-auto" />
                       </div>
                       <h3 class="card__header mt-8 text-xl font-semibold leading-8 tracking-tight text-slate-700">Onsite Generation</h3>
                       <p class="card__description mt-5 text-lg leading-7 text-gray-600">The reduced mechanical load will be fully powered by renewable energy generated onsite.</p>
@@ -55,7 +55,7 @@ class About extends View {
                   <div class="flow-root  min-h-[340px] shadow-sm rounded-lg bg-gray-50 px-6 pb-8">
                     <div class="-mt-6">
                       <div class="card__icon">
-                        <img src=${icon2} alt="" class="w-32 mx-auto" />
+                        <img src=${icon2} alt="A water droplet and 2 cogs" class="w-32 mx-auto" />
                       </div>
                       <h3 class="card__header mt-8 text-xl font-semibold leading-8 tracking-tight text-slate-700">No Compressors</h3>
                       <p class="card__description mt-5 text-lg leading-7 text-gray-600">
@@ -69,7 +69,7 @@ class About extends View {
                   <div class="flow-root  min-h-[340px] shadow-sm rounded-lg bg-gray-50 px-6 pb-8">
                     <div class="-mt-6">
                       <div class="card__icon">
-                        <img src=${icon1} alt="" class="w-32 mx-auto" />
+                        <img src=${icon1} alt="The earth with 2 arrows wrapping around it" class="w-32 mx-auto" />
                       </div>
                       <h3 class="card__header mt-8 text-xl font-semibold leading-8 tracking-tight text-slate-700">No Fossil Fuels</h3>
                       <p class="card__description mt-5 text-lg leading-7 text-gray-600">

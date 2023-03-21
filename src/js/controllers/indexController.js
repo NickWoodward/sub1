@@ -48,84 +48,13 @@ class IndexController {
         // Otherwise they're in the relevant view
 
         this._IndexView._Header.addMenuHandler((e) => {
-            // Needed to allow scrollIntoView
-            e.preventDefault();
             const burger = e.target.closest('.burger');
-            const logoLink = e.target.closest('.logo');
-            const aboutLink = e.target.closest('#concept-item');
-            const aboutMobileLink = e.target.closest('#concept-mobile-item');
-            const testimonialLink = e.target.closest('#opportunity-item');
-            const testimonialMobileLink = e.target.closest('#opportunity-mobile-item');
-            const contactLink = e.target.closest('#contact-item');
-            const contactMobileLink = e.target.closest('#contact-mobile-item');
-            const loginLink = e.target.closest('#login-item');
-            const loginMobileLink = e.target.closest('#login-mobile-item');
 
-            const activeItem = 
-                logoLink || aboutLink || testimonialLink || contactLink  ||
-                aboutMobileLink || testimonialMobileLink || contactMobileLink;
-                
             if(burger)
                 this._IndexView._Header.toggleMenu();
-            if(activeItem){
-                // Nav item clicked, turn off the scrollTriggers that control the active menu
-                this._IndexView.toggleMenuScrollTrigger()
-                let element;
-                
-               
-                switch(activeItem) {
-                    case logoLink: {
-                        element = document.getElementById('hero');
-                        element.scrollIntoView({block:'end'});       
-                        // this._IndexView._Header.setActiveItem('hero-item');
-                        break;
-                    }
-                    case aboutLink: {
-                        element = document.getElementById('about'); 
-                        element.scrollIntoView({block:'end'});    
-                        // this._IndexView._Header.setActiveItem('about-item');   
-                        break;
-                    }
-                    case aboutMobileLink: {
-                        element = document.getElementById('about');
-                        element.scrollIntoView(true);    
-                        // this._IndexView._Header.setActiveItem('about-mobile'); 
-                        break;
-                    }
-                    case testimonialLink: {
-                        element = document.getElementById('testimonial'); 
-                        element.scrollIntoView();    
-                        // this._IndexView._Header.setActiveItem('testimonial-item');   
-                        break;
-                    }
-                    case testimonialMobileLink: {
-                        element = document.getElementById('testimonial');
-                        element.scrollIntoView({block:'end'});    
-                        // this._IndexView._Header.setActiveItem('testimonial-mobile'); 
-                         
-                        break;
-                    }
-                    case contactLink: {
-                        element = document.getElementById('contact'); 
-                        element.scrollIntoView({block:'end'});    
-                        // this._IndexView._Header.setActiveItem('contact-item');   
-                        break;
-                    }
-                    case contactMobileLink: {
-                        element = document.getElementById('contact'); 
-                        element.scrollIntoView({block:'end'});    
-                        // this._IndexView._Header.setActiveItem('contact-mobile');   
-                        break;
-                    }
-                }
-
-                this._IndexView.toggleMenuScrollTrigger()
-
-            } 
-
-            if(loginLink || loginMobileLink) {
-                this._IndexView.Login._render();
-            }
+            // if(loginLink || loginMobileLink) {
+            //     this._IndexView.Login._render();
+            // }
           
         });
 
@@ -133,7 +62,7 @@ class IndexController {
             turnstile.render('#cloudflare', {
                 sitekey: SITE_KEY,
                 'timeout-callback': ()=>{turnstile.reset()},
-                'error-callback': ()=>{console.log('error'); turnstile.reset()},
+                'error-callback': ()=>{turnstile.reset()},
 
                 callback: (token) => { 
                     this._challengeToken = token;
@@ -152,24 +81,24 @@ class IndexController {
 
             const formData = new FormData(e.target);
             const formObject = Object.fromEntries(formData);
+          
+            const tlError = this._IndexView._Contact.getSubmitErrorAnimation(formObject);
 
             try {
                 if(contactForm) {
                     const tlIn = this._IndexView._Contact.getSubmitInAnimation();
-                    const tlOut = this._IndexView._Contact.getSubmitOutAnimation(formObject);
+                    const tlOut = this._IndexView._Contact.getSubmitSuccessAnimation(formObject);
 
+ 
                     let errors = validateContact(formObject);
                     if(!this._challengeToken) {
-                        console.log('ERROR: Challenge Failed');
                         const message = 'Please verify you are human';
                         // If no other errors, create a new object
                         if(errors) errors.cloudflare = message;
                         else errors = { cloudflare: message }
                     }
-
                     if(!errors) {
                         tlIn.play(0);
-
                         // SET THE FIELDS' SUCCESS STATE
                         for(let [key, value] of Object.entries(formObject)) {
                             if(key !== 'cf-turnstile-response') {
@@ -178,12 +107,13 @@ class IndexController {
                         }
 
                         const res = await sendEmail(formObject);
-
                         // RESET THE FORM
                         if(res.status === 200) {
                             // Set short timeout to allow the animation to not look janky
                             await sleep(500);
                             tlOut.play(0);
+                        } else {
+                            tlError.play(0);
                         }
                     } else {
                         for(let [key, value] of Object.entries(errors)){
@@ -205,6 +135,7 @@ class IndexController {
                 }
             } catch(err) {
                 console.log(err);
+                tlError.play(0);
             }
         });
 

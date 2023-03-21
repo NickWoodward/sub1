@@ -11,19 +11,24 @@ export default class PrivacyPolicy extends View {
 
   _generateMarkup() {
       const markup = /*html*/`
-      <div class="privacy-policy__bg fixed inset-x-0 top-[var(--header-height)] h-section flex justify-center p-20 bg-gray-500 bg-opacity-75 transition-opacity z-50">
-        <div class="privacy-policy__content w-4/5 mx-auto h-full">
+      <div class="privacy-policy__bg fixed inset-x-0 top-[var(--header-height)] h-section flex justify-center p-0 md:p-20 bg-gray-500 bg-opacity-75 transition-opacity z-50">
+        <div class="privacy-policy__content w-full mx-auto h-full">
           <div class="h-full">
-            <div class="bg-white overflow-auto h-full py-8 px-12 mx-auto max-w-5xl shadow sm:rounded-lg">
+            <div class="bg-white relative overflow-auto h-full py-8 px-12 mx-auto max-w-5xl shadow md:rounded-lg">
               <div class="sm:mx-auto sm:w-full sm:max-w-md">
-                <h2 class="mb-8 text-center text-2xl font-semibold tracking-tight text-slate-700">Privacy Policy</h2>
+                <h2 class="mb-8 text-center text-2xl font-semibold tracking-tight text-gray-800">Privacy Policy</h2>
               </div>
-              
+              <div class="absolute top-0 right-0 mr-4 mt-4">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+
+              </div>
               <p class="">
                 This privacy policy applies between you, the User of this Website and SUB1 DCS Ltd, the owner and provider of this Website. This privacy policy applies to our use of any and all Data collected by us or provided by you in relation to your use of the Website.
               </p>
 
-              <div class="font-semibold text-lg color-gray-900 mt-10 mb-4">Definitions and interpretation</div>
+              <div class="font-semibold text-lg text-gray-800 mt-10 mb-4">Definitions and interpretation</div>
               
               <ol class="" role="list">
 
@@ -34,31 +39,31 @@ export default class PrivacyPolicy extends View {
                       In this privacy policy, the following definitions are used:  
                     </div>
                     <!-- Definitions "table" -->
-                    <div class="flex justify-between w-full mt-6 pt-4 border-t-2 border-gray-200">
-                      <div class="font-semibold">Data</div>
-                      <div class="w-4/6 ml-auto">collectively all information that you submit to SUB1 DCS Ltd via the Website. This definition incorporates, where applicable, the definitions provided in the Data Protection Act 1998;</div>
+                    <div class="flex flex-col md:flex-row md:justify-between w-full mt-6 pt-4 border-t-2 border-gray-200">
+                      <div class="text-gray-800 font-semibold mb-2 md:mb-0">Data</div>
+                      <div class="md:w-4/6 md:ml-auto">collectively all information that you submit to SUB1 DCS Ltd via the Website. This definition incorporates, where applicable, the definitions provided in the Data Protection Act 1998;</div>
                     </div>
                     
-                    <div class="flex justify-between w-full mt-6 pt-4 border-t-2 border-gray-200">
-                      <div class="font-semibold">SUB1 DCS Ltd, <span class="font-normal">or</span> us</div>
-                      <div class="w-4/6 ml-auto">SUB1 DCS Ltd, a company incorporated in England and Wales, whose registered office is at The Acorns, Nounsley Road, CM3 2NF;</div>
+                    <div class="flex flex-col md:flex-row md:justify-between w-full mt-6 pt-4 border-t-2 border-gray-200">
+                      <div class="text-gray-800 font-semibold mb-2 md:mb-0">SUB1 DCS Ltd, <span class="font-normal">or</span> us</div>
+                      <div class="md:w-4/6 md:ml-auto">SUB1 DCS Ltd, a company incorporated in England and Wales, whose registered office is at The Acorns, Nounsley Road, CM3 2NF;</div>
                     </div>
 
-                    <div class="flex justify-between w-full mt-6 pt-4 border-t-2 border-gray-200">
-                      <div class="font-semibold">User <span class="font-normal">or</span> you</div>
-                      <div class="w-4/6 ml-auto">any third party that accesses the Website and is not either (i) employed by SUB1 DCS Ltd and acting in the course of their employment or (ii) engaged as a consultant or otherwise providing services to SUB1 DCS Ltd and accessing the Website in connection with the provision of such services; and</div>
+                    <div class="flex flex-col md:flex-row md:justify-between w-full mt-6 pt-4 border-t-2 border-gray-200">
+                      <div class="text-gray-800 font-semibold mb-2 md:mb-0">User <span class="font-normal">or</span> you</div>
+                      <div class="md:w-4/6 md:ml-auto">any third party that accesses the Website and is not either (i) employed by SUB1 DCS Ltd and acting in the course of their employment or (ii) engaged as a consultant or otherwise providing services to SUB1 DCS Ltd and accessing the Website in connection with the provision of such services; and</div>
                     </div>
 
-                    <div class="flex justify-between w-full mt-6 mb-6 pt-4 pb-4 border-t-2 border-b-2 border-gray-200">
-                      <div class="font-semibold">Website</div>
-                      <div class="w-4/6 ml-auto">the website that you are currently using, www.sub1.io, and any sub-domains of this site unless expressly excluded by their own terms and conditions.</div>
+                    <div class="flex flex-col md:flex-row md:justify-between w-full mt-6 mb-6 pt-4 pb-4 border-t-2 border-b-2 border-gray-200">
+                      <div class="text-gray-800 font-semibold mb-2 md:mb-0">Website</div>
+                      <div class="md:w-4/6 md:ml-auto">the website that you are currently using, www.sub1.io, and any sub-domains of this site unless expressly excluded by their own terms and conditions.</div>
                     </div>
                   </li>
 
                   <!-- ****ITEM**** -->
                   <li>
                     <div class="numbered-item flex mb-4">
-                      <span class="font-semibold mr-2">2.</span> 
+                      <span class="text-gray-800 font-semibold mr-2">2.</span> 
                       In this privacy policy, unless the context requires a different interpretation:
                     </div>
                     
@@ -80,7 +85,7 @@ export default class PrivacyPolicy extends View {
 
                   <!-- ****ITEM**** -->
                   <li>
-                    <div class="font-semibold text-lg color-gray-900 mt-10 mb-4">Scope of this privacy policy</div>
+                    <div class="text-gray-800 font-semibold text-lg color-gray-900 mt-10 mb-4">Scope of this privacy policy</div>
 
                     <div class="numbered-item flex mb-4">
                       <span class="font-semibold mr-2">3.</span> 

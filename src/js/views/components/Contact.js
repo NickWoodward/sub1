@@ -21,10 +21,10 @@ class Contact extends View {
  
   _generateMarkup() {
     const markup = /*html*/`
-      <div class="${this._elementName} menu-section relative overflow-hidden  border-4 border-slate-100 bg-tertiary scroll-pt-header" id="${this._elementName}">
+      <div class="${this._elementName} menu-section scroll-mt-header relative border-t-4 border-slate-100 bg-tertiary" id="${this._elementName}">
         <!-- Hero Content Wrapper-->
         <!-- <div class="relative h-full w-full bg-slate-700"> -->
-        <div class="relative flex items-center h-full min-h-section max-w-xl mx-auto md:max-w-2xl lg:max-w-none lg:w-full lg:bg-white xl:px-12">
+        <div class="relative overflow-hidden flex items-center h-full min-h-section max-w-xl mx-auto md:max-w-2xl lg:max-w-none lg:w-full lg:bg-white xl:px-12">
 
           <!-- Skewed Right-Element -->
           <div class="animated-bg-1 hidden lg:block absolute top-0 left-[40%] w-full h-full bg-slate-100 border-slate-100 border-l-8 skew-x-12"></div>
@@ -77,7 +77,7 @@ class Contact extends View {
               <!-- Contact Form -->
               <div id="contact-form" class="contact-form pb-24 pt-4 lg:col-start-4 lg:col-span-3 lg:py-12 lg:px-8 xl:pl-12">
                 <div class="mx-auto lg:max-w-none">
-                  <form action="http://localhost:3550/email/" method="POST" spellcheck="false" class="grid grid-cols-1 gap-y-6">
+                  <form action="" spellcheck="false" class="contact-form-body relative grid grid-cols-1 gap-y-6 pb-12">
                     <div class="name-wrapper relative flex flex-col xs:flex-row xs:justify-between">
                       <div class="form-item--default relative flex-1 xs:mr-6">
                         <label for="name" class="sr-only">Name</label>
@@ -111,7 +111,7 @@ class Contact extends View {
                       <small class="absolute bottom-0 right-0 translate-y-full"></small>  
                     </div>
 
-                    <div class="relative flex justify-between">
+                    <div class="relative flex flex-col sm:flex-row justify-between pb-4">
                       <div class="">
                         <button type="submit" class="relative inline-flex justify-center w-28 h-12 rounded-md border border-transparent bg-primary py-3 px-6 text-base font-medium text-white shadow-sm hover:bg-primaryLight focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                           <p class="button__text">Submit</p>
@@ -144,14 +144,18 @@ class Contact extends View {
                       </div>
 
                       <!-- CLOUDFLARE -->
-                      <div class="form-item--default relative rounded-md">
+                      <div class="form-item--default relative rounded-md pt-6 sm:pt-0">
                         <label for="cloudflare" class="sr-only">Cloudflare Challenge</label>
                         <div id="cloudflare"></div>
                         <small class="absolute bottom-0 right-0 translate-y-full"></small>  
-                      </div>                   
+                      </div>        
+                      
                     </div>
+
+
                   </form>
                 </div>
+
               </div>
             </div>
 
@@ -193,7 +197,7 @@ class Contact extends View {
       const { mobile, desktop } = context.conditions;
       
       if(desktop) this._contactAnimation();
-      // if(mobile) this._mobileContactAnimation();
+      if(mobile) this._mobileContactAnimation();
     });
   }
 
@@ -206,6 +210,7 @@ class Contact extends View {
   };
 
   getSubmitInAnimation() {
+
     return gsap.timeline({defaults: {duration:.2}, paused: true })
       .to('.button__text', {
         autoAlpha: 0
@@ -214,21 +219,12 @@ class Contact extends View {
         autoAlpha: 1
       });
   };
-  getSubmitOutAnimation(formObject) {
+  getSubmitSuccessAnimation(formObject) {
     return gsap.timeline({
       defaults: {duration:.2}, 
       paused: true,
       onComplete: () => {
-        for(let [key, value] of Object.entries(formObject)) {
-          if(key !== 'cf-turnstile-response') {
-              const element = document.getElementById(key);
-              element.value = '';
-              setDefaultFor(element);
-          } else {
-            setDefaultFor(document.getElementById('cloudflare'));
-          }
-      }
-      turnstile.reset();
+        this.resetForm(formObject);
       }
     })
       .to('.loader', {
@@ -243,8 +239,23 @@ class Contact extends View {
       }, '>3')
       .to('.button__text', {
         autoAlpha: 1
-      });
+      }).add(this.animateSuccessAlert());
   };
+  getSubmitErrorAnimation(formObject) {
+    return gsap.timeline({
+      defaults: {duration:.2}, 
+      paused: true,
+      onComplete: () => {
+        this.resetForm(formObject);
+      }
+    })
+      .to('.loader', {
+        autoAlpha: 0
+      })
+      .to('.button__text', {
+        autoAlpha: 1
+      }).add(this.animateErrorAlert());
+  } 
 
   addLoader() {
     const button = this._element.querySelector('button[type="submit"]');
@@ -282,7 +293,18 @@ class Contact extends View {
     button.innerText = 'Submit';
 
   }
-
+  resetForm(formObject) {
+    for(let [key, value] of Object.entries(formObject)) {
+      if(key !== 'cf-turnstile-response') {
+          const element = document.getElementById(key);
+          element.value = '';
+          setDefaultFor(element);
+      } else {
+        setDefaultFor(document.getElementById('cloudflare'));
+      }
+    }
+    turnstile.reset();
+  }
   _contactAnimation() {
     const tl = gsap.timeline({ paused: true });
     tl.from('.animated-bg-1', {
@@ -325,46 +347,83 @@ class Contact extends View {
       // markers:true,
       onLeaveBack: () => tl.pause(0)
     });
-    // tl.from('.animated-bg-1', {
-    //   autoAlpha:0,
-    //   xPercent: 10,
-    //   duration: .8,
-    //   ease: 'power4.out'
-    // })
-    // .from('.animated-bg-2', {
-    //   autoAlpha:0,
-    //   xPercent: 10,
-    //   duration: .8,
-    //   ease: 'power4.out'
+  }
 
-    // }, '< .6')
-    // .from('.contact-details', {
-    //   autoAlpha: 0,
-    //   x: -20,
-    //   duration: 2,
-    //   ease: 'power4.out'
-    // }, '<')
-    // .from('.contact-form', {
-    //   autoAlpha: 0,
-    //   x: 20,
+  _mobileContactAnimation() {
+    const elements = [document.querySelector('.contact-details'), document.querySelector('.contact-form')]
+    
+    elements.forEach(element => {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo(element, {
+        opacity: 0,
+        y: 50
+      }, {
+        opacity: 1,
+        y: 0,
+        ease:'power4.inOut"',
+        duration: .7
+      });
+      ScrollTrigger.create({
+        trigger: element,
+        start: "top 40%",
+        // markers:true,
+        onEnter: () => tl.play()
+      });
+      ScrollTrigger.create({
+        trigger: element,
+        start: "top 110%",
+        // markers:true,
+        onLeaveBack: () => tl.pause(0)
+      });
+    });
 
-    //   duration: 2,
-    //   ease: 'power4.out'
-    // }, '<')
 
+  }
 
-    // ScrollTrigger.create({
-    //   trigger: ".animated-bg-1",
-    //   start: "top 80%",
-    //   // markers:true,
-    //   onEnter: () => tl.play()
-    // });
-    // ScrollTrigger.create({
-    //   trigger: ".animated-bg-1",
-    //   start: "top 110%",
-    //   // markers:true,
-    //   onLeaveBack: () => tl.pause(0)
-    // });
+  animateErrorAlert() {
+    const formBody = document.querySelector('.contact-form-body');
+    formBody.insertAdjacentHTML('beforeend', this.getErrorAlert());
+    
+    return gsap.timeline().to('.error-alert', {
+      opacity: 1
+    }).to('.error-alert', {
+      opacity:0
+    }, '<5')
+  }
+  animateSuccessAlert() {
+    const formBody = document.querySelector('.contact-form-body');
+    formBody.insertAdjacentHTML('beforeend', this.getSuccessAlert());
+    
+    return gsap.timeline().to('.success-alert', {
+      opacity: 1
+    }).to('.success-alert', {
+      opacity:0
+    }, '<5')
+  }
+
+  getSuccessAlert() {
+    const markup = `
+      <div class="success-alert opacity-0 absolute flex bottom-0 left-0 w-full py-2 px-6 rounded-md bg-primary text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-3 w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+
+        Thank you. &nbsp We will get back to you shortly.
+      </div>
+    `;
+    return markup;
+  }
+  getErrorAlert() {
+    const markup = `
+      <div class="error-alert opacity-0 absolute flex bottom-0 left-0 w-full py-2 px-6 rounded-md bg-error text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-3 w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+        </svg>
+
+        Error. &nbsp Please contact us at IR@SUB1.com
+      </div>
+    `;
+    return markup;
   }
 }
 

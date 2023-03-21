@@ -7,17 +7,27 @@ const { theme: { screens } } = config;
 import { getMediaQueryLists, getScreenSize, debounce } from '../../utils/helper';
 
 // Images
-const datacenter = require('../../../assets/datacenterDark.jpg');
-const servers = require('../../../assets/servers.jpg');
-const solar = require('../../../assets/solar.jpg');
 
+// const servers = require('../../../assets/servers.jpg');
+// const solar = require('../../../assets/solar.jpg');
+// const datacenter = require('../../../assets/datacenter-dark-compressed.jpg');
+
+const serversMobile = require('../../../assets/images/servers-compressed-400.jpg');
+const serversSmall = require('../../../assets/images/servers-compressed-640.jpg');
+const serversMedium = require('../../../assets/images/servers-compressed-1280.jpg');
+const serversLarge = require('../../../assets/images/servers-compressed-1920.jpg');
+const serversMobileWebp = require('../../../assets/images/servers-compressed-400.webp');
+const serversSmallWebp = require('../../../assets/images/servers-compressed-640.webp');
+const serversMediumWebp = require('../../../assets/images/servers-compressed-1280.webp');
+const serversLargeWebp = require('../../../assets/images/servers-compressed-1920.webp');
+// The two other slider images are required when the DOM has loaded
 
 class Hero extends View {
     _elementName = 'hero';
     _element;
     _parentElement;
     _emailLink;
-    _heroImages = [datacenter, servers, solar];
+    _heroImages = ['servers', 'lazyloaded-solar', 'lazyloaded-datacenter'];
     _slides;
     _numSlides;
     _slideIndex = 0;
@@ -35,18 +45,29 @@ class Hero extends View {
 
     _generateMarkup() {
       const markup = /*html*/`
-        <div class="${this._elementName} relative mt-[var(--header-height)] min-h-min h-section overflow-hidden"  id="${this._elementName}">
+        <div class="${this._elementName} relative mt-[var(--header-height)] scroll-mt-header min-h-min h-section"  id="${this._elementName}">
           <!-- Hero Content Wrapper-->
           <div class="relative h-full w-full bg-white before:hidden before:absolute before:bg-white before:w-4/6 before:lg:block xl:before:w-3/5 before:h-full before:border-slate-100 before:border-r-8 before:-skew-x-12 before:z-30">
             
             <!-- The Bg Image -->
-            <div class="absolute top-0 right-0 h-full w-full bg-slate-400  ml-auto object-cover lg:w-4/5 lg:h-full " > </div>
-            <div class="image-wrapper relative mix-blend-multiply brightness-[40%] h-full ml-auto lg:w-4/5 lg:h-full lg:brightness-100  grayscale">
-              <img class="hero__image absolute right-0 top-0 opacity-0 h-full object-cover lg:w-4/5 lg:h-full grayscale" src=${servers} alt="">
-              <img class="hero__image absolute right-0 top-0 opacity-0 h-full object-cover lg:w-4/5 lg:h-full grayscale" src=${solar} alt="">
-              <img class="hero__image absolute  right-0 top-0 opacity-0 h-full object-cover lg:w-4/5 lg:h-full brightness-[85%] grayscale" src=${datacenter} alt="">
+            <div class="absolute top-0 right-0 h-full w-full bg-slate-400  ml-auto object-cover lg:w-1/2 lg:h-full " > </div>
+            <div class="image-wrapper relative mix-blend-multiply brightness-[40%] h-full ml-auto lg:w-1/2 lg:h-full lg:brightness-100  grayscale">
+              <picture>
+                <source 
+                  type="image/webp"
+                  srcset="${serversMobileWebp} 400w, ${serversSmallWebp} 640w, ${serversMediumWebp} 1280w, ${serversLargeWebp} 1920w"
+                  sizes="(min-width: ${screens.lg}) 50vw"
+                >
+                <source 
+                  type="image/jpg"
+                  srcset="${serversMobile} 400w, ${serversSmall} 640w, ${serversMedium} 1280w, ${serversLarge} 1920w"
+                  sizes="(min-width: ${screens.lg}) 50vw"
+                >
+                <img src=${serversSmall} alt="A close up of server racks"
+                  class="hero__image absolute right-0 top-0 opacity-[0.6] h-full object-cover lg:h-full grayscale" 
+                >
+              </picture>
             </div>
-
 
             <!-- Image Navigation -->
             <div class="image__navigation absolute right-0 bottom-0 flex items-center mb-9 mr-6">
@@ -145,7 +166,9 @@ class Hero extends View {
       this._setParentElement();
       super._render();
       this._initElements();
-      this._initAnimations();
+      // This initialises the hero animation too
+      this._initLazyLoading();
+
     }
 
     _setParentElement() {
@@ -162,18 +185,25 @@ class Hero extends View {
       this._element = document.querySelector(`.${this._elementName}`);
       this._emailLink = this._element.querySelector('.hero__link');
 
-
-      // Set up slides
-      this._slides = Array.from(document.querySelectorAll('.hero__image'));
-      this._numSlides = this._slides.length;
-      this._imageNavigation = document.querySelector('.image__navigation');
-
-      // this._timer = gsap.from('.progress', {
-      //   scaleX:0,
-      //   transformOrigin:"0% 50%",
-      //   duration: 3,
-      //   onComplete: () => this._nextSlide()
-      // }).pause();
+      this._timer = gsap.timeline()
+        .fromTo(".progress", {
+          opacity: 0
+        }, {
+          opacity: 1,
+          duration: 3
+        })
+        .from(".progress", {
+          scaleX:0, 
+          transformOrigin:"0% 50%", 
+          duration: 10, 
+        }, '<')
+        .to(".progress", { 
+          opacity: 0,
+          onComplete:()=> {
+            this._nextSlide()
+          }
+        })
+      .pause()
 
       this._mqls = getMediaQueryLists(this._setLeft.bind(this));
 
@@ -183,56 +213,24 @@ class Hero extends View {
       // Set a resize listener
       window.addEventListener('resize', () => {
         debounce(this._setLeft());
-      })
-
-      // Navigation listener
-      this._imageNavigation.addEventListener('click', e => {
-        const prevBtn = e.target.closest('.prev__btn');
-        const nextBtn = e.target.closest('.next__btn');
-        const navIcon = e.target.closest('.image-icon');
-        const autoplayBtn = e.target.closest('.autoplay__btn');
-
-        if(prevBtn) {
-          this._prevSlide();
-          this._autoPlay = false;
-          this._turnAutoplayBtnOff();
-        }
-        if(nextBtn) {
-          this._nextSlide();
-        
-          this._autoPlay = false;
-          this._turnAutoplayBtnOff();
-        }
-
-        if(navIcon) {
-          this._slideIndex = parseInt(e.target.dataset.id);
-          this._showSlide()
-          this._autoPlay = false;
-          this._turnAutoplayBtnOff();
-        }
-
-        if(autoplayBtn) {
-          this._autoPlay = !this._autoPlay;
-          this._toggleAutoplayBtn();
-
-          if(this._autoPlay) this._autoSlideShow.restart(true);
-        }
       });
     }
 
     _nextSlide() {
       this._slideIndex = this._slideIndex < this._numSlides -1 ? this._slideIndex +1 : 0;
       this._showSlide();
-      if(this._autoPlay) this._autoSlideShow.restart(true);
+      // if(this._autoPlay) this._autoSlideShow.restart(true);
     }
     _prevSlide() {
       this._slideIndex = this._slideIndex > 0? this._slideIndex -1 : this._numSlides -1;
       this._showSlide();
     }
+    
     _hideSlide() {
       if(this._currentSlide) 
         gsap.to(this._currentSlide, { 
-          opacity: 0 
+          opacity: 0,
+          duration: .8
         });
     }
 
@@ -240,9 +238,16 @@ class Hero extends View {
       this._setActiveIcon();
 
       // If no crossfade wanted, always call _hideSlide directly with an onComplete to _showSlide
-      this._hideSlide();
+      if(this._currentSlide) this._hideSlide();
+
       this._currentSlide = this._slides[this._slideIndex];
-      gsap.to(this._currentSlide, { opacity: .6 })
+      gsap.to(this._currentSlide, { 
+        opacity: .6,
+        duration: .8,
+        onComplete: () => {
+          if(this._autoPlay) this._timer.restart();
+        }
+      })
     }
 
     _setActiveIcon() {
@@ -335,9 +340,115 @@ class Hero extends View {
       document.documentElement.style.setProperty('--progressbar-width', `${width}px`)
     }
 
-    _initAnimations() {
+    _initLazyLoading() {
+      // Set a listener for the 'load' (not DOMContentLoaded) event
+      // Ref: https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event
+      window.addEventListener('load', () => {
+        const imageWrapper = document.querySelector('.image-wrapper');
+        const solarMobile = require('../../../assets/images/solar-compressed-400.jpg');
+        const solarSmall = require('../../../assets/images/solar-compressed-640.jpg');
+        const solarMedium = require('../../../assets/images/solar-compressed-1280.jpg');
+        const solarLarge = require('../../../assets/images/solar-compressed-1920.jpg');
+        const solarMobileWebp = require('../../../assets/images/solar-compressed-400.webp');
+        const solarSmallWebp = require('../../../assets/images/solar-compressed-640.webp');
+        const solarMediumWebp = require('../../../assets/images/solar-compressed-1280.webp');
+        const solarLargeWebp = require('../../../assets/images/solar-compressed-1920.webp');
+        const datacenterMobile = require('../../../assets/images/datacenter-compressed-400.jpg');
+        const datacenterSmall = require('../../../assets/images/datacenter-compressed-640.jpg');
+        const datacenterMedium = require('../../../assets/images/datacenter-compressed-1280.jpg');
+        const datacenterLarge = require('../../../assets/images/datacenter-compressed-1920.jpg');
+        const datacenterMobileWebp = require('../../../assets/images/datacenter-compressed-400.webp');
+        const datacenterSmallWebp = require('../../../assets/images/datacenter-compressed-640.webp');
+        const datacenterMediumWebp = require('../../../assets/images/datacenter-compressed-1280.webp');
+        const datacenterLargeWebp = require('../../../assets/images/datacenter-compressed-1920.webp');
+
+        const markup = `
+          <picture>
+            <source 
+              type="image/webp"
+              srcset="${solarMobileWebp} 400w, ${solarSmallWebp} 640w, ${solarMediumWebp} 1280w, ${solarLargeWebp} 1920w"
+              sizes="(min-width: ${screens.lg}) 50vw"
+            >
+            <source 
+              type="image/jpg"
+              srcset="${solarMobile} 400w, ${solarSmall} 640w, ${solarMedium} 1280w, ${solarLarge} 1920w"
+              sizes="(min-width: ${screens.lg}) 50vw"
+            >
+            <img src=${solarSmall} alt="A close up of server racks" decoding="async"
+              class="hero__image absolute right-0 top-0 opacity-0 h-full object-cover lg:h-full grayscale" 
+            >
+          </picture>
+          <picture>
+            <source 
+              type="image/webp"
+              srcset="${datacenterMobileWebp} 400w, ${datacenterSmallWebp} 640w, ${datacenterMediumWebp} 1280w, ${datacenterLargeWebp} 1920w"
+              sizes="(min-width: ${screens.lg}) 50vw"
+            >
+            <source 
+              type="image/jpg"
+              srcset="${datacenterMobile} 400w, ${datacenterSmall} 640w, ${datacenterMedium} 1280w, ${datacenterLarge} 1920w"
+              sizes="(min-width: ${screens.lg}) 50vw"
+            >
+            <img src=${datacenterSmall} alt="A close up of server racks" decoding="async"
+              class="hero__image absolute right-0 top-0 opacity-0 h-full object-cover lg:h-full brightness-[50%] contrast-150 grayscale" 
+            >
+          </picture>`;
+
+        imageWrapper.insertAdjacentHTML('beforeend', markup);
+
+        this._setupImageSlider();
+        // this._showSlide();
+
+
+      });
+    }
+
+    _setupImageSlider() {
+      // Set up slides
+      this._slides = Array.from(document.querySelectorAll('.hero__image'));
+      this._numSlides = this._slides.length;
+      this._imageNavigation = document.querySelector('.image__navigation');
+
+      this._startSlider();
+
+      // Navigation listener
+      this._imageNavigation.addEventListener('click', e => {
+        const prevBtn = e.target.closest('.prev__btn');
+        const nextBtn = e.target.closest('.next__btn');
+        const navIcon = e.target.closest('.image-icon');
+        const autoplayBtn = e.target.closest('.autoplay__btn');
+
+        if(prevBtn) {
+          this._prevSlide();
+          this._autoPlay = false;
+          this._turnAutoplayBtnOff();
+        }
+        if(nextBtn) {
+          this._nextSlide();
+        
+          this._autoPlay = false;
+          this._turnAutoplayBtnOff();
+        }
+
+        if(navIcon) {
+          this._slideIndex = parseInt(e.target.dataset.id);
+          this._showSlide()
+          this._autoPlay = false;
+          this._turnAutoplayBtnOff();
+        }
+
+        if(autoplayBtn) {
+          if(this._autoPlay) this._timer.pause(0);
+          else this._timer.play(0);
+
+          this._autoPlay = !this._autoPlay;
+          this._toggleAutoplayBtn();
+        }
+      });
+    }
+
+    _startSlider() {
       this._showSlide();
-      this._autoSlideShow = gsap.delayedCall(10, () => this._autoPlay? this._nextSlide():null);
     }
 }
 

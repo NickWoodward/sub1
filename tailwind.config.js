@@ -34,6 +34,7 @@ module.exports = {
         primary: 'hsl(178, 61%, 49%)',
         primaryDark: 'hsl(178, 61%, 28%)',
         primaryLight: 'hsl(178, 61%, 60%)',
+        primaryVLight: 'hsla(178, 61%, 72%, 1)',
         // secondary: 'hsl(212, 76%, 18%)',
         secondary: 'hsl(250, 96%, 13%)',
         // secondary: 'hsl(195, 100%, 31%)',
@@ -70,8 +71,12 @@ module.exports = {
         '-100': '-1',
       },
       scrollPadding: {
-        'header': '4rem',
+        'header': 'var(--header-height)',
       },
+      scrollMargin: {
+        header: 'var(--header-height)',
+        small: 'calc(var(--header-height)*.75)'
+      }
     },
   },
   plugins: [

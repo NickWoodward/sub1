@@ -11,7 +11,7 @@ import Login from '../components/Login';
 import PrivacyPolicy from '../components/PrivacyPolicy';
 import Hero from '../components/Hero';
 import About from '../components/About';
-import Testimonial from '../components/Testimonial';
+import Opportunity from '../components/Opportunity';
 import FAQs from '../components/FAQs';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
@@ -29,7 +29,7 @@ class IndexView extends View {
     _Hero;
     _Dashboard;
     _About;
-    _Testimonial;
+    _Opportunity;
     _FAQs;
     _Footer;
 
@@ -40,13 +40,12 @@ class IndexView extends View {
 
         const {dashboardData} = data;
         this._Dashboard = new Dashboard(dashboardData);
-
         this._Header = new Header(data.headerData);
         this.Login = new Login({page: 'home'});
         this._PrivacyPolicy = new PrivacyPolicy({});
         this._Hero = new Hero({});
         this._About = new About({});
-        this._Testimonial = new Testimonial({});
+        this._Opportunity = new Opportunity({});
         this._FAQs = new FAQs({});
         this._Contact = new Contact({});
         this._Footer = new Footer({});
@@ -67,11 +66,10 @@ class IndexView extends View {
         this._Header._render(this._elementName);
         this._Hero._render();
         this._About._render();
-        this._Testimonial._render();
+        this._Opportunity._render();
         this._FAQs._render();
         this._Contact._render();
         this._Footer._render();
-
         this._addHandlers();
         this._handleScrollMenuChange();
     }
@@ -116,15 +114,12 @@ class IndexView extends View {
         }
     }
 
-
-
     _handleScrollMenuChange() {
         const sections = gsap.utils.toArray(".menu-section");
         const menuItems = Array.from(document.querySelectorAll('.menu__item'));
         const sectionsMap = new Map();
 
         sections.forEach((section, index) => sectionsMap.set(section, menuItems[index]));
-
 
         this._sectionTriggers = sections.map((section, i) => {
             const scrollTrigger = ScrollTrigger.create({
@@ -136,28 +131,7 @@ class IndexView extends View {
             return scrollTrigger;
         });
     }
-
-    toggleMenuScrollTrigger() {
-        if(this._menuScrollTrigger) {
-            this._menuScrollTrigger = false; 
-
-            this._sectionTriggers.forEach(trigger => {
-                trigger.disable()
-            })
-            console.log('TURNING OFF SCROLL TRIGGERS');
-            console.log('ON? ', this._sectionTriggers[0].enabled);
-        } else {
-            this._menuScrollTrigger = true; 
-
-            this._sectionTriggers.forEach(trigger => {
-                trigger.enable()
-            })
-            console.log('TURNING ON SCROLL TRIGGERS');
-            console.log('ON? ', this._sectionTriggers[0].enabled);
-        }
-    }
-
-
+ 
 }
 
 export default IndexView;

@@ -1,6 +1,7 @@
 const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackBundleAnalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
     entry: {
@@ -12,6 +13,18 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         clean: true,
     },
+    optimization: {
+        runtimeChunk: 'single',
+        splitChunks: {
+          cacheGroups: {
+            vendor: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendors',
+              chunks: 'all'
+            }
+          }
+        }
+      },
     module: {
         rules: [
             {
@@ -39,6 +52,7 @@ module.exports = {
             filename: 'admin.html',
             template: 'src/admin.html',
             chunks: ['admin']
-        })
+        }),
+        new WebpackBundleAnalyzer()
     ]
 }

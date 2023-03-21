@@ -32,6 +32,3 @@ export const getHeaderData = () => {
 
 //// END examples ////
 
-export const indexModelFunction = () => {
-    console.log('indexModel');
-}

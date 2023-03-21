@@ -23,7 +23,7 @@ export default class Header extends View {
     const markup = /*html*/`
       <div class="${this._elementName} fixed flex items-center justify-center w-full h-header bg-slate-700 shadow-2xl cursor-pointer z-40">
         <div class=" px-4 xxs:px-8 flex justify-between items-center w-full max-w-largest">
-          <div class="logo relative border-l-2 border-primary pl-3 text-white text-3xl tracking-tighter uppercase">Sub<span class="text-primary ml-2">1</span></div>
+          <a href="#hero"><div class="logo relative border-l-2 border-primary pl-3 text-white text-3xl tracking-tighter uppercase">Sub<span class="text-primary ml-2">1</span></div></a>
         
           <!-- Mobile Burger -->
           <div class="burger relative sm:hidden flex flex-col justify-between w-8 h-5 cursor-pointer">
@@ -40,11 +40,11 @@ export default class Header extends View {
           <div class="menu--mobile hidden absolute inset-x-0 top-header z-10 origin-top-right transform  transition">
             <div class="flex flex-col items-end overflow-hidden">
               
-                <a href="#" id="concept-mobile-item" class="mobile-menu__item block w-[120%] bg-slate-600  border-t-2 last:border-b-0 border-slate-700 px-8 py-4 text-base text-right font-medium text-slate-300 hover:bg-slate-700 hover:text-primary">Concept</a>
+                <a href="#concept" id="concept-mobile-item" class="mobile-menu__item block w-[120%] bg-slate-600  border-t-2 last:border-b-0 border-slate-700 px-8 py-4 text-base text-right font-medium text-slate-300 hover:bg-slate-700 hover:text-primary">Concept</a>
 
-                <a href="#" id="opportunity-mobile-item" class="mobile-menu__item block w-[120%] bg-slate-600  border-t-2 last:border-b-0 border-slate-700 px-8 py-4 text-base text-right font-medium text-slate-300 hover:bg-slate-700 hover:text-primary">Opportunity</a>
+                <a href="#opportunity" id="opportunity-mobile-item" class="mobile-menu__item block w-[120%] bg-slate-600  border-t-2 last:border-b-0 border-slate-700 px-8 py-4 text-base text-right font-medium text-slate-300 hover:bg-slate-700 hover:text-primary">Opportunity</a>
 
-                <a href="#" id="contact-mobile-item" class="mobile-menu__item block w-[120%] bg-slate-600  border-t-2 last:border-b-0 border-slate-700 px-8 py-4 text-base text-right font-medium text-slate-300 hover:bg-slate-700 hover:text-primary ">Contact Us</a>
+                <a href="#contact" id="contact-mobile-item" class="mobile-menu__item block w-[120%] bg-slate-600  border-t-2 last:border-b-0 border-slate-700 px-8 py-4 text-base text-right font-medium text-slate-300 hover:bg-slate-700 hover:text-primary ">Contact Us</a>
 
                 <!--<a href="#" id="login-mobile-item" class="mobile-menu__item block w-[120%]  bg-slate-700 border-t-2 border-slate-500 px-8 py-3 text-right font-medium text-slate-300 hover:text-primary">Log in</a>-->
             </div>
@@ -77,8 +77,7 @@ export default class Header extends View {
     
     lowerCase = lowerCase === 'ourvision'? 'opportunity': lowerCase;
     lowerCase = lowerCase === 'about'? 'concept': lowerCase;
-
-    return `<a href="#" id="${lowerCase}-item" class="menu__item  px-3 py-2 text-sm font-medium text-gray-300 hover:bg-primary hover:rounded-md hover:text-white">${capitalize}</a>`;
+    return `<a href="#${lowerCase}" id="${lowerCase}-item" class="menu__item  px-3 py-2 text-sm font-medium text-gray-300 hover:bg-primary hover:rounded-md hover:text-white">${capitalize}</a>`;
   }
 
   _setParentElement(parentString) {
