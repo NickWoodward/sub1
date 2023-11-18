@@ -37,6 +37,10 @@ class Hero extends View {
     _imageNavigation;
     _autoPlayBtn;
     _timer;
+    // subtitle = 'Create Lease and Sell';
+    // title = 'Cloud, AI and Wholesale Infrastructure'
+    // content = 'Our London and UK Metro sites offer hyper efficient, single-tenant colocation, enabling businesses to enjoy resilience and performance at a low cost';
+
 
     constructor(data) {
         super(data);
