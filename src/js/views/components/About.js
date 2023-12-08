@@ -13,7 +13,7 @@ const icon3 = require('../../../assets/solar-cropped.png');
 
 
 class About extends View {
-  _elementName = 'concept';
+  _elementName = 'about';
   _parentElement;
   _cards;
   subtitle = "Cost Efficient, Resilient & Secure";
