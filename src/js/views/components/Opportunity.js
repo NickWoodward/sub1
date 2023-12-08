@@ -28,9 +28,9 @@ class WhyUs extends View {
 
   _generateMarkup() {
     const markup = /*html*/`
-      <div class="${this._elementName} menu-section bg-slate-200 scroll-mt-[70px] " id="${this._elementName}">
+      <div class="${this._elementName} border border-blue-500 menu-section bg-slate-200 scroll-mt-[70px] " id="${this._elementName}">
 
-        <div class=" flex items-end  min-h-min xs:pt-24 lg:pt-16 xl:pt-22">
+        <div class=" flex items-end  min-h-min xs:pt-24 lg:pt-0  xl:pt-22">
           <div class="relative pt-20 pb-24 w-full">
             <div class="why-us-bg-1 absolute top-0 left-0 w-full h-full bg-white"></div>
             <div class="why-us-bg-2 absolute top-0 left-0 pt-24 pb-28 sm:pt-0 sm:pb-0 w-full h-full bg-primary"></div>
