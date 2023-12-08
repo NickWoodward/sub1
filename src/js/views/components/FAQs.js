@@ -10,8 +10,11 @@ const { theme: { screens, extend: { colors } } } = config;
 export default class FAQs extends View {
     _elementName = "faqs";
     _parentElement;
-    _background = Math.round(Math.random());
-
+    item1 = "Free-air and evaporative cooling systems consume less power than compressor-based alternatives. The power required for cooling is primarily generated onsite by solar PV.";
+    item2 = "Reducing the amount of electricity used leads to a lower overall cost. In fact, the total cost of ownership for a 2MW deployment is approximately half the cost of retail colocation with metered power.";
+    item3 = "Without planning and initial build phases, data centre capacity will be available more quickly. Leveraging existing power capacity also means quicker completion times and less impact to other developments, such as housing.";
+    item4 = "Both options are available. A customer can take either a long term lease or purchase a site, subject to what best meets their requirement.";
+    item5 = "In addition to less electricity consumed and greenfield used, HVO, as opposed to diesel, fuels the back-up generators, to reduce carbon emissions under normal operation.";
     constructor(data) {
         super(data);
         this._data.markup = this._generateMarkup();
@@ -22,9 +25,8 @@ export default class FAQs extends View {
       <div class="${this._elementName} relative  overflow-hidden" id="${this._elementName}">
 
         <section aria-labelledby="faq-heading" class="bg-white py-0 lg:py-24 xl:min-h-[100vh]">
-          <div class="fag-background flex items-center absolute inset-0 brightness-95 opacity-[20%]">
-             ${this._background === 0 ? getFAQBackground(): this._getBgSVG()} 
-            <!-- ${this._getBgSVG()} -->
+          <div class="faq-background flex items-center absolute inset-0 brightness-95 opacity-[20%]">
+             ${this._getBgSVG()} 
           </div>
           <div class="max-w-xl md:max-w-2xl mx-auto py-24 px-4 xxs:px-8 xs:py-24 lg:max-w-6xl lg:px-8 xl:max-w-[1400px] xl:px-0">
             <div class="">
@@ -35,23 +37,23 @@ export default class FAQs extends View {
             <dl class="mt-12 grid grid-cols-1 gap-y-10 xs:mt-16 lg:grid-cols-2 md:gap-x-6 xl:gap-x-10">
               <div class="faq__item">
                 <dt class="text-xl font-semibold text-slate-700">How does SUB1 achieve cooling efficiency?</dt>
-                <dd class="mt-3 text-lg text-gray-500">Free-air and evaporative cooling (from rain water), consumes less power than AC cooling. High density racks have additional direct cooling. Power required for these systems is generated onsite by solar PV.  </dd>
+                <dd class="mt-3 text-lg text-gray-500">${this.item1}</dd>
               </div>
               <div class="faq__item">
                 <dt class="text-xl font-semibold text-slate-700">How does this efficiency aid SUB1 customers?</dt>
-                <dd class="mt-3 text-lg text-gray-500">Reducing the amount of electricity used leads to a lower overall cost. In fact, the total cost of ownership for a 2MW deployment is approximately half the cost of retail colocation with metered power.</dd>
+                <dd class="mt-3 text-lg text-gray-500">${this.item2}</dd>
               </div>
               <div class="faq__item">
                 <dt class="text-xl font-semibold text-slate-700">What are the benefits of using brownfield sites?</dt>
-                <dd class="mt-3 text-lg text-gray-500">Without planning and initial build phases, data centre capacity will be available quicker. Leveraging existing power capacity also means quicker completion times and less impact to other developments, such as housing.</dd>
+                <dd class="mt-3 text-lg text-gray-500">${this.item3}</dd>
               </div>
               <div class="faq__item">
               <dt class="text-xl font-semibold text-slate-700">Are these sites available to lease or buy?</dt>
-              <dd class="mt-3 text-lg text-gray-500">Both options are available. Customers can take either a long term lease or purchase a sites, subject to what best meets requirements. </dd>
+              <dd class="mt-3 text-lg text-gray-500">${this.item4}</dd>
             </div>
             <div class="faq__item">
               <dt class="text-xl font-semibold text-slate-700">What&#039;s being done to reduce the environmental impact?</dt>
-              <dd class="mt-3 text-lg text-gray-500">In addition to less electricity consumed and less greenfield used, hydrogen, as opposed to diesel, is used for the back up generators, in an effort to emit zero carbon under normal operation.</dd>
+              <dd class="mt-3 text-lg text-gray-500">${this.item5}</dd>
             </div>
             
             </dl>

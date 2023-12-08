@@ -65,7 +65,8 @@ export const getSVGLoader = (solid, strokeWidth = 1.5) => {
             `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="30" viewBox="0 0 24 30"><path fill="#333" d="M0 13h4v5H0z"><animate attributeName="height" attributeType="XML" begin="0s" dur="0.6s" repeatCount="indefinite" values="5;21;5"/><animate attributeName="y" attributeType="XML" begin="0s" dur="0.6s" repeatCount="indefinite" values="13; 5; 13"/></path><path fill="#333" d="M10 13h4v5h-4z"><animate attributeName="height" attributeType="XML" begin="0.15s" dur="0.6s" repeatCount="indefinite" values="5;21;5"/><animate attributeName="y" attributeType="XML" begin="0.15s" dur="0.6s" repeatCount="indefinite" values="13; 5; 13"/></path><path fill="#333" d="M20 13h4v5h-4z"><animate attributeName="height" attributeType="XML" begin="0.3s" dur="0.6s" repeatCount="indefinite" values="5;21;5"/><animate attributeName="y" attributeType="XML" begin="0.3s" dur="0.6s" repeatCount="indefinite" values="13; 5; 13"/></path></svg>`
         }`
     );
-}
+};
+
 
 export const getFAQBackground = () => {
     const bg1 = `

@@ -18,14 +18,14 @@ export default class Footer extends View {
             <div class="inline-flex flex-col sm:w-full sm:justify-between sm:flex-row">
               <div class="col-1 flex flex-col">
                 <div class="logo relative border-l-2 border-primary pl-3 text-white text-2xl tracking-tighter uppercase">Sub<span class="text-primary ml-2">1</span></div>
-                <p class="text-base text-gray-200 mt-4">Hyper Efficient Edge Data Centres</p>
+                <p class="text-base text-gray-200 mt-4">Hyper-Efficient Edge Data Centres</p>
               </div>
 
               <div class="col-2 flex flex-col">
 
                 <div class="flex flex-col mt-6 sm:mt-0 text-left sm:text-right md:flex-row md:space-x-6">
-                  <div class="text-base text-gray-200 hover:text-gray-200 cursor-pointer">Concept</div>
-                  <div class="text-base text-gray-200 hover:text-gray-200 cursor-pointer">Opportunity</div>
+                  <div class="text-base text-gray-200 hover:text-gray-200 cursor-pointer">About</div>
+                  <div class="text-base text-gray-200 hover:text-gray-200 cursor-pointer">Why Us</div>
                   <div class="privacy-link--footer text-base text-gray-200 hover:text-gray-200 cursor-pointer">Privacy Policy</div>
                 </div>
 

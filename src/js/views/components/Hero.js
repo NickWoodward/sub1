@@ -37,10 +37,9 @@ class Hero extends View {
     _imageNavigation;
     _autoPlayBtn;
     _timer;
-    // subtitle = 'Create Lease and Sell';
-    // title = 'Cloud, AI and Wholesale Infrastructure'
-    // content = 'Our London and UK Metro sites offer hyper efficient, single-tenant colocation, enabling businesses to enjoy resilience and performance at a low cost';
-
+    subtitle = 'Modern, Build-to-Suit Data Centres';
+    title = 'Cloud, AI and Wholesale Facilities'
+    content = 'Our sites in London and the surrounding areas offer single tenants a hyper-efficient, and commercially favourable alternative to wholesale colocation';
 
     constructor(data) {
         super(data);
@@ -116,8 +115,8 @@ class Hero extends View {
             <!--<div class="absolute container top-1/2 left-1/2 -translate-y-[58%] -translate-x-1/2 text-primary z-20">-->
             <div class="absolute w-full max-w-xl md:max-w-2xl lg:max-w-5xl xl:max-w-[1400px] top-1/2 left-1/2 -translate-y-[58%] -translate-x-1/2 px-4 xxs:px-8 lg:px-0 text-primary z-30">
             
-              <main class="lg:px-2 lg:w-1/2 xl:px-0 xl:pl-0">
-                <div class=" md:text-left">
+              <main class=" lg:px-2 lg:w-1/2 xl:px-0 xl:pl-0">
+                <div class="md:text-left">
                   <h1>
                     <!--<div>
                       <a href="#" class="inline-flex space-x-4 mb-2">
@@ -131,18 +130,23 @@ class Hero extends View {
                     </div>-->
 
                     <!-- <span class="block text-base font-semibold text-gray-500 xs:text-lg lg:text-base xl:text-lg">Coming soon</span> -->
-                    <span class="mt-1 block text-3xl xxs:text-4xl sm:text-5xl md:text-5xl lg:text-5xl">
-                      <span class="block text-2xl xxs:text-3xl font-semibold tracking-tight text-slate-300 lg:text-slate-700">Create, Lease and Sell</span>
-                      <span class="block mt-2 text-primary font-semibold">Hyper Efficient Edge Data Centers</span>
+                    <span class="mt-1 block text-3xl sm:text-5xl md:text-5xl lg:text-5xl">
+                      <span class="block xxs-v:hidden  text-lg font-medium tracking-tight text-slate-300 lg:text-slate-700">${this.subtitle}</span>
+                      <span class="block mt-2 text-primary font-semibold">${this.title}</span>
                     </span>
                   </h1>
-                  <p class="mt-3 text-base text-slate-200 xs:mt-5 xs:text-xl lg:text-lg lg:text-gray-500 xl:text-2xl">Register interest in the latest investment round</p>
-                  <div class="mt-8 xs:max-w-lg  md:text-left md:mx-0 lg:text-left lg:max-w-lg">
-                    <p class="text-base font-medium lg:text-gray-900">Sign up to receive futher information</p>
-                    <form action="#" method="POST" class="mt-3 xs:flex xs:flex-row sm:w-full  sm:flex-row">  
-                    <label for="email--hero" class="sr-only">Email</label>
-                    <input type="email" name="email" id="email--hero" class="email--hero block w-full rounded-md border-gray-300 py-3 text-base placeholder-gray-500 shadow-sm focus:border-primary focus:ring-primary xs:flex-1" placeholder="Enter your email">
-                    <button type="submit" class="mt-3 w-full rounded-md border border-transparent bg-primary px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-primaryLight focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 xs:inline-flex xs:w-auto xs:flex-shrink-0 xs:items-center xs:justify-center xs:mt-0 xs:ml-3">Submit</button>
+                  <p class="mt-3 text-lg text-slate-200 xs:mt-5 xs:text-xl lg:text-lg lg:text-gray-500 xl:text-2xl">${this.content}</p>
+                  
+                  <div class="xs-v:hidden mt-8 xs:max-w-lg  md:text-left md:mx-0 lg:text-left lg:max-w-lg">
+                    <p class="text-base font-medium lg:text-gray-900">Contact one of our experts</p>
+                    <form action="#" method="POST" class="flex items-center gap-x-2 mt-3 xs:flex xs:flex-row sm:w-full  sm:flex-row">  
+                      <label for="email--hero" class="sr-only">Email</label>
+                      <input type="email" name="email" id="email--hero" class="email--hero block w-full rounded-md border-gray-300 py-3 text-base placeholder-gray-500 shadow-sm focus:border-primary focus:ring-primary xs:flex-1" placeholder="Enter your email">
+                      <button type="submit" class="rounded-md border border-transparent bg-primary px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-primaryLight focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 xs:inline-flex xs:w-auto xs:flex-shrink-0 xs:items-center xs:justify-center xs:mt-0 xs:ml-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                        </svg> 
+                      </button>
                       <!-- Hidden link to be clicked dynamically --> 
                       <a href="#contact" class="hero__link hidden"></a>
                     </form>
@@ -378,7 +382,7 @@ class Hero extends View {
               srcset="${solarMobile} 400w, ${solarSmall} 640w, ${solarMedium} 1280w, ${solarLarge} 1920w"
               sizes="(min-width: ${screens.lg}) 50vw"
             >
-            <img src=${solarSmall} alt="A close up of server racks" decoding="async"
+            <img src=${solarSmall} alt="A close up of a solar farm" decoding="async"
               class="hero__image absolute right-0 top-0 opacity-0 h-full object-cover lg:h-full grayscale" 
             >
           </picture>
@@ -393,7 +397,7 @@ class Hero extends View {
               srcset="${datacenterMobile} 400w, ${datacenterSmall} 640w, ${datacenterMedium} 1280w, ${datacenterLarge} 1920w"
               sizes="(min-width: ${screens.lg}) 50vw"
             >
-            <img src=${datacenterSmall} alt="A close up of server racks" decoding="async"
+            <img src=${datacenterSmall} alt="A close up of data centre cooling fans" decoding="async"
               class="hero__image absolute right-0 top-0 opacity-0 h-full object-cover lg:h-full brightness-[50%] contrast-150 grayscale" 
             >
           </picture>`;
