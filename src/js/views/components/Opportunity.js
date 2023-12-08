@@ -28,18 +28,18 @@ class WhyUs extends View {
 
   _generateMarkup() {
     const markup = /*html*/`
-      <div class="${this._elementName} border border-blue-500 menu-section bg-slate-200 scroll-mt-[70px] " id="${this._elementName}">
+      <div class="${this._elementName}  menu-section bg-slate-200 scroll-mt-[70px] " id="${this._elementName}">
 
         <div class=" flex items-end  min-h-min xs:pt-24 lg:pt-0  xl:pt-22">
-          <div class="relative pt-20 pb-24 w-full">
+          <div class="relative pt-20 lg:pt-12 lg:pb-18 pb-24 w-full">
             <div class="why-us-bg-1 absolute top-0 left-0 w-full h-full bg-white"></div>
             <div class="why-us-bg-2 absolute top-0 left-0 pt-24 pb-28 sm:pt-0 sm:pb-0 w-full h-full bg-primary"></div>
-            <div class="flex max-w-xl h-full mx-auto  px-4 xs:pt-0 xs:pb-12 sm:pb-24 xxs:px-8 md:max-w-2xl m lg:relative lg:max-w-6xl xl:max-w-[1440px] xl:px-0 lg:z-10 lg:pb-0">
+            <div class="flex max-w-xl h-full mx-auto  px-4 xs:pt-0 xs:pb-12 sm:pb-24 xxs:px-8 md:max-w-2xl lg:relative lg:max-w-6xl xl:max-w-[1440px] xl:px-0 lg:z-10 lg:pb-0">
               <div class="  xs:-mt-32 lg:mt-0 relative h-full w-full xxs:max-w-xl xs:mx-auto md:max-w-2xl lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-8 ">
                 
                 <!--  Image Wrapper -->
-                <div class="image-wrapper hidden relative xs:block lg:-my-8 lg:pb-0">
-                  <div class="mx-auto max-w-xl md:max-w-2xl lg:h-full lg:p-0">
+                <div class="image-wrapper hidden relative xs:block lg:w-[25rem]  lg:-mt-20 lg:-mb-32 lg:pb-0">
+                  <div class="mx-auto max-w-xl md:max-w-2xl lg:max-w-3xl lg:h-full lg:p-0">
                     <div class="overflow-hidden rounded-xl shadow-xl  lg:h-full">
                       <div class="bg-slate-700 h-full">
                         <picture>

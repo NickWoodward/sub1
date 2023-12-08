@@ -1,4 +1,4 @@
-const env = '';
+const env = 'production';
 
 // THESE ARE ALL PUBLIC KEYS/URLS, JUST HERE FOR ORGANISATION
 export const API_URL = env==='production'? `https://api.sub1.io` : `http://localhost:4600`;
